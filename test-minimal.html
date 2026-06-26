@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>FitLog 健身记录</title>
+<style>
+body{font-family:sans-serif;background:#0f0f0f;color:#e8e8e8;margin:0;padding:16px}
+button{padding:12px 24px;margin:8px;background:#ff6b35;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer}
+input{padding:10px;background:#242424;color:#fff;border:1px solid #333;border-radius:8px;font-size:14px;width:100%;margin:4px 0}
+.card{background:#1a1a1a;padding:16px;border-radius:12px;margin:8px 0}
+.stat{display:flex;gap:8px}
+.stat>div{flex:1;background:#1a1a1a;text-align:center;padding:12px;border-radius:12px}
+.stat .v{font-size:24px;font-weight:700;color:#ff6b35}
+.stat .l{font-size:11px;color:#999}
+</style>
+</head>
+<body>
+<h2>FitLog 健身记录 <span style="font-size:14px;color:#999" id="today"></span></h2>
+<div class="stat" id="stats"></div>
+<div class="card">
+<h3>新增训练</h3>
+<input type="date" id="recDate"><br>
+<input type="text" id="recExercise" placeholder="训练项目"><br>
+<div id="sets"></div>
+<button onclick="addSet()">+ 添加一组</button><br>
+<button onclick="saveWorkout()">保存记录</button>
+<p id="msg" style="color:#2ecc71"></p>
+</div>
+<div class="card">
+<h3>训练列表</h3>
+<div id="list"></div>
+</div>
+<script>
+var workouts = JSON.parse(localStorage.getItem('fw')||'[]');
+var STORAGE = 'fw';
+
+function showMsg(t){document.getElementById('msg').textContent=t;setTimeout(function(){document.getElementById('msg').textContent=''},2000)}
+
+function rStats(){
+  document.getElementById('stats').innerHTML =
+    '<div><div class="v">'+workouts.length+'</div><div class="l">总记录</div></div>'+
+    '<div><div class="v">'+new Set(workouts.map(function(w){return w.exercise})).size+'</div><div class="l">项目数</div></div>';
+}
+
+function rList(){
+  var h='';
+  workouts.sort(function(a,b){return b.date.localeCompare(a.date)}).forEach(function(w){
+    h+='<div style="background:#242424;padding:8px 12px;margin:4px 0;border-radius:8px;border-left:3px solid #ff6b35">'+
+      '<b>'+w.exercise+'</b> <span style="color:#999;font-size:12px">'+w.date+'</span><br>'+
+      '<span style="color:#999;font-size:12px">'+w.sets.length+'组</span> '+
+      '<button onclick="delWorkout(\''+w.id+'\')" style="font-size:11px;padding:4px 8px;background:#e74c3c;float:right">删除</button>'+
+      '</div>';
+  });
+  document.getElementById('list').innerHTML=h||'<p style="color:#999">暂无记录</p>';
+}
+
+function addSet(){
+  var d=document.createElement('div');
+  d.style.cssText='display:flex;gap:4px;margin:4px 0;align-items:center';
+  d.innerHTML='<span style="color:#999">组</span><input type="number" placeholder="重量kg" style="flex:1" class="sw"><input type="number" placeholder="次数" style="flex:1" class="sr"><button onclick="this.parentElement.remove()" style="padding:6px 10px;background:#e74c3c;font-size:12px">X</button>';
+  document.getElementById('sets').appendChild(d);
+}
+
+function saveWorkout(){
+  var ex=document.getElementById('recExercise').value.trim();
+  if(!ex){showMsg('请输入训练项目');return}
+  var sets=[];
+  document.querySelectorAll('#sets>div').forEach(function(d){
+    var w=parseFloat(d.querySelector('.sw').value)||0;
+    var r=parseInt(d.querySelector('.sr').value)||0;
+    if(w||r)sets.push({weight:w,reps:r});
+  });
+  if(!sets.length){showMsg('请至少添加一组');return}
+  workouts.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),date:document.getElementById('recDate').value,exercise:ex,sets:sets});
+  localStorage.setItem(STORAGE,JSON.stringify(workouts));
+  document.getElementById('recExercise').value='';
+  document.getElementById('sets').innerHTML='';
+  addSet();
+  rStats();rList();
+  showMsg('已保存!');
+}
+
+function delWorkout(id){
+  if(!confirm('删除?'))return;
+  workouts=workouts.filter(function(w){return w.id!==id});
+  localStorage.setItem(STORAGE,JSON.stringify(workouts));
+  rStats();rList();
+}
+
+document.getElementById('recDate').value=new Date().toISOString().split('T')[0];
+document.getElementById('today').textContent=new Date().toLocaleDateString('zh-CN');
+addSet();
+rStats();
+rList();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Test</title></head>
+<body>
+<h1>JS Test</h1>
+<button onclick="test()">Click Me</button>
+<button onclick="alert('inline works')">Alert Test</button>
+<p id="result"></p>
+<script>
+function test() {
+  document.getElementById('result').textContent = 'Button clicked! JS works!';
+  console.log('test() called');
+}
+console.log('Script loaded');
+</script>
+</body></html>
