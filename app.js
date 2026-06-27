@@ -643,7 +643,7 @@ function attachPinchListeners() {
       mc.on('pinchmove', function(e) {
         e.preventDefault();
         var scale = e.scale;
-        var delta = Math.round((scale - pinchStates[cn].lastScale) * 10);
+        var delta = Math.round((pinchStates[cn].lastScale - scale) * 10);
         if (delta !== 0) {
           var newZoom = Math.max(1, Math.min(90, pinchStates[cn].startZoom + delta));
           pinchStates[cn].lastScale = scale;
@@ -901,7 +901,7 @@ function chartOpts(showLegend, labels) {
             }
           }
         },
-        y: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: true, text: 'kg', color: '#999' } }
+        y: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: false, text: 'kg', color: '#999' } }
       }
     };
   }
