@@ -879,6 +879,8 @@ function buildFreqData(filter) {
               var label = this.getLabelForValue(val);
               if (!label) return '';
               var parts = label.split('-');
+              var year = parts[0];
+              var month = parseInt(parts[1]);
               var day = parseInt(parts[2]);
               var prevYear = '', prevMonth = '';
               if (index > 0 && ticks[index-1]) {
@@ -889,15 +891,13 @@ function buildFreqData(filter) {
                   prevMonth = prevParts[1];
                 }
               }
-              var year = parts[0];
-              var month = parseInt(parts[1]);
               if (index === 0 || prevYear !== year) {
-                return month + '/' + day;
+                return "'" + year.slice(2) + '/' + month + '/' + day;
               }
               if (prevMonth !== parts[1]) {
                 return month + '/' + day;
               }
-              return day;
+              return String(day);
             }
           },
           grid: {
