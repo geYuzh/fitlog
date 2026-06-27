@@ -795,86 +795,50 @@ function chartOpts(showLegend, labels) {
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } },
-        bnd: {
+        bndSep: {
+          id: 'bndSep',
           afterDraw: function(chart) {
-            var xScale = chart.scales.x;
-            if (!xScale || !xScale.ticks || xScale.ticks.length === 0) return;
+            var xS = chart.scales.x;
+            if (!xS || !xS.ticks) return;
             var ca = chart.chartArea;
             if (!ca) return;
             var ctx = chart.ctx;
-            var dataLabels = chart.data.labels;
-            if (!dataLabels || dataLabels.length === 0) return;
-            
+            var dl = chart.data.labels;
+            if (!dl || !dl.length) return;
             ctx.save();
-            ctx.font = 'bold 8px -apple-system, sans-serif';
+            ctx.font = 'bold 8px -apple-system,sans-serif';
             ctx.textBaseline = 'top';
-            
-            var prevYear = '', prevMonth = '';
-            for (var ti = 0; ti < xScale.ticks.length; ti++) {
-              var tick = xScale.ticks[ti];
-              var label = tick.label;
-              if (!label) continue;
-              
-              // Find matching data label by pixel position
-              var pixel = xScale.getPixelForTick(ti);
-              if (isNaN(pixel) || pixel < ca.left || pixel > ca.right) continue;
-              
-              var dataIdx = -1;
-              for (var di = 0; di < dataLabels.length; di++) {
-                var dp = xScale.getPixelForValue(dataLabels[di]);
-                if (Math.abs(pixel - dp) < 5) { dataIdx = di; break; }
+            var pY = '', pM = '';
+            for (var ti = 0; ti < xS.ticks.length; ti++) {
+              var px = xS.getPixelForTick(ti);
+              if (isNaN(px) || px < ca.left || px > ca.right) continue;
+              var di = -1;
+              for (var j = 0; j < dl.length; j++) {
+                if (Math.abs(xS.getPixelForValue(dl[j]) - px) < 5) { di = j; break; }
               }
-              if (dataIdx < 0) continue;
-              
-              var fullLabel = String(dataLabels[dataIdx]);
-              var parts = fullLabel.split('-');
+              if (di < 0) continue;
+              var f = String(dl[di]), parts = f.split('-');
               if (parts.length < 3) continue;
-              var year = parts[0];
-              var month = parts[1];
-              
-              var isBnd = (ti === 0 || prevYear !== year || prevMonth !== month);
-              prevYear = year;
-              prevMonth = month;
-              
-              if (!isBnd) continue;
-              
-              var bndText;
-              if (ti === 0 || (ti > 0 && dataIdx > 0)) {
-                var prevFull = String(dataLabels[Math.max(0, dataIdx-1)]);
-                var pp = prevFull.split('-');
-                if (pp.length >= 3 && pp[0] !== year) {
-                  bndText = year + '\u5e74' + parseInt(month) + '\u6708';
-                } else if (pp.length >= 3 && pp[1] !== month) {
-                  bndText = parseInt(month) + '\u6708';
-                } else if (ti === 0) {
-                  bndText = year + '\u5e74' + parseInt(month) + '\u6708';
-                } else {
-                  continue;
-                }
-              } else {
-                continue;
-              }
-              
-              // Dashed boundary line
+              var y = parts[0], m = parts[1];
+              if (ti > 0 && pY === y && pM === m) { pY = y; pM = m; continue; }
+              var yrChg = (ti === 0 || pY !== y);
+              pY = y; pM = m;
+              var txt = yrChg ? (y + '\u5e74' + parseInt(m) + '\u6708') : (parseInt(m) + '\u6708');
               ctx.beginPath();
               ctx.strokeStyle = '#e84393';
               ctx.lineWidth = 1.5;
               ctx.setLineDash([4, 3]);
-              ctx.moveTo(pixel, ca.top);
-              ctx.lineTo(pixel, ca.bottom);
+              ctx.moveTo(px, ca.top);
+              ctx.lineTo(px, ca.bottom);
               ctx.stroke();
               ctx.setLineDash([]);
-              
-              // Label at top
-              var textX = pixel + 3;
-              if (textX + 35 > ca.right) textX = pixel - 2;
-              var textY = ca.top;
-              var metrics = ctx.measureText(bndText);
-              var w = metrics.width + 6;
+              var tx = px + 3;
+              if (tx + 35 > ca.right) tx = px - 2;
+              var mw = ctx.measureText(txt).width + 6;
               ctx.fillStyle = 'rgba(15,15,15,0.85)';
-              ctx.fillRect(textX - 2, textY, w, 14);
+              ctx.fillRect(tx - 2, ca.top, mw, 14);
               ctx.fillStyle = '#e84393';
-              ctx.fillText(bndText, textX, textY + 2);
+              ctx.fillText(txt, tx, ca.top + 2);
             }
             ctx.restore();
           }
@@ -890,27 +854,17 @@ function chartOpts(showLegend, labels) {
             callback: function(val, index, ticks) {
               var label = this.getLabelForValue(val);
               if (!label) return '';
-              var parts = label.split('-');
-              if (parts.length < 3) return label;
-              var year = parts[0];
-              var month = parseInt(parts[1]);
-              var day = parseInt(parts[2]);
-              var prevYear = '', prevMonth = '';
+              var p = label.split('-');
+              if (p.length < 3) return label;
+              var yr = p[0], mo = parseInt(p[1]), dy = parseInt(p[2]);
+              var pY = '', pM = '';
               if (index > 0 && ticks[index-1]) {
-                var prevLabel = this.getLabelForValue(ticks[index-1].value);
-                if (prevLabel) {
-                  var prevParts = prevLabel.split('-');
-                  prevYear = prevParts[0];
-                  prevMonth = prevParts[1];
-                }
+                var pl = this.getLabelForValue(ticks[index-1].value);
+                if (pl) { var pp = pl.split('-'); pY = pp[0]; pM = pp[1]; }
               }
-              if (index === 0 || prevYear !== year) {
-                return "'" + year.slice(2) + '/' + month + '/' + day;
-              }
-              if (prevMonth !== parts[1]) {
-                return month + '/' + day;
-              }
-              return String(day);
+              if (index === 0 || pY !== yr) return "'" + yr.slice(2) + '/' + mo + '/' + dy;
+              if (pM !== p[1]) return mo + '/' + dy;
+              return String(dy);
             }
           },
           grid: { color: '#2a2a2a' }
@@ -919,3 +873,306 @@ function chartOpts(showLegend, labels) {
       }
     };
   }
+
+function renderCharts() {
+  destroyCharts();
+  if (typeof Chart === 'undefined') return;
+
+  var setData = buildSetData(chartFilterEx);
+  var heaviestData = buildHeaviestData(chartFilterEx);
+  var freqData = buildFreqData(chartFilterEx);
+
+  var hasData = setData.labels.length > 0;
+
+  var containers = document.querySelectorAll('#panel-charts .chart-container canvas');
+  containers.forEach(function(c) { c.style.display = hasData ? '' : 'none'; });
+
+  if (!hasData) {
+    document.getElementById('setTabs').innerHTML = '';
+    return;
+  }
+
+// === WEIGHT CHART with set filter ===
+  var datasetsToShow;
+  if (setFilterMode === 'all') {
+    datasetsToShow = setData.datasets;
+  } else {
+    var si = parseInt(setFilterMode);
+    if (si >= 0 && si < setData.datasets.length) {
+      datasetsToShow = [setData.datasets[si]];
+    } else {
+      datasetsToShow = [];
+    }
+  }
+
+  totalLabels1 = setData.labels.length;
+  var wStart = pan1;
+  var wEnd = Math.min(pan1 + zoom1, setData.labels.length);
+  var wLabels = setData.labels.slice(wStart, wEnd);
+  var wDatasets = datasetsToShow.map(function(ds) {
+    return {
+      setIndex: ds.setIndex,
+      label: ds.label,
+      data: ds.data.slice(wStart, wEnd),
+      borderColor: ds.borderColor,
+      backgroundColor: ds.backgroundColor,
+      tension: ds.tension,
+      pointRadius: ds.pointRadius,
+      borderWidth: ds.borderWidth,
+      spanGaps: ds.spanGaps
+    };
+  });
+
+  chartWeightInst = new Chart(document.getElementById('chartWeight').getContext('2d'), {
+    type: 'line',
+    data: { labels: wLabels, datasets: wDatasets },
+    options: chartOpts(setFilterMode === 'all' && wDatasets.length > 1, wLabels)
+  });
+
+  // === HEAVIEST SET CHART ===
+  totalLabels2 = heaviestData.labels.length;
+  var hStart = pan2;
+  var hEnd = Math.min(pan2 + zoom2, heaviestData.labels.length);
+  var hLabels = heaviestData.labels.slice(hStart, hEnd);
+  var hData = heaviestData.data.slice(hStart, hEnd);
+
+  chartVolumeInst = new Chart(document.getElementById('chartVolume').getContext('2d'), {
+    type: 'line',
+    data: { labels: hLabels, datasets: [{ data: hData, borderColor: '#ff6b35', backgroundColor: 'rgba(255,107,53,0.08)', fill: true, tension: 0.3, pointRadius: 3, pointBackgroundColor: '#ff6b35', borderWidth: 2 }] },
+    options: chartOpts(false, hLabels)
+  });
+
+  // === FREQUENCY CHART ===
+  var freqOpts = chartOpts(false, fLabels);
+  freqOpts.scales.y.beginAtZero = true;
+  freqOpts.scales.y.ticks = { stepSize: 1, color: '#999' };
+  freqOpts.scales.y.title = { display: true, text: '\u6b21', color: '#999' };
+  totalLabels3 = freqData.labels.length;
+  var fStart = pan3;
+  var fEnd = Math.min(pan3 + zoom3, freqData.labels.length);
+  var fLabels = freqData.labels.slice(fStart, fEnd);
+  var fData = freqData.data.slice(fStart, fEnd);
+
+  chartFreqInst = new Chart(document.getElementById('chartFreq').getContext('2d'), {
+    type: 'bar',
+    data: { labels: fLabels, datasets: [{ data: fData, backgroundColor: 'rgba(241,196,15,0.6)', borderColor: '#f1c40f', borderWidth: 1, borderRadius: 4 }] },
+    options: freqOpts
+  });
+
+  // === SYNC SLIDER ===
+  syncSliders();
+  attachWheelListeners();
+    // === RENDER FILTERS ===
+  renderChartFilter();
+// Set filter tabs
+  var stHtml = '<span class="preset-chip ' + (setFilterMode==='all'?'selected':'') + '" onclick="setFilterMode=\'all\';renderCharts();">\u5168\u90e8\u7ec4</span>';
+  for (var si = 0; si < setData.datasets.length; si++) {
+    stHtml += '<span class="preset-chip ' + (setFilterMode===String(si)?'selected':'') + '" onclick="setFilterMode=\'' + si + '\';renderCharts();">' + setData.datasets[si].label + '</span>';
+  }
+  document.getElementById('setTabs').innerHTML = stHtml;
+}
+
+// ========== HISTORY ==========
+function renderHistory() {
+  var search = (document.getElementById('historySearch').value || '').toLowerCase();
+  var filtered = workouts.filter(function(w) { return !search || w.exercise.toLowerCase().indexOf(search) >= 0; });
+  filtered.sort(function(a,b) { return b.date.localeCompare(a.date); });
+
+  var el = document.getElementById('historyList');
+  if (filtered.length === 0) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">&#128236;</div><p>\u6682\u65e0\u8bad\u7ec3\u8bb0\u5f55</p></div>';
+    return;
+  }
+
+  // Group by year, then by month
+  var years = {};
+  filtered.forEach(function(w) {
+    var yKey = w.date.substring(0, 4);
+    var mKey = w.date.substring(0, 7);
+    if (!years[yKey]) years[yKey] = {};
+    if (!years[yKey][mKey]) years[yKey][mKey] = [];
+    years[yKey][mKey].push(w);
+  });
+
+  var monthNames = ['1\u6708','2\u6708','3\u6708','4\u6708','5\u6708','6\u6708','7\u6708','8\u6708','9\u6708','10\u6708','11\u6708','12\u6708'];
+  var yKeys = Object.keys(years).sort().reverse();
+  var html = '';
+
+  yKeys.forEach(function(yKey) {
+    var months = years[yKey];
+    var mKeys = Object.keys(months).sort().reverse();
+    var yTotal = 0;
+    mKeys.forEach(function(mKey) { yTotal += months[mKey].length; });
+
+    var yearExpanded = localStorage.getItem(HISTORY_YEAR_KEY) !== 'false';
+    html += '<div class="year-group">' +
+      '<div class="year-header" onclick="toggleYear(this)" data-year="' + yKey + '">' +
+        '<span class="year-toggle">' + (yearExpanded ? '\u25bc' : '\u25b6') + '</span>' +
+        '<span class="year-label">' + yKey + '\u5e74</span>' +
+        '<span class="year-count">' + yTotal + '\u6b21\u8bad\u7ec3</span>' +
+      '</div>' +
+      '<div class="year-body" data-year="' + yKey + '" style="display:' + (yearExpanded ? '' : 'none') + '">';
+
+    mKeys.forEach(function(mKey) {
+      var parts = mKey.split('-');
+      var monthIdx = parseInt(parts[1]) - 1;
+      var label = monthNames[monthIdx];
+      var count = months[mKey].length;
+      var totalSets = 0;
+      months[mKey].forEach(function(w) { totalSets += w.sets.length; });
+
+      var monthExpanded = localStorage.getItem(HISTORY_MONTH_KEY) === 'true';
+      html += '<div class="month-group">' +
+        '<div class="month-header" onclick="toggleMonth(this)" data-month="' + mKey + '">' +
+          '<span class="month-toggle">' + (monthExpanded ? '\u25bc' : '\u25b6') + '</span>' +
+          '<span class="month-label">' + label + '</span>' +
+          '<span class="month-count">' + count + '\u6b21\u8bad\u7ec3 \u00b7 ' + totalSets + '\u7ec4</span>' +
+        '</div>' +
+        '<div class="month-body" data-month="' + mKey + '" style="display:' + (monthExpanded ? '' : 'none') + '">';
+
+      months[mKey].forEach(function(w) {
+        var maxW = 0, totalV = 0;
+        w.sets.forEach(function(s) { if (s.weight > maxW) maxW = s.weight; totalV += s.weight * s.reps; });
+        html += '<div class="workout-item">' +
+          '<div class="wo-date">' + w.date + '</div>' +
+          '<div class="wo-exercise">' + w.exercise + '</div>' +
+          '<div class="wo-sets">' + w.sets.length + '\u7ec4 | \u6700\u5927 ' + maxW + 'kg | \u603b\u91cf ' + totalV + 'kg</div>' +
+          '<div class="wo-sets">' + w.sets.map(function(s,i) { return '#' + (i+1) + ': ' + s.weight + 'kg \u00d7 ' + s.reps + '\u6b21'; }).join(' | ') + '</div>' +
+          '<div class="wo-actions">' +
+            '<button class="btn btn-outline btn-sm" type="button" data-edit="' + w.id + '" onclick="openEditModal(this.getAttribute(\x27data-edit\x27))">\u7f16\u8f91</button>' +
+            '<button class="btn btn-danger btn-sm" type="button" data-del="' + w.id + '" onclick="deleteWorkout(this.getAttribute(\x27data-del\x27))">\u5220\u9664</button>' +
+          '</div></div>';
+      });
+
+      html += '</div></div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  el.innerHTML = html;
+}function toggleYear(header) {
+  var yKey = header.getAttribute('data-year');
+  var body = document.querySelector('.year-body[data-year="' + yKey + '"]');
+  var toggle = header.querySelector('.year-toggle');
+  if (body.style.display === 'none') {
+    body.style.display = '';
+    toggle.textContent = '\u25bc';
+  } else {
+    body.style.display = 'none';
+    toggle.textContent = '\u25b6';
+  }
+}
+
+function toggleMonth(header) {
+  var mKey = header.getAttribute('data-month');
+  var body = document.querySelector('.month-body[data-month="' + mKey + '"]');
+  var toggle = header.querySelector('.month-toggle');
+  if (body.style.display === 'none') {
+    body.style.display = '';
+    toggle.textContent = '\u25bc';
+  } else {
+    body.style.display = 'none';
+    toggle.textContent = '\u25b6';
+  }
+}
+
+// ========== EDIT / DELETE ==========
+function openEditModal(id) {
+  var found = null;
+  workouts.forEach(function(w) { if (w.id === id) found = w; });
+  if (!found) return;
+  document.getElementById('editId').value = found.id;
+  document.getElementById('editDate').value = found.date;
+  document.getElementById('editExercise').value = found.exercise;
+  var container = document.getElementById('editSetsContainer');
+  container.innerHTML = '';
+  var inc = getIncrement();
+  found.sets.forEach(function(s, i) {
+    var div = document.createElement('div');
+    div.className = 'set-row';
+    div.innerHTML =
+      '<span class="set-num">#' + (i+1) + '</span>' +
+      '<div class="set-input-wrap" style="flex:1"><input type="number" value="' + s.weight + '" step="0.5" min="0" class="set-weight"><span class="set-unit">kg</span></div>' +
+      '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
+      '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
+      '<div class="set-input-wrap" style="flex:0.8"><input type="number" value="' + s.reps + '" step="1" min="0" class="set-reps"><span class="set-unit">\u6b21</span></div>' +
+      '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
+      '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
+    container.appendChild(div);
+  });
+  document.getElementById('editModal').style.display = 'flex';
+}
+function closeEditModal() { document.getElementById('editModal').style.display = 'none'; }
+function addEditSet() {
+  var container = document.getElementById('editSetsContainer');
+  var idx = container.children.length + 1;
+  var inc = getIncrement();
+  var lastWeight = '';
+  var lastReps = '';
+  var rows = container.querySelectorAll('.set-row');
+  if (rows.length > 0) {
+    var lastW = rows[rows.length-1].querySelector('.set-weight');
+    var lastR = rows[rows.length-1].querySelector('.set-reps');
+    lastWeight = lastW ? (lastW.value || '') : '';
+    lastReps = lastR ? (lastR.value || '') : '';
+  }
+  var div = document.createElement('div');
+  div.className = 'set-row';
+  div.innerHTML =
+    '<span class="set-num">#' + idx + '</span>' +
+    '<div class="set-input-wrap" style="flex:1"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
+    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
+    '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
+    '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
+    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
+    '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
+  container.appendChild(div);
+}
+function saveEdit() {
+  var id = document.getElementById('editId').value;
+  var found = null;
+  workouts.forEach(function(w) { if (w.id === id) found = w; });
+  if (!found) return;
+  var exercise = document.getElementById('editExercise').value.trim();
+  if (!exercise) { showToast('\u8bf7\u8f93\u5165\u8bad\u7ec3\u9879\u76ee'); return; }
+  var sets = getSetsFromContainer('editSetsContainer');
+  if (sets.length === 0) { showToast('\u8bf7\u81f3\u5c11\u6dfb\u52a0\u4e00\u7ec4'); return; }
+  found.date = document.getElementById('editDate').value;
+  found.exercise = exercise;
+  found.sets = sets;
+  saveData();
+  console.log('Saved workout, date is now: ' + document.getElementById('recDate').value);
+  closeEditModal();
+  showToast('\u5df2\u66f4\u65b0');
+  refreshAll();
+}
+function deleteEdit() {
+  if (!confirm('\u786e\u5b9a\u5220\u9664\u8fd9\u6761\u8bb0\u5f55\uff1f')) return;
+  var id = document.getElementById('editId').value;
+  workouts = workouts.filter(function(w) { return w.id !== id; });
+  saveData();
+  console.log('Saved workout, date is now: ' + document.getElementById('recDate').value);
+  closeEditModal();
+  showToast('\u5df2\u5220\u9664');
+  refreshAll();
+}
+function deleteWorkout(id) {
+  if (!confirm('\u786e\u5b9a\u5220\u9664\uff1f')) return;
+  workouts = workouts.filter(function(w) { return w.id !== id; });
+  saveData();
+  console.log('Saved workout, date is now: ' + document.getElementById('recDate').value);
+  showToast('\u5df2\u5220\u9664');
+  refreshAll();
+}
+function refreshAll() {
+  if (currentTab === 'history') renderHistory();
+  if (currentTab === 'record') renderStats();
+  if (currentTab === 'charts') renderCharts();
+}
+
+// ========== STARTUP ==========
+loadTheme();
+init();
