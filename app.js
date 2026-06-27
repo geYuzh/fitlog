@@ -1287,6 +1287,8 @@ function openGallery() {
   updateGallerySlide();
   renderAllGalleryCharts();
   attachGallerySwipe();
+  // Keyboard arrows
+  document.addEventListener('keydown', galleryKeyHandler);
   // Lock landscape directly (works in PWA/standalone mode)
   var locked = false;
   try {
@@ -1307,6 +1309,7 @@ function closeGallery() {
   el.classList.remove('open');
   el.classList.remove('forced-landscape');
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
+  document.removeEventListener('keydown', galleryKeyHandler);
   try {
     if (screen.orientation && screen.orientation.unlock) {
       screen.orientation.unlock();
@@ -1540,6 +1543,12 @@ function onGallerySlider(n) {
   renderGalleryChart(n);
 }
 
+function galleryKeyHandler(e) {
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goToGallerySlide(gallerySlide - 1); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); goToGallerySlide(gallerySlide + 1); }
+  if (e.key === 'Escape') closeGallery();
+}
+
 function attachGallerySwipe() {
   var slides = document.getElementById('gallerySlides');
   if (!slides) return;
@@ -1559,6 +1568,27 @@ function attachGallerySwipe() {
     if (ex - sx < -40) goToGallerySlide(gallerySlide + 1);
     else if (ex - sx > 40) goToGallerySlide(gallerySlide - 1);
     swiping = false;
+  });
+  // Mouse drag for desktop (simulate swipe)
+  var mx = 0, mdragging = false;
+  slides.addEventListener('mousedown', function(e) {
+    mx = e.clientX; mdragging = true;
+    slides.style.cursor = 'grabbing';
+  });
+  slides.addEventListener('mousemove', function(e) {
+    if (!mdragging) return;
+    e.preventDefault();
+  });
+  slides.addEventListener('mouseup', function(e) {
+    if (!mdragging) { mdragging = false; slides.style.cursor = ''; return; }
+    mdragging = false;
+    slides.style.cursor = '';
+    var dx = e.clientX - mx;
+    if (dx < -40) goToGallerySlide(gallerySlide + 1);
+    else if (dx > 40) goToGallerySlide(gallerySlide - 1);
+  });
+  slides.addEventListener('mouseleave', function() {
+    mdragging = false; slides.style.cursor = '';
   });
   slides.addEventListener('wheel', function(e) {
     if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
