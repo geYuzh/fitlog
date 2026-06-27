@@ -791,64 +791,37 @@ function buildFreqData(filter) {
 // ========== CHART OPTIONS ==========
   // Global plugin: draws border labels and colored grid lines for all charts
 function chartOpts(showLegend, labels) {
+    var boundaries = {};
+    if (labels && labels.length > 0) {
+      var fp = labels[0].split('-');
+      if (fp.length >= 3) {
+        boundaries[0] = true;
+        var fy = fp[0], fm = fp[1];
+        for (var i = 1; i < labels.length; i++) {
+          var p = labels[i].split('-');
+          if (p.length >= 3 && (p[0] !== fy || p[1] !== fm)) {
+            boundaries[i] = true;
+            fy = p[0]; fm = p[1];
+          }
+        }
+      }
+    }
     return {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } },
-        bndSep: {
-          id: 'bndSep',
-          afterDraw: function(chart) {
-            var xS = chart.scales.x;
-            if (!xS || !xS.ticks) return;
-            var ca = chart.chartArea;
-            if (!ca) return;
-            var ctx = chart.ctx;
-            var dl = chart.data.labels;
-            if (!dl || !dl.length) return;
-            ctx.save();
-            ctx.font = 'bold 8px -apple-system,sans-serif';
-            ctx.textBaseline = 'top';
-            var pY = '', pM = '';
-            for (var ti = 0; ti < xS.ticks.length; ti++) {
-              var px = xS.getPixelForTick(ti);
-              if (isNaN(px) || px < ca.left || px > ca.right) continue;
-              var di = -1;
-              for (var j = 0; j < dl.length; j++) {
-                if (Math.abs(xS.getPixelForValue(dl[j]) - px) < 5) { di = j; break; }
-              }
-              if (di < 0) continue;
-              var f = String(dl[di]), parts = f.split('-');
-              if (parts.length < 3) continue;
-              var y = parts[0], m = parts[1];
-              if (ti > 0 && pY === y && pM === m) { pY = y; pM = m; continue; }
-              var yrChg = (ti === 0 || pY !== y);
-              pY = y; pM = m;
-              var txt = yrChg ? (y + '\u5e74' + parseInt(m) + '\u6708') : (parseInt(m) + '\u6708');
-              ctx.beginPath();
-              ctx.strokeStyle = '#e84393';
-              ctx.lineWidth = 1.5;
-              ctx.setLineDash([4, 3]);
-              ctx.moveTo(px, ca.top);
-              ctx.lineTo(px, ca.bottom);
-              ctx.stroke();
-              ctx.setLineDash([]);
-              var tx = px + 3;
-              if (tx + 35 > ca.right) tx = px - 2;
-              var mw = ctx.measureText(txt).width + 6;
-              ctx.fillStyle = 'rgba(15,15,15,0.85)';
-              ctx.fillRect(tx - 2, ca.top, mw, 14);
-              ctx.fillStyle = '#e84393';
-              ctx.fillText(txt, tx, ca.top + 2);
-            }
-            ctx.restore();
-          }
-        }
+        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } }
       },
       scales: {
         x: {
           ticks: {
-            color: '#999',
-            font: { size: 9 },
+            color: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
+              return boundaries[idx] ? '#e84393' : '#999';
+            },
+            font: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
+              return { size: 9, weight: boundaries[idx] ? 'bold' : 'normal' };
+            },
             maxRotation: 35,
             autoSkip: true,
             callback: function(val, index, ticks) {
@@ -867,12 +840,22 @@ function chartOpts(showLegend, labels) {
               return String(dy);
             }
           },
-          grid: { color: '#2a2a2a' }
+          grid: {
+            color: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
+              return (idx >= 0 && boundaries[idx]) ? '#e84393' : '#2a2a2a';
+            },
+            lineWidth: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
+              return (idx >= 0 && boundaries[idx]) ? 2 : 1;
+            }
+          }
         },
         y: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: true, text: 'kg', color: '#999' } }
       }
     };
   }
+
 
 function renderCharts() {
   destroyCharts();
