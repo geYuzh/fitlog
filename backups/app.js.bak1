@@ -624,6 +624,37 @@ function onChartWheel(e, chartNum) {
 }
 
 // Attach wheel listeners to chart canvases
+// Pinch zoom for touch devices
+var pinchStates = { 1: { lastScale: 1, startZoom: 1 }, 2: { lastScale: 1, startZoom: 1 }, 3: { lastScale: 1, startZoom: 1 } };
+function attachPinchListeners() {
+  var ids = ['chartWeight', 'chartVolume', 'chartFreq'];
+  ids.forEach(function(id, idx) {
+    var cn = idx + 1;
+    var canvas = document.getElementById(id);
+    if (!canvas) return;
+    if (typeof Hammer !== 'undefined') {
+      var hammer = new Hammer(canvas);
+      hammer.get('pinch').set({ enable: true });
+      hammer.on('pinchstart', function(e) {
+        e.preventDefault();
+        pinchStates[cn].startZoom = cn === 1 ? zoom1 : cn === 2 ? zoom2 : zoom3;
+        pinchStates[cn].lastScale = 1;
+      });
+      hammer.on('pinchmove', function(e) {
+        e.preventDefault();
+        var scale = e.scale;
+        var delta = Math.round((scale - pinchStates[cn].lastScale) * 5);
+        if (delta !== 0) {
+          var newZoom = Math.max(1, Math.min(30, pinchStates[cn].startZoom + delta));
+          pinchStates[cn].lastScale = scale;
+          if (cn === 1 && newZoom !== zoom1) { zoom1 = newZoom; updateChart1(); }
+          else if (cn === 2 && newZoom !== zoom2) { zoom2 = newZoom; updateChart2(); }
+          else if (cn === 3 && newZoom !== zoom3) { zoom3 = newZoom; updateChart3(); }
+        }
+      });
+    }
+  });
+}
 function attachWheelListeners() {
   var c1 = document.getElementById('chartWeight');
   var c2 = document.getElementById('chartVolume');
@@ -964,6 +995,7 @@ function renderCharts() {
   // === SYNC SLIDER ===
   syncSliders();
   attachWheelListeners();
+  attachPinchListeners();
     // === RENDER FILTERS ===
   renderChartFilter();
 // Set filter tabs
