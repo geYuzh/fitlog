@@ -380,7 +380,12 @@ function openSetting(name) {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card"><div class="card-title">\u8c03\u8bd5\u6570\u636e\u6d4b\u8bd5</div>';
     html += '<p style="font-size:12px;color:var(--text2);margin-bottom:16px">\u751f\u6210 2004\u5e745\u67082\u65e5\u8d77\u4e09\u5e74\u7684\u5e73\u677f\u5367\u63a8\u8bb0\u5f55\uff0c\u7528\u4e8e\u8c03\u8bd5\u56fe\u8868\u548c\u5386\u53f2\u529f\u80fd\u3002</p>';
-    html += '<button class="btn btn-primary btn-block" type="button" onclick="generateDebugData()">\u8bbe\u7f6e\u8bad\u7ec3\u6570\u636e\u8fdb\u884c\u8c03\u8bd5</button>';
+    if (isDebugMode()) {
+      html += '<p style="font-size:13px;color:var(--accent);margin-bottom:12px">\u2713 \u5f53\u524d\u6b63\u5728\u8c03\u8bd5\u6a21\u5f0f\uff0c\u663e\u793a\u7684\u662f\u8c03\u8bd5\u6570\u636e</p>';
+      html += '<button class="btn btn-outline btn-block" type="button" onclick="exitDebugMode()">\u9000\u51fa\u8c03\u8bd5</button>';
+    } else {
+      html += '<button class="btn btn-primary btn-block" type="button" onclick="generateDebugData()">\u8bbe\u7f6e\u8bad\u7ec3\u6570\u636e\u8fdb\u884c\u8c03\u8bd5</button>';
+    }
     html += '</div>';
     panel.innerHTML = html;
   }
@@ -1178,8 +1183,13 @@ function refreshAll() {
 
 // ========== DEBUG DATA GENERATOR ==========
 function generateDebugData() {
-  if (!confirm('\u786e\u5b9a\u8981\u751f\u6210\u8c03\u8bd5\u6570\u636e\uff1f\u8fd9\u4f1a\u6e05\u7a7a\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff01')) return;
+  // Backup user data
+  localStorage.setItem('fitlog_user_backup', JSON.stringify(workouts));
+  localStorage.setItem('fitlog_freq_backup', JSON.stringify(exerciseFreq));
+  localStorage.setItem('fitlog_debug_mode', '1');
+  
   workouts = [];
+  exerciseFreq = {};
   var startDate = new Date(2004, 4, 2); // May 2, 2004
   var endDate = new Date(2007, 4, 2);   // May 2, 2007
   var weights = [];
@@ -1204,12 +1214,37 @@ function generateDebugData() {
     d.setDate(d.getDate() + 1);
   }
   saveData();
+  saveFreq();
   showToast('\u5df2\u751f\u6210 ' + workouts.length + ' \u6761\u8c03\u8bd5\u8bb0\u5f55');
-  console.log('Debug data generated: ' + workouts.length + ' workouts');
   renderSettingsPage();
   switchTab('record');
   renderStats();
   renderPresets();
+}
+
+function exitDebugMode() {
+  localStorage.removeItem('fitlog_debug_mode');
+  var backup = localStorage.getItem('fitlog_user_backup');
+  if (backup) {
+    workouts = JSON.parse(backup);
+    saveData();
+  }
+  var freqBackup = localStorage.getItem('fitlog_freq_backup');
+  if (freqBackup) {
+    exerciseFreq = JSON.parse(freqBackup);
+    saveFreq();
+  }
+  localStorage.removeItem('fitlog_user_backup');
+  localStorage.removeItem('fitlog_freq_backup');
+  showToast('\u5df2\u9000\u51fa\u8c03\u8bd5\uff0c\u6062\u590d\u7528\u6237\u6570\u636e');
+  renderSettingsPage();
+  switchTab('record');
+  renderStats();
+  renderPresets();
+}
+
+function isDebugMode() {
+  return localStorage.getItem('fitlog_debug_mode') === '1';
 }
 
 // ========== STARTUP ==========
