@@ -377,15 +377,15 @@ function openSetting(name) {
     panel.innerHTML = html;
   }
     else if (name === 'debugData') {
+    var inDebug = localStorage.getItem('fitlog_debug_mode') === '1';
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card"><div class="card-title">\u8c03\u8bd5\u6570\u636e\u6d4b\u8bd5</div>';
-    html += '<p style="font-size:12px;color:var(--text2);margin-bottom:16px">\u751f\u6210 2004\u5e745\u67082\u65e5\u8d77\u4e09\u5e74\u7684\u5e73\u677f\u5367\u63a8\u8bb0\u5f55\uff0c\u7528\u4e8e\u8c03\u8bd5\u56fe\u8868\u548c\u5386\u53f2\u529f\u80fd\u3002</p>';
-    if (isDebugMode()) {
-      html += '<p style="font-size:13px;color:var(--accent);margin-bottom:12px">\u2713 \u5f53\u524d\u6b63\u5728\u8c03\u8bd5\u6a21\u5f0f\uff0c\u663e\u793a\u7684\u662f\u8c03\u8bd5\u6570\u636e</p>';
+    html += '<p style="font-size:12px;color:var(--text2);margin-bottom:16px">\u751f\u6210 2004\u5e745\u67082\u65e5\u8d77\u4e09\u5e74\u7684\u5e73\u677f\u5367\u63a8\u8bb0\u5f55\u3002</p>';
+    if (inDebug) {
+      html += '<p style="font-size:13px;color:var(--accent);margin-bottom:12px">\u2713 \u5f53\u524d\u6b63\u5728\u8c03\u8bd5\u6a21\u5f0f</p>';
       html += '<button class="btn btn-outline btn-block" type="button" onclick="exitDebugMode()">\u9000\u51fa\u8c03\u8bd5</button>';
-    } else {
-      html += '<button class="btn btn-primary btn-block" type="button" onclick="generateDebugData()">\u8bbe\u7f6e\u8bad\u7ec3\u6570\u636e\u8fdb\u884c\u8c03\u8bd5</button>';
     }
+    html += '<button class="btn btn-primary btn-block" type="button" onclick="generateDebugData()" style="margin-top:8px">\u8bbe\u7f6e\u8bad\u7ec3\u6570\u636e\u8fdb\u884c\u8c03\u8bd5</button>';
     html += '</div>';
     panel.innerHTML = html;
   }
