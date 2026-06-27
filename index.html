@@ -155,7 +155,34 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 /* Chart slider */
 .chart-slider{width:100%;margin-top:12px;-webkit-appearance:none;appearance:none;height:6px;background:var(--surface2);border-radius:3px;outline:none;cursor:pointer}
 .chart-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--bg)}
-.chart-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--bg)}</style>
+.chart-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--bg)}/* === Mobile Simulator on Desktop === */
+@media (min-width: 600px) {
+  html{background:#1a1a1a;display:flex;justify-content:center}
+  body{max-width:430px;width:100%;min-height:100dvh;box-shadow:0 0 40px rgba(0,0,0,.6);position:relative}
+  .bottom-nav{max-width:430px;left:50%;transform:translateX(-50%)}
+  .container-reset{max-width:430px}
+}
+@media (min-width: 430px) {
+  .set-row{gap:6px;padding:8px 10px}
+}
+
+/* === Fix cramped chart labels === */
+.chart-container canvas{max-height:200px}
+@media (max-width: 430px) {
+  .chart-container canvas{max-height:180px}
+  .chart-filter{gap:4px}
+  .chart-filter .preset-chip{font-size:10px;padding:3px 8px}
+  .cal-day{font-size:11px}
+  .cal-weekdays{font-size:10px}
+  .cal-header .month-label{font-size:14px}
+  .set-row input{font-size:13px;padding:5px 4px!important}
+  .set-row{gap:4px;padding:6px 8px}
+  .btn-wadj{width:26px;height:30px;font-size:14px}
+  .rep-chip{padding:2px 6px;font-size:11px}
+  .stat-card .stat-val{font-size:16px}
+  .cat-tab{padding:6px 12px;font-size:12px}
+}
+</style>
 </head>
 <body>
 <div class="header">

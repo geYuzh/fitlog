@@ -786,10 +786,10 @@ function buildFreqData(filter) {
             },
             font: function(ctx) {
               var w = ctx.tick && ctx.tick.label && ctx.tick.label.indexOf('\u6708') >= 0 ? 'bold' : 'normal';
-              return { size: 10, weight: w };
+              return { size: 8, weight: w };
             },
             maxRotation: 0,
-            autoSkip: false,
+            autoSkip: true,
             callback: function(val, index, ticks) {
               var label = this.getLabelForValue(val);
               if (!label) return '';
