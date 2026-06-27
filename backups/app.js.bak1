@@ -789,96 +789,121 @@ function buildFreqData(filter) {
 }
 
 // ========== CHART OPTIONS ==========
-  function chartOpts(showLegend, labels) {
-    // Pre-compute boundary indices
+  // Global plugin: draws border labels and colored grid lines for all charts
+var boundaryPlugin = {
+  id: 'boundaryPlugin',
+  beforeDraw: function(chart) {
+    var xScale = chart.scales.x;
+    if (!xScale || !xScale.ticks) return;
+    var labels = chart.data.labels;
+    if (!labels || labels.length === 0) return;
+    
+    // Pre-compute boundaries for this chart's visible window
     var boundaries = {};
-    if (labels && labels.length > 0) {
-      boundaries[0] = 'first';
-      var firstParts = labels[0].split('-');
-      var firstYear = firstParts[0];
-      var firstMonth = parseInt(firstParts[1]);
-      var onlyOnePeriod = true;
-      for (var i = 1; i < labels.length; i++) {
-        var parts = labels[i].split('-');
-        var y = parts[0];
-        var m = parseInt(parts[1]);
-        if (y !== firstYear) { boundaries[i] = 'year'; onlyOnePeriod = false; firstYear = y; firstMonth = m; }
-        else if (m !== firstMonth) { boundaries[i] = 'month'; onlyOnePeriod = false; firstMonth = m; }
+    if (labels.length > 0) {
+      var firstParts = String(labels[0]).split('-');
+      if (firstParts.length >= 3) {
+        boundaries[0] = true;
+        var firstYear = firstParts[0];
+        var firstMonth = firstParts[1];
+        for (var i = 1; i < labels.length; i++) {
+          var parts = String(labels[i]).split('-');
+          if (parts.length >= 3 && (parts[0] !== firstYear || parts[1] !== firstMonth)) {
+            boundaries[i] = true;
+            firstYear = parts[0];
+            firstMonth = parts[1];
+          }
+        }
       }
-      if (onlyOnePeriod) boundaries[0] = 'single';
     }
+    chart.$boundaries = boundaries;
+  },
+  afterDraw: function(chart) {
+    var xScale = chart.scales.x;
+    if (!xScale || !xScale.ticks) return;
+    var ca = chart.chartArea;
+    var ctx = chart.ctx;
+    var labels = chart.data.labels;
+    if (!labels || labels.length === 0) return;
+    
+    ctx.save();
+    ctx.font = 'bold 8px -apple-system, sans-serif';
+    ctx.textBaseline = 'top';
+    
+    for (var ti = 0; ti < xScale.ticks.length; ti++) {
+      var tick = xScale.ticks[ti];
+      var label = tick.label;
+      if (!label) continue;
+      var parts = String(label).split('-');
+      if (parts.length < 3) continue;
+      var year = parts[0];
+      var month = parts[1];
+      var prevYear = '', prevMonth = '';
+      if (ti > 0 && xScale.ticks[ti-1]) {
+        var p = String(xScale.ticks[ti-1].label);
+        if (p) { var pp = p.split('-'); prevYear = pp[0]; prevMonth = pp[1]; }
+      }
+      var isBnd = (ti === 0 || prevYear !== year || prevMonth !== month);
+      if (!isBnd) continue;
+      
+      var bndText;
+      if (ti === 0 || prevYear !== year) {
+        bndText = year + '\u5e74' + parseInt(month) + '\u6708';
+      } else {
+        bndText = parseInt(month) + '\u6708';
+      }
+      
+      var pixel = xScale.getPixelForTick(ti);
+      if (isNaN(pixel) || pixel < ca.left || pixel > ca.right) continue;
+      
+      // Draw boundary grid line
+      ctx.beginPath();
+      ctx.strokeStyle = '#e84393';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.moveTo(pixel, ca.top);
+      ctx.lineTo(pixel, ca.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Draw label at top
+      var textX = pixel + 3;
+      if (textX + 30 > ca.right) textX = pixel - 2;
+      var textY = ca.top;
+      var metrics = ctx.measureText(bndText);
+      var w = metrics.width + 6;
+      ctx.fillStyle = 'rgba(15,15,15,0.85)';
+      ctx.fillRect(textX - 2, textY, w, 14);
+      ctx.fillStyle = '#e84393';
+      ctx.fillText(bndText, textX, textY + 2);
+    }
+    ctx.restore();
+  }
+};
 
+// Register globally
+if (typeof Chart !== 'undefined' && Chart.register) {
+  Chart.register(boundaryPlugin);
+}
+
+function chartOpts(showLegend, labels) {
     return {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } },
-        bndLabel: {
-          id: 'bndLabel',
-          afterDraw: function(chart) {
-            var xScale = chart.scales.x;
-            if (!xScale || !xScale.ticks) return;
-            var ca = chart.chartArea;
-            var ctx = chart.ctx;
-            ctx.save();
-            ctx.font = 'bold 8px -apple-system, sans-serif';
-            ctx.textBaseline = 'top';
-            for (var ti = 0; ti < xScale.ticks.length; ti++) {
-              var tick = xScale.ticks[ti];
-              var label = tick.label;
-              if (!label) continue;
-              var parts = label.split('-');
-              if (parts.length < 3) continue;
-              var year = parts[0];
-              var month = parseInt(parts[1]);
-              var day = parseInt(parts[2]);
-              var prevYear = '', prevMonth = '';
-              if (ti > 0 && xScale.ticks[ti-1]) {
-                var p = xScale.ticks[ti-1].label;
-                if (p) { var pp = p.split('-'); prevYear = pp[0]; prevMonth = pp[1]; }
-              }
-              // Is this a boundary?
-              var isBnd = (ti === 0 || prevYear !== year || prevMonth !== parts[1]);
-              if (!isBnd) continue;
-              var bndText;
-              if (ti === 0 || prevYear !== year) {
-                bndText = year + '\u5e74' + month + '\u6708';
-              } else {
-                bndText = month + '\u6708';
-              }
-              var pixel = xScale.getPixelForTick(ti);
-              if (isNaN(pixel) || pixel < ca.left || pixel > ca.right) continue;
-              var textX = pixel + 4;
-              if (textX + 30 > ca.right) textX = pixel - 2;
-              var textY = ca.top;
-              var metrics = ctx.measureText(bndText);
-              var w = metrics.width + 6;
-              ctx.fillStyle = 'rgba(15,15,15,0.82)';
-              ctx.fillRect(textX - 2, textY, w, 14);
-              ctx.fillStyle = '#ff6b35';
-              ctx.fillText(bndText, textX, textY + 2);
-            }
-            ctx.restore();
-          }
-        }
+        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } }
       },
       scales: {
         x: {
           ticks: {
-            color: function(ctx) {
-              if (!ctx.tick || !ctx.tick.label) return '#999';
-              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              return boundaries[idx] ? '#ff6b35' : '#999';
-            },
-            font: function(ctx) {
-              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              return { size: 9, weight: boundaries[idx] ? 'bold' : 'normal' };
-            },
+            color: '#999',
+            font: { size: 9 },
             maxRotation: 35,
             autoSkip: true,
             callback: function(val, index, ticks) {
               var label = this.getLabelForValue(val);
               if (!label) return '';
               var parts = label.split('-');
+              if (parts.length < 3) return label;
               var year = parts[0];
               var month = parseInt(parts[1]);
               var day = parseInt(parts[2]);
@@ -900,18 +925,7 @@ function buildFreqData(filter) {
               return String(day);
             }
           },
-          grid: {
-            color: function(ctx) {
-              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
-              if (idx >= 0 && boundaries[idx]) return '#ff6b35';
-              return '#2a2a2a';
-            },
-            lineWidth: function(ctx) {
-              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
-              if (idx >= 0 && boundaries[idx]) return 2;
-              return 1;
-            }
-          }
+          grid: { color: '#2a2a2a' }
         },
         y: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: true, text: 'kg', color: '#999' } }
       }
