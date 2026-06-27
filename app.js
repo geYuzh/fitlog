@@ -656,7 +656,7 @@ function updateChart1() {
       spanGaps: ds.spanGaps
     };
   });
-  chartWeightInst.options = chartOpts(setFilterMode === 'all' && datasetsToShow.length > 1);
+  chartWeightInst.options = chartOpts(setFilterMode === 'all' && datasetsToShow.length > 1, chartWeightInst.data.labels);
   chartWeightInst.update();
   var s1 = document.getElementById('chartSlider');
   s1.min = 0; s1.max = Math.max(0, totalLabels1 - zoom1); s1.value = pan1;
@@ -789,7 +789,25 @@ function buildFreqData(filter) {
 }
 
 // ========== CHART OPTIONS ==========
-  function chartOpts(showLegend) {
+  function chartOpts(showLegend, labels) {
+    // Pre-compute boundary indices (first tick of each year/month)
+    var boundaries = {};
+    if (labels && labels.length > 0) {
+      boundaries[0] = 'first';
+      var firstParts = labels[0].split('-');
+      var firstYear = firstParts[0];
+      var firstMonth = parseInt(firstParts[1]);
+      var onlyOnePeriod = true;
+      for (var i = 1; i < labels.length; i++) {
+        var parts = labels[i].split('-');
+        var y = parts[0];
+        var m = parseInt(parts[1]);
+        if (y !== firstYear) { boundaries[i] = 'year'; onlyOnePeriod = false; firstYear = y; firstMonth = m; }
+        else if (m !== firstMonth) { boundaries[i] = 'month'; onlyOnePeriod = false; firstMonth = m; }
+      }
+      if (onlyOnePeriod) boundaries[0] = 'single';
+    }
+
     return {
       responsive: true, maintainAspectRatio: false,
       plugins: {
@@ -800,11 +818,12 @@ function buildFreqData(filter) {
           ticks: {
             color: function(ctx) {
               if (!ctx.tick || !ctx.tick.label) return '#999';
-              return ctx.tick.label.indexOf('\u6708') >= 0 ? '#ff6b35' : '#999';
+              var bi = boundaries[ctx.tick. ? ctx.tick..dataIndex : ctx.index];
+              return bi ? '#ff6b35' : '#999';
             },
             font: function(ctx) {
-              var w = ctx.tick && ctx.tick.label && ctx.tick.label.indexOf('\u6708') >= 0 ? 'bold' : 'normal';
-              return { size: 8, weight: w };
+              var bi = boundaries[ctx.tick. ? ctx.tick..dataIndex : ctx.index];
+              return { size: bi ? 8 : 8, weight: bi ? 'bold' : 'normal' };
             },
             maxRotation: 0,
             autoSkip: true,
@@ -833,7 +852,23 @@ function buildFreqData(filter) {
               return day + '\u65e5';
             }
           },
-          grid: { color: '#2a2a2a' }
+          grid: {
+            color: function(ctx) {
+              if (ctx.tick && ctx.tick.) {
+                var bi = boundaries[ctx.tick..dataIndex];
+                if (bi) return '#ff6b35';
+                if (ctx.tick..dataIndex === 0 && !bi) return '#ff6b35';
+              }
+              return '#2a2a2a';
+            },
+            lineWidth: function(ctx) {
+              if (ctx.tick && ctx.tick.) {
+                var bi = boundaries[ctx.tick..dataIndex];
+                if (bi) return 2;
+              }
+              return 1;
+            }
+          }
         },
         y: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: true, text: 'kg', color: '#999' } }
       }
@@ -892,7 +927,7 @@ function renderCharts() {
   chartWeightInst = new Chart(document.getElementById('chartWeight').getContext('2d'), {
     type: 'line',
     data: { labels: wLabels, datasets: wDatasets },
-    options: chartOpts(setFilterMode === 'all' && wDatasets.length > 1)
+    options: chartOpts(setFilterMode === 'all' && wDatasets.length > 1, wLabels)
   });
 
   // === HEAVIEST SET CHART ===
@@ -905,11 +940,11 @@ function renderCharts() {
   chartVolumeInst = new Chart(document.getElementById('chartVolume').getContext('2d'), {
     type: 'line',
     data: { labels: hLabels, datasets: [{ data: hData, borderColor: '#ff6b35', backgroundColor: 'rgba(255,107,53,0.08)', fill: true, tension: 0.3, pointRadius: 3, pointBackgroundColor: '#ff6b35', borderWidth: 2 }] },
-    options: chartOpts(false)
+    options: chartOpts(false, hLabels)
   });
 
   // === FREQUENCY CHART ===
-  var freqOpts = chartOpts(false);
+  var freqOpts = chartOpts(false, fLabels);
   freqOpts.scales.y.beginAtZero = true;
   freqOpts.scales.y.ticks = { stepSize: 1, color: '#999' };
   freqOpts.scales.y.title = { display: true, text: '\u6b21', color: '#999' };
