@@ -11,7 +11,7 @@
 <script src="chart.umd.min.js"></script>
 <script src="hammer.min.js"></script>
 
-<script src="app.js?v=20260627" defer></script>
+<script src="app.js?v=20260628" defer></script>
 <style>
 :root{--bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#333;--text:#e8e8e8;--text2:#999;--accent:#ff6b35;--accent2:#4ecdc4;--green:#2ecc71;--red:#e74c3c;--radius:12px;--nav-h:64px;--header-h:56px;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -262,7 +262,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 
   <!-- CHARTS -->
   <div class="tab-panel" id="panel-charts">
-    <div style="display:flex;align-items:center;justify-content:space-between"><div class="chart-filter" id="chartFilter"></div><button class="btn-fullscreen" onclick="openGallery()" title="全屏查看">&#10530;</button></div>
+    <div style="display:flex;align-items:center;justify-content:space-between"><div class="chart-filter" id="chartFilter"></div><button class="btn-fullscreen" onclick="try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape')}catch(e){};openGallery()" title="全屏查看">&#10530;</button></div>
     <div class="chart-container">
       <div class="card-title">重量趋势（每组独立折线）</div>
       <div class="chart-filter" id="setTabs" style="margin-bottom:8px"></div>
