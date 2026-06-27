@@ -1287,30 +1287,29 @@ function openGallery() {
   updateGallerySlide();
   renderAllGalleryCharts();
   attachGallerySwipe();
-  // Enter fullscreen then lock landscape
+  // Lock landscape directly (works in PWA/standalone mode)
+  var locked = false;
   try {
-    if (el.requestFullscreen) {
-      el.requestFullscreen().then(function() {
-        if (screen.orientation && screen.orientation.lock) {
-          screen.orientation.lock('landscape').catch(function(){});
-        }
-      }).catch(function(){});
-    } else if (el.webkitRequestFullscreen) {
-      el.webkitRequestFullscreen();
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').then(function() { locked = true; }).catch(function(){});
     }
   } catch(e) {}
+  // Fallback: CSS rotate if orientation lock fails
+  setTimeout(function() {
+    if (!locked && !document.fullscreenElement) {
+      el.classList.add('forced-landscape');
+    }
+  }, 500);
 }
 
 function closeGallery() {
-  document.getElementById('chartGallery').classList.remove('open');
+  var el = document.getElementById('chartGallery');
+  el.classList.remove('open');
+  el.classList.remove('forced-landscape');
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
-  // Exit fullscreen and unlock orientation
   try {
     if (screen.orientation && screen.orientation.unlock) {
       screen.orientation.unlock();
-    }
-    if (document.fullscreenElement && document.exitFullscreen) {
-      document.exitFullscreen().catch(function(){});
     }
   } catch(e) {}
   renderCharts();

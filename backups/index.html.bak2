@@ -9,18 +9,19 @@
 <title>FitLog 健身记录</title>
 <link rel="manifest" href="manifest.json">
 <script src="chart.umd.min.js"></script>
+<script src="hammer.min.js"></script>
 
-<script src="app.js" defer></script>
+<script src="app.js?v=20260627" defer></script>
 <style>
 :root{--bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#333;--text:#e8e8e8;--text2:#999;--accent:#ff6b35;--accent2:#4ecdc4;--green:#2ecc71;--red:#e74c3c;--radius:12px;--nav-h:64px;--header-h:56px;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
-.header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 16px;height:var(--header-h);display:flex;align-items:center;justify-content:space-between}
+.header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 16px;padding-top:max(env(safe-area-inset-top, 0px), 24px);height:calc(var(--header-h) + max(env(safe-area-inset-top, 0px), 24px));display:flex;align-items:center;justify-content:space-between}
 .header h1{font-size:20px;font-weight:700;letter-spacing:-.3px}
 .header h1 span{color:var(--accent)}
 .header-date{font-size:13px;color:var(--text2);background:var(--surface2);padding:4px 10px;border-radius:20px}
 .main{padding:0 0 calc(var(--nav-h)+var(--safe-bottom)+16px);min-height:calc(100dvh - var(--header-h))}
-.tab-panel{display:none;padding:16px}
+.tab-panel{display:none;padding:16px}#panel-charts{padding-bottom:100px}
 .tab-panel.active{display:block}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--surface);border-top:1px solid var(--border);display:flex;padding-bottom:var(--safe-bottom);height:calc(var(--nav-h)+var(--safe-bottom))}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:none;background:none;color:var(--text2);cursor:pointer;font-size:10px;gap:2px;transition:color .2s;font-family:inherit;padding:0 2px}
@@ -86,7 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .chart-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .chart-filter .preset-chip{font-size:11px}
 .chart-container{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--border);position:relative}
-.chart-container canvas{max-height:220px}
+.chart-container canvas{max-height:160px;touch-action:none}
 .history-filters{display:flex;gap:8px;margin-bottom:12px}
 .history-filters input{flex:1;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;outline:none;font-family:inherit}
 .history-list .wo-date{font-size:11px;color:var(--accent)}
@@ -188,8 +189,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 
 /* === Fix cramped chart labels === */
 .chart-container canvas{max-height:200px}
-@media (max-width: 430px) {
-  .chart-container canvas{max-height:180px}
+@media (max-width: 430px) { .chart-container canvas{max-height:140px;touch-action:none}
   .chart-filter{gap:4px}
   .chart-filter .preset-chip{font-size:10px;padding:3px 8px}
   .cal-day{font-size:11px}
