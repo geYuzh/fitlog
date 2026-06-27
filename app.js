@@ -1286,11 +1286,23 @@ function openGallery() {
   updateGallerySlide();
   renderAllGalleryCharts();
   attachGallerySwipe();
+  // Lock to landscape
+  try {
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(function(){});
+    }
+  } catch(e) {}
 }
 
 function closeGallery() {
   document.getElementById('chartGallery').classList.remove('open');
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
+  // Unlock orientation
+  try {
+    if (screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
+    }
+  } catch(e) {}
   renderCharts();
 }
 
@@ -1523,10 +1535,24 @@ function attachGallerySwipe() {
   var slides = document.getElementById('gallerySlides');
   if (typeof Hammer === 'undefined') return;
   try {
-    var mc = new Hammer.Manager(slides, { touchAction: 'pan-y' });
-    mc.add(new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 30, velocity: 0.3 }));
-    mc.on('swipeleft', function() { goToGallerySlide(gallerySlide + 1); });
-    mc.on('swiperight', function() { goToGallerySlide(gallerySlide - 1); });
+    var mc = new Hammer.Manager(slides, { touchAction: 'none' });
+    var pan = new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 15 });
+    var pinch = new Hammer.Pinch();
+    mc.add([pan, pinch]);
+    pan.recognizeWith(pinch);
+    var panDeltaX = 0;
+    mc.on('panstart', function() { panDeltaX = 0; });
+    mc.on('panmove', function(e) { panDeltaX = e.deltaX; });
+    mc.on('panend', function() {
+      if (panDeltaX < -60) goToGallerySlide(gallerySlide + 1);
+      else if (panDeltaX > 60) goToGallerySlide(gallerySlide - 1);
+    });
+    var psZoom = 1, psLast = 1;
+    mc.on('pinchstart', function(e) { psZoom = gZoom[gallerySlide]; psLast = e.scale; });
+    mc.on('pinchmove', function(e) {
+      var d = Math.round((psLast - e.scale) * 10);
+      if (d !== 0) { var nz = Math.max(1, Math.min(90, psZoom + d)); psLast = e.scale; if (nz !== gZoom[gallerySlide]) { gZoom[gallerySlide] = nz; renderGalleryChart(gallerySlide + 1); } }
+    });
   } catch(e) { console.log('Gallery swipe error:', e); }
 }
 
