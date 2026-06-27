@@ -218,6 +218,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
   transform: rotate(90deg) translateY(-100%);
   transform-origin: top left;
 }
+.gallery-arrow{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;font-family:inherit;line-height:1;transition:all .2s}.gallery-arrow:hover{color:var(--accent);border-color:var(--accent)}
 .gallery-close{background:none;border:none;color:var(--text2);font-size:24px;cursor:pointer;padding:0 4px;font-family:inherit;line-height:1}
 .gallery-slides{flex:1;display:flex;overflow:hidden}
 .gallery-slide{flex:0 0 100%;display:flex;flex-direction:column;padding:8px 12px;overflow-y:auto;padding-bottom:60px}
@@ -413,8 +414,10 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 <!-- FULLSCREEN GALLERY -->
 <div class="chart-gallery" id="chartGallery">
   <div class="gallery-header">
+    <button class="gallery-arrow" onclick="goToGallerySlide(gallerySlide-1)">&#9664;</button>
     <span class="gallery-title" id="galleryTitle">重量趋势</span>
     <div class="gallery-dots" id="galleryDots"></div>
+    <button class="gallery-arrow" onclick="goToGallerySlide(gallerySlide+1)">&#9654;</button>
     <button class="gallery-close" onclick="closeGallery()">&times;</button>
   </div>
   <div class="gallery-slides" id="gallerySlides">

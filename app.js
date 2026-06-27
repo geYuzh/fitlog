@@ -1542,29 +1542,45 @@ function onGallerySlider(n) {
 
 function attachGallerySwipe() {
   var slides = document.getElementById('gallerySlides');
-  if (typeof Hammer === 'undefined') return;
-  try {
-    var mc = new Hammer.Manager(slides, { touchAction: 'none' });
-    var pan = new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 15 });
-    var pinch = new Hammer.Pinch();
-    mc.add([pan, pinch]);
-    pan.recognizeWith(pinch);
-    var panDeltaX = 0;
-    mc.on('panstart', function() { panDeltaX = 0; });
-    mc.on('panmove', function(e) { panDeltaX = e.deltaX; });
-    mc.on('panend', function() {
-      if (panDeltaX < -60) goToGallerySlide(gallerySlide + 1);
-      else if (panDeltaX > 60) goToGallerySlide(gallerySlide - 1);
-    });
-    var psZoom = 1, psLast = 1;
-    mc.on('pinchstart', function(e) { psZoom = gZoom[gallerySlide]; psLast = e.scale; });
-    mc.on('pinchmove', function(e) {
-      var d = Math.round((psLast - e.scale) * 10);
-      if (d !== 0) { var nz = Math.max(1, Math.min(90, psZoom + d)); psLast = e.scale; if (nz !== gZoom[gallerySlide]) { gZoom[gallerySlide] = nz; renderGalleryChart(gallerySlide + 1); } }
-    });
-  } catch(e) { console.log('Gallery swipe error:', e); }
+  if (!slides) return;
+  var sx = 0, sy = 0, swiping = false;
+  slides.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 1) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = false; }
+  }, { passive: false });
+  slides.addEventListener('touchmove', function(e) {
+    if (e.touches.length !== 1) return;
+    var dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
+    if (!swiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) swiping = true;
+    if (swiping) e.preventDefault();
+  }, { passive: false });
+  slides.addEventListener('touchend', function(e) {
+    if (!swiping) return;
+    var ex = (e.changedTouches[0] || {}).clientX || sx;
+    if (ex - sx < -40) goToGallerySlide(gallerySlide + 1);
+    else if (ex - sx > 40) goToGallerySlide(gallerySlide - 1);
+    swiping = false;
+  });
+  slides.addEventListener('wheel', function(e) {
+    if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      var dx = e.deltaX || (e.shiftKey ? e.deltaY : 0);
+      if (dx > 20) goToGallerySlide(gallerySlide + 1);
+      else if (dx < -20) goToGallerySlide(gallerySlide - 1);
+    }
+  }, { passive: false });
+  if (typeof Hammer !== 'undefined') {
+    try {
+      var mc = new Hammer.Manager(slides, { touchAction: 'none' });
+      mc.add(new Hammer.Pinch());
+      var psZ = 1, psL = 1;
+      mc.on('pinchstart', function(e) { psZ = gZoom[gallerySlide]; psL = e.scale; });
+      mc.on('pinchmove', function(e) {
+        var d = Math.round((psL - e.scale) * 10);
+        if (d !== 0) { var nz = Math.max(1, Math.min(90, psZ + d)); psL = e.scale; if (nz !== gZoom[gallerySlide]) { gZoom[gallerySlide] = nz; renderGalleryChart(gallerySlide + 1); } }
+      });
+    } catch(e) {}
+  }
 }
-
 // ========== STARTUP ==========
 loadTheme();
 init();
