@@ -137,6 +137,9 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 .btn-wadj:active{transform:scale(.92)}
 .set-input-wrap{position:relative;flex:1;min-width:0}
 .set-input-wrap input{width:100%;padding:5px 24px 5px 6px!important;text-align:center}
+.set-weight::-webkit-outer-spin-button,.set-weight::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.set-weight{-moz-appearance:textfield}
+.set-reps::-webkit-outer-spin-button,.set-reps::-webkit-inner-spin-button{opacity:1}
 .set-unit{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text2);pointer-events:none}
 /* Category toggle */
 .settings-cat-toggle{display:inline-block;width:16px;font-size:12px;color:var(--text2);transition:transform .2s}
