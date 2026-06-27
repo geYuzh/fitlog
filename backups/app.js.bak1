@@ -197,7 +197,7 @@ function addSet() {
   div.innerHTML =
     '<span class="set-num">#' + idx + '</span>' +
     '<div class="set-input-wrap" style="flex:1"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
-    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,' + inc + ')">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-' + inc + ')">\u25bc</button></div>' +
+    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
     '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
     '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
@@ -211,11 +211,12 @@ function setRep(chip, val) {
   row.querySelectorAll('.rep-chip').forEach(function(c) { c.classList.remove('active'); });
   chip.classList.add('active');
 }
-function adjWeight(btn, delta) {
+function adjWeight(btn, sign) {
   var row = btn.closest('.set-row');
   var input = row.querySelector('.set-weight');
+  var inc = getIncrement();
   var v = parseFloat(input.value) || 0;
-  v = Math.max(0, Math.round((v + delta) * 10) / 10);
+  v = Math.max(0, Math.round((v + inc * sign) * 10) / 10);
   input.value = v;
 }
 function toggleRepMenu(btn) {
@@ -1051,7 +1052,7 @@ function openEditModal(id) {
     div.innerHTML =
       '<span class="set-num">#' + (i+1) + '</span>' +
       '<div class="set-input-wrap" style="flex:1"><input type="number" value="' + s.weight + '" step="0.5" min="0" class="set-weight"><span class="set-unit">kg</span></div>' +
-      '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,' + inc + ')">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-' + inc + ')">\u25bc</button></div>' +
+      '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
       '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
       '<div class="set-input-wrap" style="flex:0.8"><input type="number" value="' + s.reps + '" step="1" min="0" class="set-reps"><span class="set-unit">\u6b21</span></div>' +
       '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
@@ -1079,7 +1080,7 @@ function addEditSet() {
   div.innerHTML =
     '<span class="set-num">#' + idx + '</span>' +
     '<div class="set-input-wrap" style="flex:1"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
-    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,' + inc + ')">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-' + inc + ')">\u25bc</button></div>' +
+    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
     '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
     '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
