@@ -202,6 +202,23 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
   .stat-card .stat-val{font-size:16px}
   .cat-tab{padding:6px 12px;font-size:12px}
 }
+
+/* === Fullscreen Chart Gallery === */
+.chart-gallery{position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:var(--bg);display:none;flex-direction:column}
+.chart-gallery.open{display:flex}
+.gallery-header{display:flex;align-items:center;justify-content:space-between;padding:16px;padding-top:max(env(safe-area-inset-top,0px),24px);border-bottom:1px solid var(--border);flex-shrink:0}
+.gallery-title{font-size:17px;font-weight:700}
+.gallery-dots{display:flex;gap:6px}
+.gallery-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s}
+.gallery-dot.active{background:var(--accent);width:20px;border-radius:4px}
+.gallery-close{background:none;border:none;color:var(--text2);font-size:24px;cursor:pointer;padding:0 4px;font-family:inherit;line-height:1}
+.gallery-slides{flex:1;display:flex;overflow:hidden;touch-action:pan-y}
+.gallery-slide{flex:0 0 100%;display:flex;flex-direction:column;padding:16px;overflow-y:auto;padding-bottom:80px}
+.gallery-slide canvas{flex-shrink:0;width:100%!important;max-height:none!important;height:auto!important}
+.gallery-slide .chart-slider{flex-shrink:0;margin-top:12px}
+.gallery-slide .chart-filter{flex-shrink:0;margin-bottom:8px}
+.btn-fullscreen{background:var(--surface2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;margin-left:8px;font-family:inherit}
+.btn-fullscreen:hover{color:var(--accent);border-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -238,7 +255,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 
   <!-- CHARTS -->
   <div class="tab-panel" id="panel-charts">
-    <div class="chart-filter" id="chartFilter"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between"><div class="chart-filter" id="chartFilter"></div><button class="btn-fullscreen" onclick="openGallery()" title="全屏查看">&#10530;</button></div>
     <div class="chart-container">
       <div class="card-title">重量趋势（每组独立折线）</div>
       <div class="chart-filter" id="setTabs" style="margin-bottom:8px"></div>
@@ -385,5 +402,29 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 <script>
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
+
+<!-- FULLSCREEN GALLERY -->
+<div class="chart-gallery" id="chartGallery">
+  <div class="gallery-header">
+    <span class="gallery-title" id="galleryTitle">重量趋势</span>
+    <div class="gallery-dots" id="galleryDots"></div>
+    <button class="gallery-close" onclick="closeGallery()">&times;</button>
+  </div>
+  <div class="gallery-slides" id="gallerySlides">
+    <div class="gallery-slide">
+      <div class="chart-filter" id="gallerySetTabs"></div>
+      <canvas id="galleryChart1"></canvas>
+      <input type="range" class="chart-slider" id="gallerySlider1" min="0" max="100" value="0" oninput="onGallerySlider(1)">
+    </div>
+    <div class="gallery-slide">
+      <canvas id="galleryChart2"></canvas>
+      <input type="range" class="chart-slider" id="gallerySlider2" min="0" max="100" value="0" oninput="onGallerySlider(2)">
+    </div>
+    <div class="gallery-slide">
+      <canvas id="galleryChart3"></canvas>
+      <input type="range" class="chart-slider" id="gallerySlider3" min="0" max="100" value="0" oninput="onGallerySlider(3)">
+    </div>
+  </div>
+</div>
 </body>
 </html>

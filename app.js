@@ -1269,6 +1269,267 @@ function isDebugMode() {
   return localStorage.getItem('fitlog_debug_mode') === '1';
 }
 
+
+// ========== FULLSCREEN GALLERY ==========
+var gallerySlide = 0;
+var galleryCharts = [null, null, null];
+var gZoom = [30, 30, 30];
+var gPan = [0, 0, 0];
+var gTotalLabels = [0, 0, 0];
+
+function openGallery() {
+  gallerySlide = 0;
+  gZoom[0] = zoom1; gZoom[1] = zoom2; gZoom[2] = zoom3;
+  gPan[0] = pan1; gPan[1] = pan2; gPan[2] = pan3;
+  document.getElementById('chartGallery').classList.add('open');
+  updateGalleryDots();
+  updateGallerySlide();
+  renderAllGalleryCharts();
+  attachGallerySwipe();
+}
+
+function closeGallery() {
+  document.getElementById('chartGallery').classList.remove('open');
+  galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
+  renderCharts();
+}
+
+var galleryTitles = ['重量趋势', '当日最重组', '训练频次'];
+
+function updateGalleryDots() {
+  var dots = '';
+  for (var i = 0; i < 3; i++) {
+    dots += '<span class="gallery-dot' + (i === gallerySlide ? ' active' : '') + '"></span>';
+  }
+  document.getElementById('galleryDots').innerHTML = dots;
+  document.getElementById('galleryTitle').textContent = galleryTitles[gallerySlide];
+}
+
+function updateGallerySlide() {
+  var slides = document.getElementById('gallerySlides');
+  slides.style.transform = 'translateX(-' + (gallerySlide * 100) + '%)';
+  slides.style.transition = 'transform 0.3s ease';
+  updateGalleryDots();
+}
+
+function goToGallerySlide(n) {
+  if (n < 0 || n > 2) return;
+  gallerySlide = n;
+  updateGallerySlide();
+  renderGalleryChart(n + 1);
+}
+
+function renderAllGalleryCharts() {
+  for (var i = 1; i <= 3; i++) renderGalleryChart(i);
+}
+
+function renderGalleryChart(n) {
+  var idx = n - 1;
+  if (galleryCharts[idx]) galleryCharts[idx].destroy();
+  
+  var setData = buildSetData(chartFilterEx);
+  var heaviestData = buildHeaviestData(chartFilterEx);
+  var freqData = buildFreqData(chartFilterEx);
+  
+  var canvasId = 'galleryChart' + n;
+  var sliderId = 'gallerySlider' + n;
+  var labels, datasets, label;
+  
+  if (n === 1) {
+    // Weight chart with set filter
+    var datasetsToShow;
+    if (setFilterMode === 'all') {
+      datasetsToShow = setData.datasets;
+    } else {
+      var si = parseInt(setFilterMode);
+      datasetsToShow = (si >= 0 && si < setData.datasets.length) ? [setData.datasets[si]] : [];
+    }
+    labels = setData.labels;
+    datasets = datasetsToShow;
+    gTotalLabels[idx] = labels.length;
+    
+    // Render set tabs in gallery
+    var stHtml = '<span class="preset-chip ' + (setFilterMode==='all'?'selected':'') + '" onclick="setFilterMode=\'all\';renderAllGalleryCharts();">全部组</span>';
+    if (setData.datasets) {
+      setData.datasets.forEach(function(ds, si) {
+        stHtml += '<span class="preset-chip ' + (setFilterMode===String(si)?'selected':'') + '" onclick="setFilterMode=\'' + si + '\';renderAllGalleryCharts();">' + ds.label + '</span>';
+      });
+    }
+    document.getElementById('gallerySetTabs').innerHTML = stHtml;
+    label = '重量 (kg)';
+  } else if (n === 2) {
+    labels = heaviestData.labels;
+    datasets = heaviestData.datasets;
+    gTotalLabels[idx] = labels.length;
+    label = '最重 (kg)';
+  } else {
+    labels = freqData.labels;
+    datasets = freqData.datasets;
+    gTotalLabels[idx] = labels.length;
+    label = '训练次数';
+  }
+  
+  if (!labels || labels.length === 0) return;
+  
+  var zoom = gZoom[idx];
+  var pan = gPan[idx];
+  zoom = Math.min(zoom, gTotalLabels[idx]);
+  if (pan + zoom > gTotalLabels[idx]) pan = Math.max(0, gTotalLabels[idx] - zoom);
+  gZoom[idx] = zoom;
+  gPan[idx] = pan;
+  
+  var end = Math.min(pan + zoom, labels.length);
+  var slicedLabels = labels.slice(pan, end);
+  var slicedDatasets = datasets.map(function(ds) {
+    return Object.assign({}, ds, { data: ds.data.slice(pan, end) });
+  });
+  
+  var ctx = document.getElementById(canvasId).getContext('2d');
+  galleryCharts[idx] = new Chart(ctx, {
+    type: 'line',
+    data: { labels: slicedLabels, datasets: slicedDatasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: n === 1, labels: { color: '#999', usePointStyle: true, boxWidth: 8, padding: 12, font: { size: 11 } } },
+        tooltip: { backgroundColor: '#1a1a1a', titleColor: '#fff', bodyColor: '#ccc', borderColor: '#333', borderWidth: 1 }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
+              var dl = ctx.chart.data.labels;
+              if (!dl || idx >= dl.length) return '#999';
+              if (idx === 0) return '#e84393';
+              var p0 = String(dl[Math.max(0,idx-1)]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? '#e84393' : '#999';
+            },
+            font: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
+              var dl = ctx.chart.data.labels;
+              if (!dl || idx >= dl.length) return { size: 10 };
+              if (idx === 0) return { size: 10, weight: 'bold' };
+              var p0 = String(dl[Math.max(0,idx-1)]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              return { size: 10, weight: (p0[0] !== p1[0] || p0[1] !== p1[1]) ? 'bold' : 'normal' };
+            },
+            maxRotation: 35,
+            autoSkip: true,
+            callback: function(val, index, ticks) {
+              var label = this.getLabelForValue(val);
+              if (!label) return '';
+              var p = label.split('-');
+              if (p.length < 3) return label;
+              var yr = p[0], mo = parseInt(p[1]), dy = parseInt(p[2]);
+              var pY = '', pM = '';
+              if (index > 0 && ticks[index-1]) {
+                var pl = this.getLabelForValue(ticks[index-1].value);
+                if (pl) { var pp = pl.split('-'); pY = pp[0]; pM = pp[1]; }
+              }
+              if (index === 0 || pY !== yr) return "'" + yr.slice(2) + '/' + mo + '/' + dy;
+              if (pM !== p[1]) return mo + '/' + dy;
+              return String(dy);
+            }
+          },
+          grid: {
+            color: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
+              var dl = ctx.chart.data.labels;
+              if (idx < 0 || !dl || idx >= dl.length) return '#2a2a2a';
+              if (idx === 0) return '#e84393';
+              var p0 = String(dl[idx-1]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? '#e84393' : '#2a2a2a';
+            },
+            lineWidth: function(ctx) {
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
+              var dl = ctx.chart.data.labels;
+              if (idx < 0 || !dl || idx >= dl.length) return 1;
+              if (idx === 0) return 2;
+              var p0 = String(dl[idx-1]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? 2 : 1;
+            }
+          }
+        },
+        y: { ticks: { color: '#999', font: { size: 11 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: true, text: label, color: '#999' } }
+      }
+    }
+  });
+  
+  // Update slider
+  var sl = document.getElementById(sliderId);
+  sl.min = 0;
+  sl.max = Math.max(0, gTotalLabels[idx] - zoom);
+  sl.value = pan;
+  
+  // Attach pinch zoom to gallery canvas
+  attachGalleryPinch(n);
+  attachGalleryWheel(n);
+}
+
+function attachGalleryPinch(n) {
+  var canvas = document.getElementById('galleryChart' + n);
+  if (!canvas || typeof Hammer === 'undefined') return;
+  try {
+    var mc = new Hammer.Manager(canvas, { touchAction: 'none' });
+    mc.add(new Hammer.Pinch());
+    var idx = n - 1;
+    var lastScale = 1;
+    var startZoom = gZoom[idx];
+    mc.on('pinchstart', function(e) {
+      startZoom = gZoom[idx];
+      lastScale = e.scale;
+    });
+    mc.on('pinchmove', function(e) {
+      var delta = Math.round((lastScale - e.scale) * 10);
+      if (delta !== 0) {
+        var newZoom = Math.max(1, Math.min(90, startZoom + delta));
+        lastScale = e.scale;
+        if (newZoom !== gZoom[idx]) {
+          gZoom[idx] = newZoom;
+          renderGalleryChart(n);
+        }
+      }
+    });
+  } catch(e) { console.log('Gallery pinch error:', e); }
+}
+
+function attachGalleryWheel(n) {
+  var canvas = document.getElementById('galleryChart' + n);
+  if (!canvas) return;
+  var idx = n - 1;
+  canvas.onwheel = function(e) {
+    e.preventDefault();
+    var delta = e.deltaY > 0 ? 2 : -2;
+    gZoom[idx] = Math.max(1, Math.min(90, gZoom[idx] + delta));
+    renderGalleryChart(n);
+  };
+}
+
+function onGallerySlider(n) {
+  var idx = n - 1;
+  var sl = document.getElementById('gallerySlider' + n);
+  gPan[idx] = parseInt(sl.value);
+  renderGalleryChart(n);
+}
+
+function attachGallerySwipe() {
+  var slides = document.getElementById('gallerySlides');
+  if (typeof Hammer === 'undefined') return;
+  try {
+    var mc = new Hammer.Manager(slides, { touchAction: 'pan-y' });
+    mc.add(new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 30, velocity: 0.3 }));
+    mc.on('swipeleft', function() { goToGallerySlide(gallerySlide + 1); });
+    mc.on('swiperight', function() { goToGallerySlide(gallerySlide - 1); });
+  } catch(e) { console.log('Gallery swipe error:', e); }
+}
+
 // ========== STARTUP ==========
 loadTheme();
 init();
