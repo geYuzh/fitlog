@@ -643,7 +643,7 @@ function attachPinchListeners() {
       hammer.on('pinchmove', function(e) {
         e.preventDefault();
         var scale = e.scale;
-        var delta = Math.round((scale - pinchStates[cn].lastScale) * 5);
+        var delta = Math.round((scale - pinchStates[cn].lastScale) * 10);
         if (delta !== 0) {
           var newZoom = Math.max(1, Math.min(30, pinchStates[cn].startZoom + delta));
           pinchStates[cn].lastScale = scale;
