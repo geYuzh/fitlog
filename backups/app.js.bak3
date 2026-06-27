@@ -792,39 +792,12 @@ function buildFreqData(filter) {
   // Global plugin: draws border labels and colored grid lines for all charts
 var boundaryPlugin = {
   id: 'boundaryPlugin',
-  beforeDraw: function(chart) {
-    var xScale = chart.scales.x;
-    if (!xScale || !xScale.ticks) return;
-    var labels = chart.data.labels;
-    if (!labels || labels.length === 0) return;
-    
-    // Pre-compute boundaries for this chart's visible window
-    var boundaries = {};
-    if (labels.length > 0) {
-      var firstParts = String(labels[0]).split('-');
-      if (firstParts.length >= 3) {
-        boundaries[0] = true;
-        var firstYear = firstParts[0];
-        var firstMonth = firstParts[1];
-        for (var i = 1; i < labels.length; i++) {
-          var parts = String(labels[i]).split('-');
-          if (parts.length >= 3 && (parts[0] !== firstYear || parts[1] !== firstMonth)) {
-            boundaries[i] = true;
-            firstYear = parts[0];
-            firstMonth = parts[1];
-          }
-        }
-      }
-    }
-    chart.$boundaries = boundaries;
-  },
   afterDraw: function(chart) {
     var xScale = chart.scales.x;
-    if (!xScale || !xScale.ticks) return;
+    if (!xScale || !xScale.ticks || xScale.ticks.length === 0) return;
     var ca = chart.chartArea;
+    if (!ca) return;
     var ctx = chart.ctx;
-    var labels = chart.data.labels;
-    if (!labels || labels.length === 0) return;
     
     ctx.save();
     ctx.font = 'bold 8px -apple-system, sans-serif';
@@ -834,15 +807,55 @@ var boundaryPlugin = {
       var tick = xScale.ticks[ti];
       var label = tick.label;
       if (!label) continue;
-      var parts = String(label).split('-');
+      // Parse date from label (may be short like "26" or "6/1" or "'24/6/1")
+      // Need to get the actual date from the data
+      var dataIdx = -1;
+      // Try to find matching data label
+      if (chart.data.labels) {
+        for (var di = 0; di < chart.data.labels.length; di++) {
+          var dl = String(chart.data.labels[di]);
+          if (dl.indexOf(label) >= 0 || label.indexOf(dl.split('-')[2]) >= 0) {
+            // Check if this tick maps to this data point via position
+            var tp = xScale.getPixelForTick(ti);
+            var dp = xScale.getPixelForValue(dl);
+            if (Math.abs(tp - dp) < 5) { dataIdx = di; break; }
+          }
+        }
+      }
+      
+      // Fallback: use tick index
+      if (dataIdx < 0) {
+        // Try to find by scanning
+        for (var di = 0; di < chart.data.labels.length; di++) {
+          var tp = xScale.getPixelForTick(ti);
+          var dp = xScale.getPixelForValue(chart.data.labels[di]);
+          if (Math.abs(tp - dp) < 3) { dataIdx = di; break; }
+        }
+      }
+      if (dataIdx < 0) dataIdx = ti;
+      
+      var fullLabel = (chart.data.labels && chart.data.labels[dataIdx]) ? String(chart.data.labels[dataIdx]) : label;
+      var parts = fullLabel.split('-');
       if (parts.length < 3) continue;
       var year = parts[0];
       var month = parts[1];
+      
       var prevYear = '', prevMonth = '';
       if (ti > 0 && xScale.ticks[ti-1]) {
-        var p = String(xScale.ticks[ti-1].label);
-        if (p) { var pp = p.split('-'); prevYear = pp[0]; prevMonth = pp[1]; }
+        // Find previous tick's data index
+        var prevDataIdx = -1;
+        for (var pdi = 0; pdi < chart.data.labels.length; pdi++) {
+          var ptp = xScale.getPixelForTick(ti-1);
+          var pdp = xScale.getPixelForValue(chart.data.labels[pdi]);
+          if (Math.abs(ptp - pdp) < 3) { prevDataIdx = pdi; break; }
+        }
+        if (prevDataIdx >= 0 && chart.data.labels[prevDataIdx]) {
+          var prevFull = String(chart.data.labels[prevDataIdx]);
+          var pp = prevFull.split('-');
+          if (pp.length >= 3) { prevYear = pp[0]; prevMonth = pp[1]; }
+        }
       }
+      
       var isBnd = (ti === 0 || prevYear !== year || prevMonth !== month);
       if (!isBnd) continue;
       
@@ -856,7 +869,7 @@ var boundaryPlugin = {
       var pixel = xScale.getPixelForTick(ti);
       if (isNaN(pixel) || pixel < ca.left || pixel > ca.right) continue;
       
-      // Draw boundary grid line
+      // Draw dashed boundary line
       ctx.beginPath();
       ctx.strokeStyle = '#e84393';
       ctx.lineWidth = 1.5;
@@ -868,7 +881,7 @@ var boundaryPlugin = {
       
       // Draw label at top
       var textX = pixel + 3;
-      if (textX + 30 > ca.right) textX = pixel - 2;
+      if (textX + 35 > ca.right) textX = pixel - 2;
       var textY = ca.top;
       var metrics = ctx.measureText(bndText);
       var w = metrics.width + 6;
@@ -881,7 +894,6 @@ var boundaryPlugin = {
   }
 };
 
-// Register globally
 if (typeof Chart !== 'undefined' && Chart.register) {
   Chart.register(boundaryPlugin);
 }
