@@ -1267,6 +1267,8 @@ function exitDebugMode() {
   switchTab('record');
   renderStats();
   renderPresets();
+  renderCharts();
+  renderHistory();
 }
 
 function isDebugMode() {
