@@ -101,12 +101,9 @@ function dateKey(d) { return d.toISOString().split('T')[0]; }
 function renderStats() {
   var total = workouts.length;
   var thisWeek = getWeekWorkouts();
-  var exSet = new Set();
-  workouts.forEach(function(w) { exSet.add(w.exercise); });
   document.getElementById('statsBar').innerHTML =
     '<div class="stat-card"><div class="stat-val">' + total + '</div><div class="stat-label">\u603b\u8bb0\u5f55</div></div>' +
-    '<div class="stat-card"><div class="stat-val">' + thisWeek + '</div><div class="stat-label">\u672c\u5468\u8bad\u7ec3</div></div>' +
-    '<div class="stat-card"><div class="stat-val">' + exSet.size + '</div><div class="stat-label">\u8bad\u7ec3\u9879\u76ee</div></div>';
+    '<div class="stat-card"><div class="stat-val">' + thisWeek + '</div><div class="stat-label">\u672c\u5468\u8bad\u7ec3</div></div>';
 }
 function getWeekWorkouts() {
   var now = new Date();
@@ -789,10 +786,10 @@ function buildFreqData(filter) {
             },
             font: function(ctx) {
               var w = ctx.tick && ctx.tick.label && ctx.tick.label.indexOf('\u6708') >= 0 ? 'bold' : 'normal';
-              return { size: 10, weight: w };
+              return { size: 8, weight: w };
             },
             maxRotation: 0,
-            autoSkip: false,
+            autoSkip: true,
             callback: function(val, index, ticks) {
               var label = this.getLabelForValue(val);
               if (!label) return '';

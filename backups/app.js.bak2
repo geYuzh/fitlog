@@ -86,6 +86,11 @@ function init() {
   renderSettingsPage();
   switchTab('record');
   document.getElementById('todayLabel').textContent = formatDate(new Date());
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.rep-menu-wrap')) {
+      document.querySelectorAll('.rep-menu-drop').forEach(function(d) { d.style.display = 'none'; });
+    }
+  });
 }
 function setTodayDate() {
   document.getElementById('recDate').value = new Date().toISOString().split('T')[0];
@@ -191,30 +196,34 @@ function addSet() {
   div.className = 'set-row';
   div.innerHTML =
     '<span class="set-num">#' + idx + '</span>' +
-    '<div class="set-input-wrap" style="flex:1.2"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
-    '<button class="btn-wadj" type="button" onclick="adjWeight(this,-' + inc + ')">\u2212</button>' +
-    '<button class="btn-wadj" type="button" onclick="adjWeight(this,' + inc + ')">+</button>' +
+    '<div class="set-input-wrap" style="flex:1"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
+    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,' + inc + ')">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-' + inc + ')">\u25bc</button></div>' +
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
-    '<div class="set-input-wrap" style="flex:0.9"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
-    '<span class="rep-chip" onclick="setRep(this,4)">4</span>' +
-    '<span class="rep-chip" onclick="setRep(this,8)">8</span>' +
-    '<span class="rep-chip" onclick="setRep(this,12)">12</span>' +
-    '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.parentElement.remove();renumberSets(\'setsContainer\')">x</button>';
+    '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
+    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27setsContainer\x27)">x</button>';
   container.appendChild(div);
 }
 function setRep(chip, val) {
-  var row = chip.parentElement;
+  var row = chip.closest('.set-row');
   var input = row.querySelector('.set-reps');
   input.value = val;
   row.querySelectorAll('.rep-chip').forEach(function(c) { c.classList.remove('active'); });
   chip.classList.add('active');
 }
 function adjWeight(btn, delta) {
-  var row = btn.parentElement;
+  var row = btn.closest('.set-row');
   var input = row.querySelector('.set-weight');
   var v = parseFloat(input.value) || 0;
   v = Math.max(0, Math.round((v + delta) * 10) / 10);
   input.value = v;
+}
+function toggleRepMenu(btn) {
+  var drop = btn.nextElementSibling;
+  var isOpen = drop.style.display === 'flex';
+  // close all others first
+  document.querySelectorAll('.rep-menu-drop').forEach(function(d) { d.style.display = 'none'; });
+  drop.style.display = isOpen ? 'none' : 'flex';
 }
 function renumberSets(containerId) {
   var rows = document.querySelectorAll('#' + containerId + ' .set-row');
@@ -1041,15 +1050,12 @@ function openEditModal(id) {
     div.className = 'set-row';
     div.innerHTML =
       '<span class="set-num">#' + (i+1) + '</span>' +
-      '<div class="set-input-wrap" style="flex:1.2"><input type="number" value="' + s.weight + '" step="0.5" min="0" class="set-weight"><span class="set-unit">kg</span></div>' +
-      '<button class="btn-wadj" type="button" onclick="adjWeight(this,-' + inc + ')">\u2212</button>' +
-      '<button class="btn-wadj" type="button" onclick="adjWeight(this,' + inc + ')">+</button>' +
+      '<div class="set-input-wrap" style="flex:1"><input type="number" value="' + s.weight + '" step="0.5" min="0" class="set-weight"><span class="set-unit">kg</span></div>' +
+      '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,' + inc + ')">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-' + inc + ')">\u25bc</button></div>' +
       '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
-      '<div class="set-input-wrap" style="flex:0.9"><input type="number" value="' + s.reps + '" step="1" min="0" class="set-reps"><span class="set-unit">\u6b21</span></div>' +
-      '<span class="rep-chip" onclick="setRep(this,4)">4</span>' +
-      '<span class="rep-chip" onclick="setRep(this,8)">8</span>' +
-      '<span class="rep-chip" onclick="setRep(this,12)">12</span>' +
-      '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.parentElement.remove();renumberSets(\'editSetsContainer\')">x</button>';
+      '<div class="set-input-wrap" style="flex:0.8"><input type="number" value="' + s.reps + '" step="1" min="0" class="set-reps"><span class="set-unit">\u6b21</span></div>' +
+      '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+      '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
     container.appendChild(div);
   });
   document.getElementById('editModal').style.display = 'flex';
@@ -1072,15 +1078,12 @@ function addEditSet() {
   div.className = 'set-row';
   div.innerHTML =
     '<span class="set-num">#' + idx + '</span>' +
-    '<div class="set-input-wrap" style="flex:1.2"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
-    '<button class="btn-wadj" type="button" onclick="adjWeight(this,-' + inc + ')">\u2212</button>' +
-    '<button class="btn-wadj" type="button" onclick="adjWeight(this,' + inc + ')">+</button>' +
+    '<div class="set-input-wrap" style="flex:1"><input type="number" placeholder="0" step="0.5" min="0" class="set-weight" value="' + lastWeight + '"><span class="set-unit">kg</span></div>' +
+    '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,' + inc + ')">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-' + inc + ')">\u25bc</button></div>' +
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
-    '<div class="set-input-wrap" style="flex:0.9"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
-    '<span class="rep-chip" onclick="setRep(this,4)">4</span>' +
-    '<span class="rep-chip" onclick="setRep(this,8)">8</span>' +
-    '<span class="rep-chip" onclick="setRep(this,12)">12</span>' +
-    '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.parentElement.remove();renumberSets(\'editSetsContainer\')">x</button>';
+    '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
+    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
   container.appendChild(div);
 }
 function saveEdit() {

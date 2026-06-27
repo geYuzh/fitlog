@@ -51,6 +51,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .preset-chip{padding:4px 10px;border-radius:14px;font-size:12px;background:var(--surface2);color:var(--text2);border:1px solid transparent;cursor:pointer;transition:all .2s}
 .preset-chip.selected,.preset-chip:hover{background:rgba(255,107,53,.15);color:var(--accent);border-color:var(--accent)}
+.sub-chip{margin-left:20px;font-size:11px;background:var(--bg)}
 /* Category Picker */
 .cat-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .cat-tab{padding:8px 16px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;font-size:13px;font-weight:600;transition:all .2s;font-family:inherit}
@@ -98,8 +99,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .stat-card .stat-label{font-size:11px;color:var(--text2);margin-top:2px}
 .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:10px 20px;border-radius:20px;font-size:14px;font-weight:600;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:150;display:flex;align-items:flex-end;justify-content:center}
-.modal-sheet{background:var(--surface);border-radius:16px 16px 0 0;padding:20px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:150;display:flex;align-items:center;justify-content:center}
+.modal-sheet{background:var(--surface);border-radius:16px;padding:20px;width:90%;max-width:420px;max-height:80vh;overflow-y:auto}
 .modal-handle{width:36px;height:4px;background:#555;border-radius:2px;margin:0 auto 16px}
 
 /* Settings Menu */
@@ -251,6 +252,16 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
         </div>
         <span class="settings-row-arrow">&#8250;</span>
       </div>
+      <div class="settings-row" onclick="openSetting('historyExpand')">
+        <div class="settings-row-left">
+          <span class="settings-row-icon">&#128196;</span>
+          <div>
+            <div class="settings-row-title">历史的分级展开设置</div>
+            <div class="settings-row-desc">设置年份和月份的默认展开状态</div>
+          </div>
+        </div>
+        <span class="settings-row-arrow">&#8250;</span>
+      </div>
       <div class="settings-row" onclick="openSetting('about')">
         <div class="settings-row-left">
           <span class="settings-row-icon">&#8505;</span>
@@ -313,5 +324,9 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
     <div class="ex-chips" id="catExList"></div>
   </div>
 </div>
+
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+</script>
 </body>
 </html>

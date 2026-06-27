@@ -136,7 +136,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 .btn-wadj:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn-wadj:active{transform:scale(.92)}
 .set-input-wrap{position:relative;flex:1;min-width:0}
-.set-input-wrap input{width:100%;padding:6px 28px 6px 8px!important;text-align:center}
+.set-input-wrap input{width:100%;padding:5px 24px 5px 6px!important;text-align:center}
 .set-unit{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text2);pointer-events:none}
 /* Category toggle */
 .settings-cat-toggle{display:inline-block;width:16px;font-size:12px;color:var(--text2);transition:transform .2s}
@@ -144,6 +144,17 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 /* Rep quick select chips */
 .rep-chip{padding:3px 8px;border-radius:10px;font-size:12px;font-weight:600;background:var(--surface);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s;flex-shrink:0}
 .rep-chip:hover,.rep-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* Weight vertical adjust */
+.wadj-stack{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.btn-wadj-up,.btn-wadj-down{width:22px;height:18px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-family:inherit;line-height:1;padding:0}
+.btn-wadj-up:hover,.btn-wadj-down:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-wadj-up:active,.btn-wadj-down:active{transform:scale(.9)}
+/* Rep dropdown menu */
+.rep-menu-wrap{position:relative;flex-shrink:0}
+.btn-rep-menu{width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all .15s;padding:0;line-height:1}
+.btn-rep-menu:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.rep-menu-drop{display:none;position:absolute;top:100%;right:0;margin-top:4px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px;z-index:50;flex-direction:column;gap:2px;min-width:40px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.rep-menu-drop .rep-chip{text-align:center;padding:5px 10px;border-radius:6px}
 /* Month groups in history */
 .month-group{margin-bottom:4px}
 .month-header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--surface);border-radius:10px;cursor:pointer;border:1px solid var(--border);transition:background .15s}
@@ -155,7 +166,34 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 /* Chart slider */
 .chart-slider{width:100%;margin-top:12px;-webkit-appearance:none;appearance:none;height:6px;background:var(--surface2);border-radius:3px;outline:none;cursor:pointer}
 .chart-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--bg)}
-.chart-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--bg)}</style>
+.chart-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--bg)}/* === Mobile Simulator on Desktop === */
+@media (min-width: 600px) {
+  html{background:#1a1a1a;display:flex;justify-content:center}
+  body{max-width:430px;width:100%;min-height:100dvh;box-shadow:0 0 40px rgba(0,0,0,.6);position:relative}
+  .bottom-nav{max-width:430px;left:50%;transform:translateX(-50%)}
+  .container-reset{max-width:430px}
+}
+@media (min-width: 430px) {
+  .set-row{gap:6px;padding:8px 10px}
+}
+
+/* === Fix cramped chart labels === */
+.chart-container canvas{max-height:200px}
+@media (max-width: 430px) {
+  .chart-container canvas{max-height:180px}
+  .chart-filter{gap:4px}
+  .chart-filter .preset-chip{font-size:10px;padding:3px 8px}
+  .cal-day{font-size:11px}
+  .cal-weekdays{font-size:10px}
+  .cal-header .month-label{font-size:14px}
+  .set-row input{font-size:13px;padding:5px 4px!important}
+  .set-row{gap:4px;padding:6px 8px}
+  .btn-wadj{width:26px;height:30px;font-size:14px}
+  .rep-chip{padding:2px 6px;font-size:11px}
+  .stat-card .stat-val{font-size:16px}
+  .cat-tab{padding:6px 12px;font-size:12px}
+}
+</style>
 </head>
 <body>
 <div class="header">
@@ -324,5 +362,9 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
     <div class="ex-chips" id="catExList"></div>
   </div>
 </div>
+
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+</script>
 </body>
 </html>
