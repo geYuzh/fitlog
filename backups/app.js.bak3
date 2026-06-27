@@ -790,7 +790,7 @@ function buildFreqData(filter) {
 
 // ========== CHART OPTIONS ==========
   function chartOpts(showLegend, labels) {
-    // Pre-compute boundary indices (first tick of each year/month)
+    // Pre-compute boundary indices
     var boundaries = {};
     if (labels && labels.length > 0) {
       boundaries[0] = 'first';
@@ -811,7 +811,55 @@ function buildFreqData(filter) {
     return {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } }
+        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } },
+        bndLabel: {
+          id: 'bndLabel',
+          afterDraw: function(chart) {
+            var xScale = chart.scales.x;
+            if (!xScale || !xScale.ticks) return;
+            var ca = chart.chartArea;
+            var ctx = chart.ctx;
+            ctx.save();
+            ctx.font = 'bold 8px -apple-system, sans-serif';
+            ctx.textBaseline = 'top';
+            for (var ti = 0; ti < xScale.ticks.length; ti++) {
+              var tick = xScale.ticks[ti];
+              var label = tick.label;
+              if (!label) continue;
+              var parts = label.split('-');
+              if (parts.length < 3) continue;
+              var year = parts[0];
+              var month = parseInt(parts[1]);
+              var day = parseInt(parts[2]);
+              var prevYear = '', prevMonth = '';
+              if (ti > 0 && xScale.ticks[ti-1]) {
+                var p = xScale.ticks[ti-1].label;
+                if (p) { var pp = p.split('-'); prevYear = pp[0]; prevMonth = pp[1]; }
+              }
+              // Is this a boundary?
+              var isBnd = (ti === 0 || prevYear !== year || prevMonth !== parts[1]);
+              if (!isBnd) continue;
+              var bndText;
+              if (ti === 0 || prevYear !== year) {
+                bndText = year + '\u5e74' + month + '\u6708';
+              } else {
+                bndText = month + '\u6708';
+              }
+              var pixel = xScale.getPixelForTick(ti);
+              if (isNaN(pixel) || pixel < ca.left || pixel > ca.right) continue;
+              var textX = pixel + 4;
+              if (textX + 30 > ca.right) textX = pixel - 2;
+              var textY = ca.top;
+              var metrics = ctx.measureText(bndText);
+              var w = metrics.width + 6;
+              ctx.fillStyle = 'rgba(15,15,15,0.82)';
+              ctx.fillRect(textX - 2, textY, w, 14);
+              ctx.fillStyle = '#ff6b35';
+              ctx.fillText(bndText, textX, textY + 2);
+            }
+            ctx.restore();
+          }
+        }
       },
       scales: {
         x: {
@@ -819,13 +867,11 @@ function buildFreqData(filter) {
             color: function(ctx) {
               if (!ctx.tick || !ctx.tick.label) return '#999';
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              var bi = boundaries[idx];
-              return bi ? '#ff6b35' : '#999';
+              return boundaries[idx] ? '#ff6b35' : '#999';
             },
             font: function(ctx) {
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              var bi = boundaries[idx];
-              return { size: 8, weight: bi ? 'bold' : 'normal' };
+              return { size: 8, weight: boundaries[idx] ? 'bold' : 'normal' };
             },
             maxRotation: 0,
             autoSkip: true,
