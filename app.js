@@ -1282,29 +1282,32 @@ function openGallery() {
   gZoom[0] = zoom1; gZoom[1] = zoom2; gZoom[2] = zoom3;
   gPan[0] = pan1; gPan[1] = pan2; gPan[2] = pan3;
   var el = document.getElementById('chartGallery');
-  el.classList.add('open');
-  updateGalleryDots();
-  updateGallerySlide();
-  renderAllGalleryCharts();
-  attachGallerySwipe();
-  // Keyboard arrows
-  document.addEventListener('keydown', galleryKeyHandler);
-  // Landscape: try orientation API first, always apply CSS rotate as visual guarantee
+  // Try fullscreen first (desktop)
+  try {
+    if (el.requestFullscreen) el.requestFullscreen().catch(function(){});
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  } catch(e) {}
+  // Try orientation lock (mobile/PWA)
   try {
     if (screen.orientation && screen.orientation.lock) {
       screen.orientation.lock('landscape').catch(function(){});
     }
   } catch(e) {}
-  el.classList.add('forced-landscape');
+  el.classList.add('open');
+  updateGalleryDots();
+  updateGallerySlide();
+  renderAllGalleryCharts();
+  attachGallerySwipe();
+  document.addEventListener('keydown', galleryKeyHandler);
 }
 
 function closeGallery() {
   var el = document.getElementById('chartGallery');
   el.classList.remove('open');
-  el.classList.remove('forced-landscape');
+  // Exit fullscreen
+  try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function(){}); } catch(e) {}
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
   document.removeEventListener('keydown', galleryKeyHandler);
-  el.classList.remove('forced-landscape');
   try {
     if (screen.orientation && screen.orientation.unlock) {
       screen.orientation.unlock();
@@ -1342,9 +1345,9 @@ function renderAllGalleryCharts() {
   for (var i = 1; i <= 3; i++) renderGalleryChart(i);
 }
 
-function renderGalleryChart(n) {
+function renderGalleryChart(n, smooth) {
   var idx = n - 1;
-  if (galleryCharts[idx]) galleryCharts[idx].destroy();
+  var existing = galleryCharts[idx];
   
   var setData = buildSetData(chartFilterEx);
   var heaviestData = buildHeaviestData(chartFilterEx);
@@ -1403,7 +1406,19 @@ function renderGalleryChart(n) {
     return Object.assign({}, ds, { data: ds.data.slice(pan, end) });
   });
   
-  var ctx = document.getElementById(canvasId).getContext('2d');
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  
+  if (existing && smooth) {
+    // Smooth update: just replace data
+    existing.data.labels = slicedLabels;
+    existing.data.datasets = slicedDatasets;
+    existing.update('none');
+    return;
+  }
+  if (existing) existing.destroy();
+  
+  var ctx = canvas.getContext('2d');
   galleryCharts[idx] = new Chart(ctx, {
     type: 'line',
     data: { labels: slicedLabels, datasets: slicedDatasets },
@@ -1535,7 +1550,7 @@ function onGallerySlider(n) {
   var idx = n - 1;
   var sl = document.getElementById('gallerySlider' + n);
   gPan[idx] = parseInt(sl.value);
-  renderGalleryChart(n);
+  renderGalleryChart(n, true);
 }
 
 function galleryKeyHandler(e) {
