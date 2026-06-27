@@ -871,16 +871,14 @@ function buildFreqData(filter) {
             },
             font: function(ctx) {
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              return { size: 8, weight: boundaries[idx] ? 'bold' : 'normal' };
+              return { size: 9, weight: boundaries[idx] ? 'bold' : 'normal' };
             },
-            maxRotation: 0,
+            maxRotation: 35,
             autoSkip: true,
             callback: function(val, index, ticks) {
               var label = this.getLabelForValue(val);
               if (!label) return '';
               var parts = label.split('-');
-              var year = parts[0];
-              var month = parseInt(parts[1]);
               var day = parseInt(parts[2]);
               var prevYear = '', prevMonth = '';
               if (index > 0 && ticks[index-1]) {
@@ -891,13 +889,15 @@ function buildFreqData(filter) {
                   prevMonth = prevParts[1];
                 }
               }
+              var year = parts[0];
+              var month = parseInt(parts[1]);
               if (index === 0 || prevYear !== year) {
-                return year + '\u5e74' + month + '\u6708' + day + '\u65e5';
+                return month + '/' + day;
               }
               if (prevMonth !== parts[1]) {
-                return month + '\u6708' + day + '\u65e5';
+                return month + '/' + day;
               }
-              return day + '\u65e5';
+              return day;
             }
           },
           grid: {
