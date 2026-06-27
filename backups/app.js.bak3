@@ -201,6 +201,7 @@ function addSet() {
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
     '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
     '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
     '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27setsContainer\x27)">x</button>';
   container.appendChild(div);
 }
@@ -217,6 +218,13 @@ function adjWeight(btn, sign) {
   var inc = getIncrement();
   var v = parseFloat(input.value) || 0;
   v = Math.max(0, Math.round((v + inc * sign) * 10) / 10);
+  input.value = v;
+}
+function adjRep(btn, sign) {
+  var row = btn.closest('.set-row');
+  var input = row.querySelector('.set-reps');
+  var v = parseInt(input.value) || 0;
+  v = Math.max(0, v + sign);
   input.value = v;
 }
 function toggleRepMenu(btn) {
@@ -1056,6 +1064,7 @@ function openEditModal(id) {
       '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
       '<div class="set-input-wrap" style="flex:0.8"><input type="number" value="' + s.reps + '" step="1" min="0" class="set-reps"><span class="set-unit">\u6b21</span></div>' +
       '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
       '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
     container.appendChild(div);
   });
@@ -1084,6 +1093,7 @@ function addEditSet() {
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
     '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
     '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
     '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
   container.appendChild(div);
 }

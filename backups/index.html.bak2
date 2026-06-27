@@ -139,7 +139,13 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 .set-input-wrap input{width:100%;padding:5px 24px 5px 6px!important;text-align:center}
 .set-weight::-webkit-outer-spin-button,.set-weight::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .set-weight{-moz-appearance:textfield}
-.set-reps::-webkit-outer-spin-button,.set-reps::-webkit-inner-spin-button{opacity:1}
+.set-reps::-webkit-outer-spin-button,.set-reps::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.set-reps{-moz-appearance:textfield}
+/* Rep adjust stacked buttons */
+.radj-stack{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.btn-radj-up,.btn-radj-down{width:22px;height:18px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-family:inherit;line-height:1;padding:0}
+.btn-radj-up:hover,.btn-radj-down:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-radj-up:active,.btn-radj-down:active{transform:scale(.9)}
 .set-unit{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text2);pointer-events:none}
 /* Category toggle */
 .settings-cat-toggle{display:inline-block;width:16px;font-size:12px;color:var(--text2);transition:transform .2s}
