@@ -1289,19 +1289,13 @@ function openGallery() {
   attachGallerySwipe();
   // Keyboard arrows
   document.addEventListener('keydown', galleryKeyHandler);
-  // Lock landscape directly (works in PWA/standalone mode)
-  var locked = false;
+  // Landscape: try orientation API first, always apply CSS rotate as visual guarantee
   try {
     if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape').then(function() { locked = true; }).catch(function(){});
+      screen.orientation.lock('landscape').catch(function(){});
     }
   } catch(e) {}
-  // Fallback: CSS rotate if orientation lock fails
-  setTimeout(function() {
-    if (!locked && !document.fullscreenElement) {
-      el.classList.add('forced-landscape');
-    }
-  }, 500);
+  el.classList.add('forced-landscape');
 }
 
 function closeGallery() {
@@ -1310,6 +1304,7 @@ function closeGallery() {
   el.classList.remove('forced-landscape');
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
   document.removeEventListener('keydown', galleryKeyHandler);
+  el.classList.remove('forced-landscape');
   try {
     if (screen.orientation && screen.orientation.unlock) {
       screen.orientation.unlock();
@@ -1383,12 +1378,12 @@ function renderGalleryChart(n) {
     label = '重量 (kg)';
   } else if (n === 2) {
     labels = heaviestData.labels;
-    datasets = heaviestData.datasets;
+    datasets = [{ label: '最重', data: heaviestData.data, borderColor: '#ff6b35', backgroundColor: 'transparent', tension: 0.2, pointRadius: 3, borderWidth: 2 }];
     gTotalLabels[idx] = labels.length;
     label = '最重 (kg)';
   } else {
     labels = freqData.labels;
-    datasets = freqData.datasets;
+    datasets = [{ label: '频次', data: freqData.data, borderColor: '#4ecdc4', backgroundColor: 'transparent', tension: 0.2, pointRadius: 3, borderWidth: 2, fill: true }];
     gTotalLabels[idx] = labels.length;
     label = '训练次数';
   }

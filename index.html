@@ -213,11 +213,19 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 .gallery-dot.active{background:var(--accent);width:20px;border-radius:4px}
 /* Forced landscape fallback */
 .chart-gallery.forced-landscape {
-  width: 100vh; height: 100vw;
+  width: 100vh !important;
+  height: 100vw !important;
   top: 0; left: 0;
   transform: rotate(90deg) translateY(-100%);
   transform-origin: top left;
 }
+.chart-gallery.forced-landscape .gallery-slides {
+  width: 100vh;
+}
+.chart-gallery.forced-landscape .gallery-slide {
+  flex: 0 0 100vh;
+}
+
 .gallery-edge{position:fixed;top:0;bottom:0;width:40px;z-index:210;cursor:pointer}
 .gallery-edge-left{left:0}
 .gallery-edge-right{right:0}
