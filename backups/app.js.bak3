@@ -791,21 +791,6 @@ function buildFreqData(filter) {
 // ========== CHART OPTIONS ==========
   // Global plugin: draws border labels and colored grid lines for all charts
 function chartOpts(showLegend, labels) {
-    var boundaries = {};
-    if (labels && labels.length > 0) {
-      var fp = labels[0].split('-');
-      if (fp.length >= 3) {
-        boundaries[0] = true;
-        var fy = fp[0], fm = fp[1];
-        for (var i = 1; i < labels.length; i++) {
-          var p = labels[i].split('-');
-          if (p.length >= 3 && (p[0] !== fy || p[1] !== fm)) {
-            boundaries[i] = true;
-            fy = p[0]; fm = p[1];
-          }
-        }
-      }
-    }
     return {
       responsive: true, maintainAspectRatio: false,
       plugins: {
@@ -815,12 +800,26 @@ function chartOpts(showLegend, labels) {
         x: {
           ticks: {
             color: function(ctx) {
+              if (!ctx.chart) return '#999';
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              return boundaries[idx] ? '#e84393' : '#999';
+              var dl = ctx.chart.data.labels;
+              if (!dl || idx >= dl.length) return '#999';
+              if (idx === 0) return '#e84393';
+              var p0 = String(dl[Math.max(0,idx-1)]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              if (p1.length < 3) return '#999';
+              return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? '#e84393' : '#999';
             },
             font: function(ctx) {
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
-              return { size: 9, weight: boundaries[idx] ? 'bold' : 'normal' };
+              if (!ctx.chart) return { size: 9 };
+              var dl = ctx.chart.data.labels;
+              if (!dl || idx >= dl.length) return { size: 9 };
+              if (idx === 0) return { size: 9, weight: 'bold' };
+              var p0 = String(dl[Math.max(0,idx-1)]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              var isBnd = (p0[0] !== p1[0] || p0[1] !== p1[1]);
+              return { size: 9, weight: isBnd ? 'bold' : 'normal' };
             },
             maxRotation: 35,
             autoSkip: true,
@@ -842,12 +841,25 @@ function chartOpts(showLegend, labels) {
           },
           grid: {
             color: function(ctx) {
+              if (!ctx.chart) return '#2a2a2a';
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
-              return (idx >= 0 && boundaries[idx]) ? '#e84393' : '#2a2a2a';
+              var dl = ctx.chart.data.labels;
+              if (idx < 0 || !dl || idx >= dl.length) return '#2a2a2a';
+              if (idx === 0) return '#e84393';
+              var p0 = String(dl[idx-1]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              if (p1.length < 3) return '#2a2a2a';
+              return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? '#e84393' : '#2a2a2a';
             },
             lineWidth: function(ctx) {
+              if (!ctx.chart) return 1;
               var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
-              return (idx >= 0 && boundaries[idx]) ? 2 : 1;
+              var dl = ctx.chart.data.labels;
+              if (idx < 0 || !dl || idx >= dl.length) return 1;
+              if (idx === 0) return 2;
+              var p0 = String(dl[idx-1]).split('-');
+              var p1 = String(dl[idx]).split('-');
+              return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? 2 : 1;
             }
           }
         },
