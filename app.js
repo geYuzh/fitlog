@@ -1281,15 +1281,22 @@ function openGallery() {
   gallerySlide = 0;
   gZoom[0] = zoom1; gZoom[1] = zoom2; gZoom[2] = zoom3;
   gPan[0] = pan1; gPan[1] = pan2; gPan[2] = pan3;
-  document.getElementById('chartGallery').classList.add('open');
+  var el = document.getElementById('chartGallery');
+  el.classList.add('open');
   updateGalleryDots();
   updateGallerySlide();
   renderAllGalleryCharts();
   attachGallerySwipe();
-  // Lock to landscape
+  // Enter fullscreen then lock landscape
   try {
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape').catch(function(){});
+    if (el.requestFullscreen) {
+      el.requestFullscreen().then(function() {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('landscape').catch(function(){});
+        }
+      }).catch(function(){});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
     }
   } catch(e) {}
 }
@@ -1297,10 +1304,13 @@ function openGallery() {
 function closeGallery() {
   document.getElementById('chartGallery').classList.remove('open');
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
-  // Unlock orientation
+  // Exit fullscreen and unlock orientation
   try {
     if (screen.orientation && screen.orientation.unlock) {
       screen.orientation.unlock();
+    }
+    if (document.fullscreenElement && document.exitFullscreen) {
+      document.exitFullscreen().catch(function(){});
     }
   } catch(e) {}
   renderCharts();

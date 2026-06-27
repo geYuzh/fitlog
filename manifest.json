@@ -1,10 +1,10 @@
-﻿{
+{
   "name": "FitLog 健身记录",
   "short_name": "FitLog",
   "description": "记录健身训练数据，追踪重量与训练量趋势",
   "start_url": "index.html",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#0f0f0f",
   "theme_color": "#0f0f0f",
   "icons": [
