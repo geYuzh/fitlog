@@ -365,12 +365,12 @@ function openSetting(name) {
     html += '<div class="card"><div class="card-title">\u91cd\u91cf\u6bcf\u6b21\u589e\u52a0\u8bbe\u7f6e</div>';
     html += '<p style="font-size:12px;color:var(--text2);margin-bottom:12px">\u70b9\u51fb +/-\u6309\u94ae\u65f6\uff0c\u91cd\u91cf\u6bcf\u6b21\u589e\u51cf\u7684\u6570\u503c</p>';
     html += '<div style="display:flex;gap:8px;align-items:center">';
-    html += '<input type="number" id="incValue" value="' + inc + '" step="0.5" min="0.5" max="50" style="flex:1;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:16px">';
+    html += '<input type="number" id="incValue" value="' + inc + '" step="0.5" min="0.5" max="100" style="flex:1;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:16px">';
     html += '<span style="color:var(--text2);font-size:14px">kg</span>';
     html += '<button class="btn btn-primary" type="button" onclick="saveIncrement()">\u4fdd\u5b58</button>';
     html += '</div>';
     html += '<div style="display:flex;gap:6px;margin-top:12px">';
-    [0.5, 1, 2.5, 5, 10].forEach(function(v) {
+    [0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 50].forEach(function(v) {
       html += '<button class="btn btn-outline btn-sm" type="button" onclick="document.getElementById(\'incValue\').value=' + v + '">' + v + ' kg</button>';
     });
     html += '</div></div>';
