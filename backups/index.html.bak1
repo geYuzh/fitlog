@@ -319,7 +319,17 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
         </div>
         <span class="settings-row-arrow">&#8250;</span>
       </div>
-    </div>
+          <div class="settings-row" onclick="openSetting('debugData')">
+        <div class="settings-row-left">
+          <span class="settings-row-icon">&#128295;</span>
+          <div>
+            <div class="settings-row-title">调试数据测试</div>
+            <div class="settings-row-desc">生成测试用的训练记录</div>
+          </div>
+        </div>
+        <span class="settings-row-arrow">&#8250;</span>
+      </div>
+</div>
     <!-- Sub-panels -->
     <div id="settingSubpanel" style="display:none"></div>
   </div>
