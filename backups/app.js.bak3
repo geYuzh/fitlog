@@ -29,6 +29,13 @@ function loadData() {
   }
   if (!exerciseCategories || Object.keys(exerciseCategories).length === 0) {
     exerciseCategories = JSON.parse(JSON.stringify(defaultCategories));
+  } else {
+    // Merge new default categories
+    Object.keys(defaultCategories).forEach(function(cat) {
+      if (!exerciseCategories[cat]) {
+        exerciseCategories[cat] = defaultCategories[cat].slice();
+      }
+    });
   }
   try { exerciseFreq = JSON.parse(localStorage.getItem(FREQ_KEY) || '{}'); } catch(e) { exerciseFreq = {}; }
 }
