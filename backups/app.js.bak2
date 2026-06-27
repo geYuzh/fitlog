@@ -369,7 +369,7 @@ function openSetting(name) {
     html += '<span style="color:var(--text2);font-size:14px">kg</span>';
     html += '<button class="btn btn-primary" type="button" onclick="saveIncrement()">\u4fdd\u5b58</button>';
     html += '</div>';
-    html += '<div style="display:flex;gap:6px;margin-top:12px">';
+    html += '<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">';
     [0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 50].forEach(function(v) {
       html += '<button class="btn btn-outline btn-sm" type="button" onclick="document.getElementById(\'incValue\').value=' + v + '">' + v + ' kg</button>';
     });
