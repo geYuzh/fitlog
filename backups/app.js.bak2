@@ -977,7 +977,7 @@ function renderCharts() {
 // ========== HISTORY ==========
 function renderHistory() {
   var search = (document.getElementById('historySearch').value || '').toLowerCase();
-  var filtered = workouts.filter(function(w) { return !search || w.exercise.toLowerCase().indexOf(search) >= 0; });
+  var filtered = workouts.filter(function(w) { return !search || w.exercise.toLowerCase().indexOf(search) >= 0 || w.date.indexOf(search) >= 0; });
   filtered.sort(function(a,b) { return b.date.localeCompare(a.date); });
 
   var el = document.getElementById('historyList');
