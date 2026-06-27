@@ -260,7 +260,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
   <!-- HISTORY -->
   <div class="tab-panel" id="panel-history">
     <div class="history-filters">
-      <input type="text" id="historySearch" placeholder="搜索训练项目..." oninput="renderHistory()">
+      <input type="text" id="historySearch" placeholder="搜索项目或日期，如卧推、2005..." oninput="renderHistory()">
     </div>
     <div class="history-list" id="historyList"></div>
   </div>
