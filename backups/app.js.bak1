@@ -376,6 +376,14 @@ function openSetting(name) {
     html += '</div></div>';
     panel.innerHTML = html;
   }
+    else if (name === 'debugData') {
+    var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
+    html += '<div class="card"><div class="card-title">\u8c03\u8bd5\u6570\u636e\u6d4b\u8bd5</div>';
+    html += '<p style="font-size:12px;color:var(--text2);margin-bottom:16px">\u751f\u6210 2004\u5e745\u67082\u65e5\u8d77\u4e09\u5e74\u7684\u5e73\u677f\u5367\u63a8\u8bb0\u5f55\uff0c\u7528\u4e8e\u8c03\u8bd5\u56fe\u8868\u548c\u5386\u53f2\u529f\u80fd\u3002</p>';
+    html += '<button class="btn btn-primary btn-block" type="button" onclick="generateDebugData()">\u8bbe\u7f6e\u8bad\u7ec3\u6570\u636e\u8fdb\u884c\u8c03\u8bd5</button>';
+    html += '</div>';
+    panel.innerHTML = html;
+  }
   else if (name === 'about') {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card" style="text-align:center">';
@@ -1166,6 +1174,42 @@ function refreshAll() {
   if (currentTab === 'history') renderHistory();
   if (currentTab === 'record') renderStats();
   if (currentTab === 'charts') renderCharts();
+}
+
+// ========== DEBUG DATA GENERATOR ==========
+function generateDebugData() {
+  if (!confirm('\u786e\u5b9a\u8981\u751f\u6210\u8c03\u8bd5\u6570\u636e\uff1f\u8fd9\u4f1a\u6e05\u7a7a\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff01')) return;
+  workouts = [];
+  var startDate = new Date(2004, 4, 2); // May 2, 2004
+  var endDate = new Date(2007, 4, 2);   // May 2, 2007
+  var weights = [];
+  for (var w = 10; w <= 200; w += 10) weights.push(w);
+  var wi = 0;
+  var d = new Date(startDate);
+  while (d < endDate) {
+    var dateStr = d.toISOString().split('T')[0];
+    var kg = weights[wi % weights.length];
+    workouts.push({
+      id: 'dbg' + dateStr,
+      date: dateStr,
+      exercise: '\u5e73\u677f\u5367\u63a8',
+      sets: [
+        { weight: kg, reps: 8 },
+        { weight: kg, reps: 8 },
+        { weight: kg, reps: 6 }
+      ]
+    });
+    trackExercise('\u5e73\u677f\u5367\u63a8');
+    wi++;
+    d.setDate(d.getDate() + 1);
+  }
+  saveData();
+  showToast('\u5df2\u751f\u6210 ' + workouts.length + ' \u6761\u8c03\u8bd5\u8bb0\u5f55');
+  console.log('Debug data generated: ' + workouts.length + ' workouts');
+  renderSettingsPage();
+  switchTab('record');
+  renderStats();
+  renderPresets();
 }
 
 // ========== STARTUP ==========
