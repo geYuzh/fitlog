@@ -818,12 +818,14 @@ function buildFreqData(filter) {
           ticks: {
             color: function(ctx) {
               if (!ctx.tick || !ctx.tick.label) return '#999';
-              var bi = boundaries[ctx.tick. ? ctx.tick..dataIndex : ctx.index];
+              var idx = ctx.tick.$context ? ctx.tick.$context.dataIndex : ctx.index;
+              var bi = boundaries[idx];
               return bi ? '#ff6b35' : '#999';
             },
             font: function(ctx) {
-              var bi = boundaries[ctx.tick. ? ctx.tick..dataIndex : ctx.index];
-              return { size: bi ? 8 : 8, weight: bi ? 'bold' : 'normal' };
+              var idx = ctx.tick.$context ? ctx.tick.$context.dataIndex : ctx.index;
+              var bi = boundaries[idx];
+              return { size: 8, weight: bi ? 'bold' : 'normal' };
             },
             maxRotation: 0,
             autoSkip: true,
@@ -854,16 +856,17 @@ function buildFreqData(filter) {
           },
           grid: {
             color: function(ctx) {
-              if (ctx.tick && ctx.tick.) {
-                var bi = boundaries[ctx.tick..dataIndex];
+              if (ctx.tick && ctx.tick.$context) {
+                var idx = ctx.tick.$context.dataIndex;
+                var bi = boundaries[idx];
                 if (bi) return '#ff6b35';
-                if (ctx.tick..dataIndex === 0 && !bi) return '#ff6b35';
               }
               return '#2a2a2a';
             },
             lineWidth: function(ctx) {
-              if (ctx.tick && ctx.tick.) {
-                var bi = boundaries[ctx.tick..dataIndex];
+              if (ctx.tick && ctx.tick.$context) {
+                var idx = ctx.tick.$context.dataIndex;
+                var bi = boundaries[idx];
                 if (bi) return 2;
               }
               return 1;
@@ -874,7 +877,6 @@ function buildFreqData(filter) {
       }
     };
   }
-
 function renderCharts() {
   destroyCharts();
   if (typeof Chart === 'undefined') return;
