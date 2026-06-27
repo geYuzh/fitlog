@@ -87,7 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .chart-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .chart-filter .preset-chip{font-size:11px}
 .chart-container{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--border);position:relative}
-.chart-container canvas{max-height:160px}
+.chart-container canvas{max-height:160px;touch-action:none}
 .history-filters{display:flex;gap:8px;margin-bottom:12px}
 .history-filters input{flex:1;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;outline:none;font-family:inherit}
 .history-list .wo-date{font-size:11px;color:var(--accent)}
@@ -189,7 +189,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 
 /* === Fix cramped chart labels === */
 .chart-container canvas{max-height:200px}
-@media (max-width: 430px) { .chart-container canvas{max-height:140px}
+@media (max-width: 430px) { .chart-container canvas{max-height:140px;touch-action:none}
   .chart-filter{gap:4px}
   .chart-filter .preset-chip{font-size:10px;padding:3px 8px}
   .cal-day{font-size:11px}

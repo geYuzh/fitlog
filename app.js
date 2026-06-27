@@ -633,19 +633,19 @@ function attachPinchListeners() {
     var canvas = document.getElementById(id);
     if (!canvas) return;
     if (typeof Hammer !== 'undefined') {
-      var hammer = new Hammer(canvas);
-      hammer.get('pinch').set({ enable: true });
-      hammer.on('pinchstart', function(e) {
+      var mc = new Hammer.Manager(canvas, { touchAction: "none" }); mc.add(new Hammer.Pinch());
+      
+      mc.on('pinchstart', function(e) {
         e.preventDefault();
         pinchStates[cn].startZoom = cn === 1 ? zoom1 : cn === 2 ? zoom2 : zoom3;
-        pinchStates[cn].lastScale = 1;
+        pinchStates[cn].lastScale = e.scale;
       });
-      hammer.on('pinchmove', function(e) {
+      mc.on('pinchmove', function(e) {
         e.preventDefault();
         var scale = e.scale;
         var delta = Math.round((scale - pinchStates[cn].lastScale) * 10);
         if (delta !== 0) {
-          var newZoom = Math.max(1, Math.min(30, pinchStates[cn].startZoom + delta));
+          var newZoom = Math.max(1, Math.min(90, pinchStates[cn].startZoom + delta));
           pinchStates[cn].lastScale = scale;
           if (cn === 1 && newZoom !== zoom1) { zoom1 = newZoom; updateChart1(); }
           else if (cn === 2 && newZoom !== zoom2) { zoom2 = newZoom; updateChart2(); }
@@ -1251,15 +1251,9 @@ function generateDebugData() {
 function exitDebugMode() {
   localStorage.removeItem('fitlog_debug_mode');
   var backup = localStorage.getItem('fitlog_user_backup');
-  if (backup) {
-    workouts = JSON.parse(backup);
-    saveData();
-  }
+  workouts = backup ? JSON.parse(backup) : []; saveData();
   var freqBackup = localStorage.getItem('fitlog_freq_backup');
-  if (freqBackup) {
-    exerciseFreq = JSON.parse(freqBackup);
-    saveFreq();
-  }
+  exerciseFreq = freqBackup ? JSON.parse(freqBackup) : {}; saveFreq();
   localStorage.removeItem('fitlog_user_backup');
   localStorage.removeItem('fitlog_freq_backup');
   showToast('\u5df2\u9000\u51fa\u8c03\u8bd5\uff0c\u6062\u590d\u7528\u6237\u6570\u636e');
