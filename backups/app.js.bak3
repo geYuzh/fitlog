@@ -818,12 +818,12 @@ function buildFreqData(filter) {
           ticks: {
             color: function(ctx) {
               if (!ctx.tick || !ctx.tick.label) return '#999';
-              var idx = ctx.tick.$context ? ctx.tick.$context.dataIndex : ctx.index;
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
               var bi = boundaries[idx];
               return bi ? '#ff6b35' : '#999';
             },
             font: function(ctx) {
-              var idx = ctx.tick.$context ? ctx.tick.$context.dataIndex : ctx.index;
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : 0;
               var bi = boundaries[idx];
               return { size: 8, weight: bi ? 'bold' : 'normal' };
             },
@@ -856,19 +856,13 @@ function buildFreqData(filter) {
           },
           grid: {
             color: function(ctx) {
-              if (ctx.tick && ctx.tick.$context) {
-                var idx = ctx.tick.$context.dataIndex;
-                var bi = boundaries[idx];
-                if (bi) return '#ff6b35';
-              }
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
+              if (idx >= 0 && boundaries[idx]) return '#ff6b35';
               return '#2a2a2a';
             },
             lineWidth: function(ctx) {
-              if (ctx.tick && ctx.tick.$context) {
-                var idx = ctx.tick.$context.dataIndex;
-                var bi = boundaries[idx];
-                if (bi) return 2;
-              }
+              var idx = typeof ctx.index !== 'undefined' ? ctx.index : -1;
+              if (idx >= 0 && boundaries[idx]) return 2;
               return 1;
             }
           }
