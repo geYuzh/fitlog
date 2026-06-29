@@ -35,6 +35,15 @@ jobs:
       - name: Sync Capacitor
         run: npx cap sync android
 
+      - name: Enable landscape orientation
+        run: |
+          # Remove any screenOrientation lock from manifest
+          sed -i 's/android:screenOrientation="portrait"/android:screenOrientation="fullSensor"/g' android/app/src/main/AndroidManifest.xml
+          # Add if not present
+          if ! grep -q 'screenOrientation' android/app/src/main/AndroidManifest.xml; then
+            sed -i 's/<activity /<activity android:screenOrientation="fullSensor" /' android/app/src/main/AndroidManifest.xml
+          fi
+
       - name: Build APK
         run: cd android && ./gradlew assembleDebug
 

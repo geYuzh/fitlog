@@ -1590,6 +1590,7 @@ function attachGallerySwipe() {
   if (!slides) return;
   var sx = 0, sy = 0, swiping = false;
   slides.addEventListener('touchstart', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.closest('input')) return;
     if (e.touches.length === 1) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = false; }
   }, { passive: false });
   slides.addEventListener('touchmove', function(e) {
