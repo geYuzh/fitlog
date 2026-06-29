@@ -1283,29 +1283,15 @@ function openGallery() {
   gPan[0] = pan1; gPan[1] = pan2; gPan[2] = pan3;
   var el = document.getElementById('chartGallery');
   el.classList.add('open');
+  // Force landscape via CSS transform (works everywhere)
+  el.classList.add('forced-landscape');
+
   
-  // Step 1: Enter fullscreen. On success, lock landscape.
-  function lockLandscape() {
-    try {
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(function(){});
-      }
-    } catch(e) {}
-  }
-  
-  if (el.requestFullscreen) {
-    el.requestFullscreen().then(function() {
-      lockLandscape();
-    }).catch(function() {
-      // Fullscreen denied or not supported, try orientation anyway (PWA)
-      lockLandscape();
-    });
-  } else if (el.webkitRequestFullscreen) {
-    el.webkitRequestFullscreen();
-    setTimeout(lockLandscape, 300);
-  } else {
-    lockLandscape();
-  }
+  // Try fullscreen for better experience (desktop)
+  try {
+    if (el.requestFullscreen) el.requestFullscreen().catch(function(){});
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  } catch(e) {}
   updateGalleryDots();
   updateGallerySlide();
   renderAllGalleryCharts();
@@ -1316,12 +1302,12 @@ function openGallery() {
 function closeGallery() {
   var el = document.getElementById('chartGallery');
   el.classList.remove('open');
-  // Exit fullscreen and unlock orientation
+  el.classList.remove('forced-landscape');
   try {
     if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
   } catch(e) {}
   try {
-    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function(){});
+    if (document.exitFullscreen) document.exitFullscreen().catch(function(){});
     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
   } catch(e) {}
   galleryCharts.forEach(function(c, i) { if (c) { c.destroy(); galleryCharts[i] = null; } });
@@ -1346,9 +1332,18 @@ function updateGalleryDots() {
 }
 
 function updateGallerySlide() {
+  var gallery = document.getElementById('chartGallery');
   var slides = document.getElementById('gallerySlides');
-  slides.style.transform = 'translateX(-' + (gallerySlide * 100) + '%)';
-  slides.style.transition = 'transform 0.3s ease';
+  if (gallery.classList.contains('forced-landscape')) {
+    // In forced landscape, use display toggle (avoid transform conflict with rotation)
+    var allSlides = slides.children;
+    for (var i = 0; i < allSlides.length; i++) {
+      allSlides[i].style.display = (i === gallerySlide) ? 'flex' : 'none';
+    }
+  } else {
+    slides.style.transform = 'translateX(-' + (gallerySlide * 100) + '%)';
+    slides.style.transition = 'transform 0.3s ease';
+  }
   updateGalleryDots();
 }
 
@@ -1613,6 +1608,7 @@ function attachGallerySwipe() {
   // Mouse drag for desktop (simulate swipe)
   var mx = 0, mdragging = false;
   slides.addEventListener('mousedown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('input,button')) return;
     mx = e.clientX; mdragging = true;
     slides.style.cursor = 'grabbing';
   });
