@@ -830,12 +830,13 @@ function buildFreqData(filter) {
   // Global plugin: draws border labels and colored grid lines for all charts
 function chartOpts(showLegend, labels) {
     return {
-      responsive: true, maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
       plugins: {
         legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } }
       },
       scales: {
-        x: {
+x: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: false, text: '', color: '#999' } },
+        y: {
           ticks: {
             color: function(ctx) {
               if (!ctx.chart) return '#999';
@@ -859,7 +860,6 @@ function chartOpts(showLegend, labels) {
               var isBnd = (p0[0] !== p1[0] || p0[1] !== p1[1]);
               return { size: 9, weight: isBnd ? 'bold' : 'normal' };
             },
-            maxRotation: 35,
             autoSkip: true,
             callback: function(val, index, ticks) {
               var label = this.getLabelForValue(val);
@@ -872,7 +872,7 @@ function chartOpts(showLegend, labels) {
                 var pl = this.getLabelForValue(ticks[index-1].value);
                 if (pl) { var pp = pl.split('-'); pY = pp[0]; pM = pp[1]; }
               }
-              if (index === 0 || pY !== yr) return "'" + yr.slice(2) + '/' + mo + '/' + dy;
+              if (index === 0 || pY !== yr) return '' + yr.slice(2) + '/' + mo + '/' + dy;
               if (pM !== p[1]) return mo + '/' + dy;
               return String(dy);
             }
@@ -900,8 +900,7 @@ function chartOpts(showLegend, labels) {
               return (p0[0] !== p1[0] || p0[1] !== p1[1]) ? 2 : 1;
             }
           }
-        },
-        y: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: false, text: 'kg', color: '#999' } }
+        }
       }
     };
   }
