@@ -21,7 +21,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .header h1 span{color:var(--accent)}
 .header-date{font-size:13px;color:var(--text2);background:var(--surface2);padding:4px 10px;border-radius:20px}
 .main{padding:0 0 calc(var(--nav-h)+var(--safe-bottom)+16px);min-height:calc(100dvh - var(--header-h))}
-.tab-panel{display:none;padding:16px}#panel-charts{padding-bottom:100px}
+.tab-panel{display:none;padding:16px}
 .tab-panel.active{display:block}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--surface);border-top:1px solid var(--border);display:flex;padding-bottom:var(--safe-bottom);height:calc(var(--nav-h)+var(--safe-bottom))}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:none;background:none;color:var(--text2);cursor:pointer;font-size:10px;gap:2px;transition:color .2s;font-family:inherit;padding:0 2px}
@@ -87,7 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .chart-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .chart-filter .preset-chip{font-size:11px}
 .chart-container{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--border);position:relative}
-.chart-container canvas{max-height:160px;touch-action:none}
+
 .history-filters{display:flex;gap:8px;margin-bottom:12px}
 .history-filters input{flex:1;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;outline:none;font-family:inherit}
 .history-list .wo-date{font-size:11px;color:var(--accent)}
@@ -182,18 +182,14 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
   body{max-width:430px;width:100%;min-height:100dvh;box-shadow:0 0 40px rgba(0,0,0,.6);position:relative}
   .bottom-nav{max-width:430px;left:50%;transform:translateX(-50%)}
   .container-reset{max-width:430px}
-  .chart-gallery{max-width:430px;left:50%;transform:translateX(-50%)}
-  .gallery-edge{max-width:430px;left:50%;transform:translateX(-50%)}
-  .gallery-edge-left{left:calc(50% - 215px)}
-  .gallery-edge-right{left:calc(50% + 175px)}
 }
 @media (min-width: 430px) {
   .set-row{gap:6px;padding:8px 10px}
 }
 
 /* === Fix cramped chart labels === */
-.chart-container canvas{max-height:200px}
-@media (max-width: 430px) { .chart-container canvas{max-height:140px;touch-action:none}
+
+
   .chart-filter{gap:4px}
   .chart-filter .preset-chip{font-size:10px;padding:3px 8px}
   .cal-day{font-size:11px}
@@ -207,29 +203,6 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
   .cat-tab{padding:6px 12px;font-size:12px}
 }
 
-/* === Fullscreen Chart Gallery === */
-.chart-gallery{position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:var(--bg);display:none;flex-direction:column}
-.chart-gallery.open{display:flex}
-.gallery-header{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;padding-top:max(env(safe-area-inset-top,0px),16px);border-bottom:1px solid var(--border);flex-shrink:0}
-.gallery-title{font-size:17px;font-weight:700}
-.gallery-dots{display:flex;gap:6px}
-.gallery-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .3s}
-.gallery-dot.active{background:var(--accent);width:20px;border-radius:4px}
-
-
-
-.gallery-edge{position:fixed;top:0;bottom:0;width:40px;z-index:210;cursor:pointer}
-.gallery-edge-left{left:0}
-.gallery-edge-right{right:0}
-.gallery-arrow{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;font-family:inherit;line-height:1;transition:all .2s}.gallery-arrow:hover{color:var(--accent);border-color:var(--accent)}
-.gallery-close{background:none;border:none;color:var(--text2);font-size:24px;cursor:pointer;padding:0 4px;font-family:inherit;line-height:1}
-.gallery-slides{flex:1;display:flex;overflow:hidden}
-.gallery-slide{flex:0 0 100%;display:flex;flex-direction:column;padding:8px 12px;overflow-y:auto;padding-bottom:60px}
-.gallery-slide canvas{flex:1;width:100%!important;max-height:none!important;min-height:0}
-.gallery-slide .chart-slider{flex-shrink:0;margin:4px 0;height:24px;touch-action:auto;pointer-events:auto;z-index:5;position:relative}
-.gallery-slide .chart-filter{flex-shrink:0;margin-bottom:8px}
-.btn-fullscreen{background:var(--surface2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;margin-left:8px;font-family:inherit}
-.btn-fullscreen:hover{color:var(--accent);border-color:var(--accent)}
 
 
 
@@ -246,17 +219,37 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 
 
 
-.chart-gallery.forced-landscape {
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: 100vw !important;
-  min-width: 100vw !important;
-  top: 0 !important;
-  left: 0 !important;
-  transform: none !important;
+
+
+/* === Large charts, stacked === */
+.chart-container {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  width: 100%;
 }
-.chart-gallery.forced-landscape .gallery-slide canvas {
-  max-height: none !important;
+.chart-container .card-title {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.chart-container .chart-filter {
+  margin-bottom: 4px;
+}
+.chart-container canvas {
+  width: 100% !important;
+  height: 300px !important;
+  max-height: 300px !important;
+}
+.chart-container .chart-slider {
+  margin-top: 6px;
+}
+@media (max-width: 430px) {
+  .chart-container canvas { height: 260px !important; max-height: 260px !important; }
+}
+#panel-charts {
+  padding: 4px 4px 120px 4px;
 }
 
 </style>
@@ -295,7 +288,7 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 
   <!-- CHARTS -->
   <div class="tab-panel" id="panel-charts">
-    <div style="display:flex;align-items:center;justify-content:space-between"><div class="chart-filter" id="chartFilter"></div><button class="btn-fullscreen" onclick="try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape')}catch(e){};openGallery()" title="全屏查看">&#10530;</button></div>
+    <div class="chart-filter" id="chartFilter"></div>
     <div class="chart-container">
       <div class="card-title">重量趋势（每组独立折线）</div>
       <div class="chart-filter" id="setTabs" style="margin-bottom:8px"></div>
@@ -442,31 +435,5 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
 <script>
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
-
-<!-- FULLSCREEN GALLERY -->
-<div class="chart-gallery" id="chartGallery">
-  <div class="gallery-header">
-    <button class="gallery-arrow" onclick="goToGallerySlide(gallerySlide-1)">&#9664;</button>
-    <span class="gallery-title" id="galleryTitle">重量趋势</span>
-    <div class="gallery-dots" id="galleryDots"></div>
-    <button class="gallery-arrow" onclick="goToGallerySlide(gallerySlide+1)">&#9654;</button>
-    <button class="gallery-close" onclick="closeGallery()">&times;</button>
-  </div>
-  <div class="gallery-slides" id="gallerySlides">
-    <div class="gallery-slide">
-      <div class="chart-filter" id="gallerySetTabs"></div>
-      <canvas id="galleryChart1"></canvas>
-      <input type="range" class="chart-slider" id="gallerySlider1" min="0" max="100" value="0" oninput="onGallerySlider(1)">
-    </div>
-    <div class="gallery-slide">
-      <canvas id="galleryChart2"></canvas>
-      <input type="range" class="chart-slider" id="gallerySlider2" min="0" max="100" value="0" oninput="onGallerySlider(2)">
-    </div>
-    <div class="gallery-slide">
-      <canvas id="galleryChart3"></canvas>
-      <input type="range" class="chart-slider" id="gallerySlider3" min="0" max="100" value="0" oninput="onGallerySlider(3)">
-    </div>
-  </div>
-</div>
 </body>
 </html>
