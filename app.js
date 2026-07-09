@@ -69,6 +69,7 @@ var currentTab = 'record';
 var chartWeightInst = null, chartVolumeInst = null, chartFreqInst = null;
 var chartFilterEx = 'all';
 var chartExpandedCat = null;
+var _cacheSetData = null, _cacheHeaviestData = null, _cacheFreqData = null;
 
 
 function init() {
@@ -570,6 +571,7 @@ function setTheme(t, silent) {
 var chartWeightInst = null, chartVolumeInst = null, chartFreqInst = null;
 var chartFilterEx = 'all';
 var chartExpandedCat = null;
+var _cacheSetData = null, _cacheHeaviestData = null, _cacheFreqData = null;
 var setFilterMode = 'all'; // 'all' or set index 0,1,2...
 
 var RAINBOW = [
@@ -666,8 +668,8 @@ function attachWheelListeners() {
 
 
 function updateChart1() {
-  if (!chartWeightInst) return;
-  var setData = buildSetData(chartFilterEx);
+  if (!chartWeightInst || !_cacheSetData) return;
+  var setData = _cacheSetData;
   totalLabels1 = setData.labels.length;
   zoom1 = Math.min(zoom1, totalLabels1);
   if (pan1 + zoom1 > totalLabels1) pan1 = Math.max(0, totalLabels1 - zoom1);
@@ -695,14 +697,14 @@ function updateChart1() {
     };
   });
   chartWeightInst.options = chartOpts(setFilterMode === 'all' && datasetsToShow.length > 1, chartWeightInst.data.labels);
-  chartWeightInst.update();
+  chartWeightInst.update('none');
   var s1 = document.getElementById('chartSlider');
   s1.min = 0; s1.max = Math.max(0, totalLabels1 - zoom1); s1.value = pan1;
 }
 
 function updateChart2() {
-  if (!chartVolumeInst) return;
-  var heaviestData = buildHeaviestData(chartFilterEx);
+  if (!chartVolumeInst || !_cacheHeaviestData) return;
+  var heaviestData = _cacheHeaviestData;
   totalLabels2 = heaviestData.labels.length;
   zoom2 = Math.min(zoom2, totalLabels2);
   if (pan2 + zoom2 > totalLabels2) pan2 = Math.max(0, totalLabels2 - zoom2);
@@ -710,14 +712,14 @@ function updateChart2() {
   var hEnd = Math.min(pan2 + zoom2, totalLabels2);
   chartVolumeInst.data.labels = heaviestData.labels.slice(hStart, hEnd);
   chartVolumeInst.data.datasets[0].data = heaviestData.data.slice(hStart, hEnd);
-  chartVolumeInst.update();
+  chartVolumeInst.update('none');
   var s2 = document.getElementById('chartSlider2');
   s2.min = 0; s2.max = Math.max(0, totalLabels2 - zoom2); s2.value = pan2;
 }
 
 function updateChart3() {
-  if (!chartFreqInst) return;
-  var freqData = buildFreqData(chartFilterEx);
+  if (!chartFreqInst || !_cacheFreqData) return;
+  var freqData = _cacheFreqData;
   totalLabels3 = freqData.labels.length;
   zoom3 = Math.min(zoom3, totalLabels3);
   if (pan3 + zoom3 > totalLabels3) pan3 = Math.max(0, totalLabels3 - zoom3);
@@ -725,7 +727,7 @@ function updateChart3() {
   var fEnd = Math.min(pan3 + zoom3, totalLabels3);
   chartFreqInst.data.labels = freqData.labels.slice(fStart, fEnd);
   chartFreqInst.data.datasets[0].data = freqData.data.slice(fStart, fEnd);
-  chartFreqInst.update();
+  chartFreqInst.update('none');
   var s3 = document.getElementById('chartSlider3');
   s3.min = 0; s3.max = Math.max(0, totalLabels3 - zoom3); s3.value = pan3;
 }
@@ -913,6 +915,9 @@ function renderCharts() {
   var setData = buildSetData(chartFilterEx);
   var heaviestData = buildHeaviestData(chartFilterEx);
   var freqData = buildFreqData(chartFilterEx);
+  _cacheSetData = setData;
+  _cacheHeaviestData = heaviestData;
+  _cacheFreqData = freqData;
 
   var hasData = setData.labels.length > 0;
 
