@@ -1,0 +1,3386 @@
+[
+  {
+    "date": "2026-03-14",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-03-15",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-03-15",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 11
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      },
+      {
+        "weight": 60.0,
+        "reps": 11
+      },
+      {
+        "weight": 65.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-03-15",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-15",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-03-15",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-03-17",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-17",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-17",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-21",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-21",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 4
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-03-21",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 8
+      },
+      {
+        "weight": 12.5,
+        "reps": 8
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-03-21",
+    "exercise": "锤式弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 10
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      },
+      {
+        "weight": 60.0,
+        "reps": 10
+      },
+      {
+        "weight": 55.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-25",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-03-25",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      },
+      {
+        "weight": 17.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-03-25",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-25",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-26",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-03-26",
+    "exercise": "俯卧撑",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 30
+      }
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "exercise": "龙门架卷腹",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-03-29",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-03-29",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 11
+      },
+      {
+        "weight": 60.0,
+        "reps": 9
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-29",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-29",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-03-29",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-03-30",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 8
+      },
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2026-03-30",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 13
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-03-30",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-03-30",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-02",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-04-02",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 65.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "exercise": "挺臀",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-08",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-08",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-08",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 17
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-10",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-10",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-11",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-11",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 20
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 65.0,
+        "reps": 9
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-13",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-04-13",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-04-13",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 20
+      },
+      {
+        "weight": 5.0,
+        "reps": 22
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 21
+      }
+    ]
+  },
+  {
+    "date": "2026-04-13",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-15",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 19
+      }
+    ]
+  },
+  {
+    "date": "2026-04-15",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 26.0,
+        "reps": 9
+      },
+      {
+        "weight": 33.0,
+        "reps": 8
+      },
+      {
+        "weight": 33.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-15",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 7
+      },
+      {
+        "weight": 15.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-15",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-15",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 19
+      },
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "鹦鹉螺",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 10
+      },
+      {
+        "weight": 40.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 0.0,
+        "reps": 6
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 10
+      },
+      {
+        "weight": 2.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-16",
+    "exercise": "二十一响炮",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 7
+      },
+      {
+        "weight": 5.0,
+        "reps": 5
+      },
+      {
+        "weight": 5.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 17
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17",
+    "exercise": "T杠展背后束",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 16
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 18
+      },
+      {
+        "weight": 15.0,
+        "reps": 20
+      },
+      {
+        "weight": 15.0,
+        "reps": 16
+      },
+      {
+        "weight": 15.0,
+        "reps": 14
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 5.0,
+        "reps": 22
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-04-17",
+    "exercise": "卷腹机",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 16
+      },
+      {
+        "weight": 10.0,
+        "reps": 16
+      },
+      {
+        "weight": 10.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-19",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 17
+      },
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-19",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 11
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 17.5,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 22.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-04-19",
+    "exercise": "哑铃平板卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-19",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "鹦鹉螺",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 11
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 14
+      },
+      {
+        "weight": 20.0,
+        "reps": 15
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 10
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "单臂前下拉",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 11
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 10
+      },
+      {
+        "weight": 45.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 16
+      },
+      {
+        "weight": 0.0,
+        "reps": 14
+      },
+      {
+        "weight": 0.0,
+        "reps": 10
+      },
+      {
+        "weight": 0.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-20",
+    "exercise": "二十一响炮",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "exercise": "T杠展背后束",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 20
+      },
+      {
+        "weight": 20.0,
+        "reps": 16
+      },
+      {
+        "weight": 25.0,
+        "reps": 16
+      },
+      {
+        "weight": 22.5,
+        "reps": 17
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 16
+      },
+      {
+        "weight": 7.5,
+        "reps": 16
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "exercise": "卷腹机",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 16
+      },
+      {
+        "weight": 30.0,
+        "reps": 18
+      }
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 26.0,
+        "reps": 6
+      },
+      {
+        "weight": 19.0,
+        "reps": 12
+      },
+      {
+        "weight": 26.0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-04-23",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      }
+    ]
+  },
+  {
+    "date": "2026-04-23",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 22.5,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 1
+      },
+      {
+        "weight": 15.0,
+        "reps": 4
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-04-23",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 19.0,
+        "reps": 9
+      },
+      {
+        "weight": 26.0,
+        "reps": 8
+      },
+      {
+        "weight": 19.0,
+        "reps": 7
+      },
+      {
+        "weight": 19.0,
+        "reps": 6
+      },
+      {
+        "weight": 19.0,
+        "reps": 6
+      },
+      {
+        "weight": 19.0,
+        "reps": 9
+      },
+      {
+        "weight": 19.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-04-23",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      },
+      {
+        "weight": 40.0,
+        "reps": 10
+      },
+      {
+        "weight": 40.0,
+        "reps": 8
+      },
+      {
+        "weight": 40.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 40.0,
+        "reps": 10
+      },
+      {
+        "weight": 45.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 14
+      },
+      {
+        "weight": 5.0,
+        "reps": 7
+      },
+      {
+        "weight": 5.0,
+        "reps": 6
+      },
+      {
+        "weight": 5.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "exercise": "二十一响炮",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 7.5,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 7
+      },
+      {
+        "weight": 5.0,
+        "reps": 14
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "exercise": "T杠展背后束",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "exercise": "卷腹机",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 14
+      },
+      {
+        "weight": 25.0,
+        "reps": 20
+      }
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 26.0,
+        "reps": 12
+      },
+      {
+        "weight": 33.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 3
+      },
+      {
+        "weight": 33.0,
+        "reps": 8
+      },
+      {
+        "weight": 33.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-27",
+    "exercise": "哑铃平板卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-27",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      },
+      {
+        "weight": 20.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-04-27",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 7
+      },
+      {
+        "weight": 10.0,
+        "reps": 6
+      },
+      {
+        "weight": 10.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 13
+      },
+      {
+        "weight": 35.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "鹦鹉螺",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 14
+      },
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 15.0,
+        "reps": 13
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "二十一响炮",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 14
+      },
+      {
+        "weight": 2.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-04-29",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-04-29",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 14
+      },
+      {
+        "weight": 7.5,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 7.5,
+        "reps": 9
+      },
+      {
+        "weight": 5.0,
+        "reps": 6
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 5.0,
+        "reps": 14
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2026-04-29",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-04-29",
+    "exercise": "T杠展背后束",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 13
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 12
+      },
+      {
+        "weight": 18.75,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-04-29",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 19.0,
+        "reps": 10
+      },
+      {
+        "weight": 26.0,
+        "reps": 10
+      },
+      {
+        "weight": 33.0,
+        "reps": 9
+      },
+      {
+        "weight": 40.0,
+        "reps": 3
+      },
+      {
+        "weight": 33.0,
+        "reps": 9
+      },
+      {
+        "weight": 33.0,
+        "reps": 6
+      },
+      {
+        "weight": 33.0,
+        "reps": 9
+      },
+      {
+        "weight": 33.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-04-29",
+    "exercise": "深蹲",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 3
+      },
+      {
+        "weight": 2.5,
+        "reps": 6
+      },
+      {
+        "weight": 2.5,
+        "reps": 10
+      },
+      {
+        "weight": 2.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-03",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-05-03",
+    "exercise": "哑铃平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      },
+      {
+        "weight": 17.5,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-05-03",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 6
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      },
+      {
+        "weight": 12.5,
+        "reps": 2
+      },
+      {
+        "weight": 12.5,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-05-03",
+    "exercise": "三头组合技",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-05-03",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-05-04",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 11
+      },
+      {
+        "weight": 35.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-04",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 9
+      },
+      {
+        "weight": 2.5,
+        "reps": 10
+      },
+      {
+        "weight": 2.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-04",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-05-04",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      },
+      {
+        "weight": 0,
+        "reps": 15
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-04",
+    "exercise": "单臂前下拉",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 19.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 22.5,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 4
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 4
+      },
+      {
+        "weight": 15.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "exercise": "三头组合技",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 13
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-08",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2026-05-08",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 14
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 22.5,
+        "reps": 9
+      },
+      {
+        "weight": 22.5,
+        "reps": 11
+      },
+      {
+        "weight": 22.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-05-08",
+    "exercise": "单臂前下拉",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-05-08",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2026-05-11",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-11",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 4
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-05-11",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2026-05-13",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-13",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 11
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-13",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 10.0,
+        "reps": 9
+      },
+      {
+        "weight": 10.0,
+        "reps": 6
+      },
+      {
+        "weight": 10.0,
+        "reps": 9
+      },
+      {
+        "weight": 10.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 14
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 9
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 16
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "exercise": "T杠展背后束",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-19",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-05-19",
+    "exercise": "哑铃平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2026-05-19",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 13
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 55.0,
+        "reps": 9
+      },
+      {
+        "weight": 60.0,
+        "reps": 10
+      },
+      {
+        "weight": 65.0,
+        "reps": 9
+      },
+      {
+        "weight": 65.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2026-05-23",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 27.5,
+        "reps": 5
+      },
+      {
+        "weight": 27.5,
+        "reps": 8
+      },
+      {
+        "weight": 27.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  }
+]

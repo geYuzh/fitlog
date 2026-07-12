@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fitlog-v6';
+const CACHE_NAME = 'fitlog-v7';
 const ASSETS = [
   '/',
   'index.html',
@@ -6,7 +6,8 @@ const ASSETS = [
   'manifest.json',
   'chart.umd.min.js',
   'chartjs-plugin-zoom.min.js',
-  'hammer.min.js'
+  'hammer.min.js',
+  'import_data.js'
 ];
 
 self.addEventListener('install', function(event) {

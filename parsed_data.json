@@ -1,0 +1,3492 @@
+[
+  {
+    "date": "2024-09-09",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-09",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-09",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-10",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 8
+      },
+      {
+        "weight": 12.0,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-10",
+    "exercise": "绳索侧平举",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-10",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 7
+      },
+      {
+        "weight": 15.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-09-10",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-09-11",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 80.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-11",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-09-11",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-09-13",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-09-13",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-09-13",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 9
+      },
+      {
+        "weight": 45.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-14",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-14",
+    "exercise": "侧平举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-16",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 80.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-16",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-09-16",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-17",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-09-17",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-18",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 12.0,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-18",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2024-09-19",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 36.0,
+        "reps": 12
+      },
+      {
+        "weight": 41.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-19",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 90.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-19",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-19",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2024-09-20",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 11
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-09-20",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-20",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-09-20",
+    "exercise": "绳索侧平举",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 7
+      },
+      {
+        "weight": 2.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-21",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2024-09-21",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-09-21",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-23",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 36.0,
+        "reps": 12
+      },
+      {
+        "weight": 41.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-09-23",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 90.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-23",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-09-23",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-24",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-09-24",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 8
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-24",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2024-09-24",
+    "exercise": "绳索侧平举",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-25",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-25",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-09-25",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-26",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 36.0,
+        "reps": 12
+      },
+      {
+        "weight": 41.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-26",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-26",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-28",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-28",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-09-28",
+    "exercise": "锤式弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-28",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-09-29",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-29",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 7
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      },
+      {
+        "weight": 0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-09-29",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-09-30",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 8
+      },
+      {
+        "weight": 16.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2024-09-30",
+    "exercise": "绳索侧平举",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-30",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-09-30",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 41.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-09-30",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-09-30",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "exercise": "上斜哑铃推胸",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "exercise": "锤式弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-10-02",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-02",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 6
+      },
+      {
+        "weight": 0,
+        "reps": 6
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2024-10-02",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-02",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-10-03",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 41.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-10-03",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-03",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2024-10-03",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-10-06",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-06",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-06",
+    "exercise": "上斜哑铃推胸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-06",
+    "exercise": "锤式弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-10-06",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2024-10-07",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-07",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 7
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2024-10-07",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 0
+      },
+      {
+        "weight": 12.5,
+        "reps": 0
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-07",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-07",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-10-08",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 36.0,
+        "reps": 12
+      },
+      {
+        "weight": 41.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-10-08",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-08",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-10-08",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 7
+      },
+      {
+        "weight": 45.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-10-09",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 12
+      },
+      {
+        "weight": 39.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-10-09",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-10-09",
+    "exercise": "上斜哑铃推胸",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-10-09",
+    "exercise": "锤式弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-10-09",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-09",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-10-10",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 52.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-10-10",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-10-10",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 18.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-10-10",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-10",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 11
+      },
+      {
+        "weight": 12.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-10-12",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 41.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-10-12",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 12
+      },
+      {
+        "weight": 679.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-10-12",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-10-12",
+    "exercise": "坐姿腿弯举",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-10-13",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-13",
+    "exercise": "上斜哑铃推胸",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-14",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-14",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-10-14",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 16.0,
+        "reps": 12
+      },
+      {
+        "weight": 16.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-15",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 41.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-15",
+    "exercise": "坐姿腿屈伸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 6.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.0,
+        "reps": 12
+      },
+      {
+        "weight": 9.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-10-15",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-10-17",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-17",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-10-18",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-19",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 14.0,
+        "reps": 15
+      },
+      {
+        "weight": 12.5,
+        "reps": 15
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 15
+      },
+      {
+        "weight": 7.5,
+        "reps": 15
+      },
+      {
+        "weight": 7.5,
+        "reps": 15
+      },
+      {
+        "weight": 7.5,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2024-10-21",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-21",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-10-21",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-10-22",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 55.0,
+        "reps": 15
+      },
+      {
+        "weight": 60.0,
+        "reps": 20
+      }
+    ]
+  },
+  {
+    "date": "2024-10-25",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-10-26",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 39.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 52.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-26",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-10-29",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 11
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-10-30",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-11-02",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 6
+      },
+      {
+        "weight": 39.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-11-02",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-11-03",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 15
+      },
+      {
+        "weight": 10.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2024-11-03",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 17.5,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2024-11-06",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-11-06",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-11-07",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-11-08",
+    "exercise": "杠铃弯举",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 15
+      },
+      {
+        "weight": 20.0,
+        "reps": 15
+      },
+      {
+        "weight": 25.0,
+        "reps": 13
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-11-10",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 32.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-11-10",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 6
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-11-11",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 10.0,
+        "reps": 15
+      },
+      {
+        "weight": 15.0,
+        "reps": 15
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-11-11",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-11-12",
+    "exercise": "杠铃弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 15
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2024-11-14",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2024-11-15",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-11-26",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 4
+      },
+      {
+        "weight": 0,
+        "reps": 4
+      },
+      {
+        "weight": 0,
+        "reps": 6
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      },
+      {
+        "weight": 0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-11-29",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 22.5,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2024-12-01",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 14.0,
+        "reps": 8
+      },
+      {
+        "weight": 16.0,
+        "reps": 8
+      },
+      {
+        "weight": 18.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2024-12-01",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 6
+      },
+      {
+        "weight": 10.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-03",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 4
+      },
+      {
+        "weight": 15.0,
+        "reps": 4
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      },
+      {
+        "weight": 22.5,
+        "reps": 4
+      },
+      {
+        "weight": 22.5,
+        "reps": 4
+      },
+      {
+        "weight": 22.5,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2024-12-04",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 65.0,
+        "reps": 15
+      },
+      {
+        "weight": 70.0,
+        "reps": 15
+      },
+      {
+        "weight": 75.0,
+        "reps": 15
+      },
+      {
+        "weight": 80.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2024-12-04",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-12-05",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 14.0,
+        "reps": 10
+      },
+      {
+        "weight": 16.0,
+        "reps": 14
+      },
+      {
+        "weight": 18.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2024-12-05",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-12-07",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 6
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2024-12-07",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 10
+      },
+      {
+        "weight": 14.0,
+        "reps": 10
+      },
+      {
+        "weight": 16.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-12-08",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-12-09",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 14.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-12-09",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 10.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-11",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 22.5,
+        "reps": 3
+      },
+      {
+        "weight": 22.5,
+        "reps": 4
+      },
+      {
+        "weight": 22.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-14",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 8
+      },
+      {
+        "weight": 7.5,
+        "reps": 5
+      },
+      {
+        "weight": 7.5,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2024-12-16",
+    "exercise": "站立臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 7
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-12-17",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 70.0,
+        "reps": 15
+      },
+      {
+        "weight": 75.0,
+        "reps": 15
+      },
+      {
+        "weight": 80.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2024-12-17",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-12-18",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 6.0,
+        "reps": 10
+      },
+      {
+        "weight": 6.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-12-18",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 14.0,
+        "reps": 7
+      },
+      {
+        "weight": 18.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2024-12-18",
+    "exercise": "杠铃弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2024-12-18",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 7
+      },
+      {
+        "weight": 10.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-12-20",
+    "exercise": "站立臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-12-20",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 3
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 25.0,
+        "reps": 2
+      },
+      {
+        "weight": 27.5,
+        "reps": 4
+      },
+      {
+        "weight": 27.5,
+        "reps": 4
+      },
+      {
+        "weight": 27.5,
+        "reps": 2
+      },
+      {
+        "weight": 27.5,
+        "reps": 2
+      },
+      {
+        "weight": 30.0,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-12-22",
+    "exercise": "T杠划船",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2024-12-22",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 70.0,
+        "reps": 15
+      },
+      {
+        "weight": 75.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2024-12-22",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-12-23",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 8
+      },
+      {
+        "weight": 14.0,
+        "reps": 8
+      },
+      {
+        "weight": 18.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-23",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 9
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-23",
+    "exercise": "躺腿弯举",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-12-23",
+    "exercise": "站立臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2024-12-25",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 4
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 25.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-26",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2024-12-26",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-12-27",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 12
+      },
+      {
+        "weight": 14.0,
+        "reps": 8
+      },
+      {
+        "weight": 18.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2024-12-27",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 13
+      },
+      {
+        "weight": 5.0,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      },
+      {
+        "weight": 10.0,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-12-29",
+    "exercise": "站立臂屈伸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-12-29",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-12-29",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 22.5,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      },
+      {
+        "weight": 30.0,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-12-29",
+    "exercise": "史密斯深蹲",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 7
+      },
+      {
+        "weight": 15.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2024-12-30",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 9
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2024-12-30",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 70.0,
+        "reps": 15
+      },
+      {
+        "weight": 75.0,
+        "reps": 15
+      },
+      {
+        "weight": 80.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2024-12-30",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2024-12-31",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 10
+      },
+      {
+        "weight": 18.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-12-31",
+    "exercise": "实力举",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 6
+      },
+      {
+        "weight": 5.0,
+        "reps": 6
+      }
+    ]
+  }
+]

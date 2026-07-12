@@ -1,0 +1,5908 @@
+[
+  {
+    "date": "2025-02-28",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 22.5,
+        "reps": 10
+      },
+      {
+        "weight": 22.5,
+        "reps": 9
+      },
+      {
+        "weight": 22.5,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-03-01",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-03-01",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 15
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-01",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-01",
+    "exercise": "窄距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-02",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 11
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-03-05",
+    "exercise": "蝴蝶机夹胸",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 35.0,
+        "reps": 8
+      },
+      {
+        "weight": 35.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-03-05",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 4
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-06",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 9
+      },
+      {
+        "weight": 35.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-03-06",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-06",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-03-07",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 17.5,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-03-08",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-03-08",
+    "exercise": "上斜哑铃推胸",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-09",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-09",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      },
+      {
+        "weight": 50.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-13",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-03-13",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-14",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-03-14",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 18
+      },
+      {
+        "weight": 30.0,
+        "reps": 18
+      },
+      {
+        "weight": 35.0,
+        "reps": 18
+      },
+      {
+        "weight": 40.0,
+        "reps": 18
+      }
+    ]
+  },
+  {
+    "date": "2025-03-15",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 9
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      },
+      {
+        "weight": 22.5,
+        "reps": 11
+      },
+      {
+        "weight": 22.5,
+        "reps": 2
+      },
+      {
+        "weight": 22.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-03-15",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 9
+      },
+      {
+        "weight": 12.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-16",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-16",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-16",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-17",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 18
+      },
+      {
+        "weight": 40.0,
+        "reps": 20
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-17",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-17",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-18",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-18",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 8
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-18",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-18",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 7
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-20",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2025-03-21",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 18
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 10
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-21",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-03-21",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 5.0,
+        "reps": 13
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-21",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 6
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-03-21",
+    "exercise": "臂屈伸",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 6
+      },
+      {
+        "weight": 12.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-22",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-22",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-23",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 11
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 8
+      },
+      {
+        "weight": 35.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-03-23",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-24",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 18
+      },
+      {
+        "weight": 35.0,
+        "reps": 15
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 15
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-24",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-03-24",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-24",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 18
+      },
+      {
+        "weight": 2.5,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-03-26",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-03-26",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 18
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-03-26",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 15
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 27.5,
+        "reps": 4
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      },
+      {
+        "weight": 30.0,
+        "reps": 2
+      },
+      {
+        "weight": 30.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2025-03-27",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 14
+      },
+      {
+        "weight": 45.0,
+        "reps": 15
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-27",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 17
+      },
+      {
+        "weight": 0,
+        "reps": 15
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-27",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 18
+      },
+      {
+        "weight": 5.0,
+        "reps": 18
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-28",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-03-28",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 0
+      }
+    ]
+  },
+  {
+    "date": "2025-03-30",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 25
+      }
+    ]
+  },
+  {
+    "date": "2025-03-30",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 1
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-03-31",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 12.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 14
+      },
+      {
+        "weight": 40.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-03-31",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 18
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 15
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-03-31",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2025-03-31",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-04-03",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-04-07",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-04-07",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-07",
+    "exercise": "二十一响炮",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 777
+      },
+      {
+        "weight": 5.0,
+        "reps": 777
+      },
+      {
+        "weight": 7.5,
+        "reps": 555
+      }
+    ]
+  },
+  {
+    "date": "2025-04-09",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-04-09",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 15
+      },
+      {
+        "weight": 35.0,
+        "reps": 14
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-09",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 14
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-09",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-04-10",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-10",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 90.0,
+        "reps": 8
+      },
+      {
+        "weight": 80.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-10",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-04-10",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-14",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-04-14",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 40.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-04-14",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 27.5,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-04-14",
+    "exercise": "上斜卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-04-16",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-04-16",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-16",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-04-16",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-16",
+    "exercise": "单臂高位下拉",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-04-18",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-04-18",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-18",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-18",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 80.0,
+        "reps": 12
+      },
+      {
+        "weight": 80.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-19",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 27.5,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-04-20",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 13
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-04-20",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-20",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-20",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-21",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-04-21",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 10
+      },
+      {
+        "weight": 17.5,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-21",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-21",
+    "exercise": "反向飞鸟",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-23",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      },
+      {
+        "weight": 40.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-23",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 32.5,
+        "reps": 4
+      },
+      {
+        "weight": 32.5,
+        "reps": 6
+      },
+      {
+        "weight": 32.5,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2025-04-23",
+    "exercise": "哑铃平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-24",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-04-24",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-24",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-24",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 9
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      },
+      {
+        "weight": 7.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-25",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-25",
+    "exercise": "反向飞鸟",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-26",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-04-26",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 32.5,
+        "reps": 4
+      },
+      {
+        "weight": 32.5,
+        "reps": 5
+      },
+      {
+        "weight": 32.5,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-04-26",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 10.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      },
+      {
+        "weight": 35.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-04-28",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-04-28",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 10
+      },
+      {
+        "weight": 50.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-04-28",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-28",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-04-28",
+    "exercise": "直臂下压",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-04-29",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-04-30",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-04-30",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      },
+      {
+        "weight": 40.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-04-30",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 32.5,
+        "reps": 3
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2025-05-06",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-06",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-06",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 7
+      },
+      {
+        "weight": 60.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-06",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 14
+      },
+      {
+        "weight": 5.0,
+        "reps": 19
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-06",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-07",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-07",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-07",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 17.5,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-09",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-09",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 4
+      },
+      {
+        "weight": 25.0,
+        "reps": 2
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-05-10",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-05-10",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-10",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 8
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-10",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-11",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 15.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-11",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-05-11",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-13",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-13",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      },
+      {
+        "weight": 35.0,
+        "reps": 3
+      },
+      {
+        "weight": 55.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-05-13",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 32.5,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-05-14",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-05-14",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-14",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-15",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 10.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-15",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-05-15",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-15",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-17",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-17",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 32.5,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 4
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-05-18",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-05-18",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-18",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-18",
+    "exercise": "直臂下压",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-18",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-19",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 9
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-19",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 13
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-19",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-19",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 40.0,
+        "reps": 5
+      },
+      {
+        "weight": 40.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-05-22",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 32.5,
+        "reps": 6
+      },
+      {
+        "weight": 37.5,
+        "reps": 1
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-22",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-23",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 10
+      },
+      {
+        "weight": 55.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-05-23",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-05-23",
+    "exercise": "器械二头弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 10
+      },
+      {
+        "weight": 7.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-05-23",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 13
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-24",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-05-24",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-05-24",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-24",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-26",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-26",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 13
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 4
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-05-27",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-27",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-27",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-05-29",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-05-29",
+    "exercise": "器械侧平举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-29",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-05-30",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-05-30",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 10
+      },
+      {
+        "weight": 55.0,
+        "reps": 8
+      },
+      {
+        "weight": 55.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-05-30",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-03",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 35.0,
+        "reps": 4
+      },
+      {
+        "weight": 55.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-06-03",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 40.0,
+        "reps": 8
+      },
+      {
+        "weight": 35.0,
+        "reps": 1
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2025-06-04",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-04",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-04",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-04",
+    "exercise": "哑铃弯举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 13
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-05",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-06-05",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-07",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-07",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-06-07",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 35.0,
+        "reps": 4
+      },
+      {
+        "weight": 32.5,
+        "reps": 2
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-06-08",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-06-08",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 60.0,
+        "reps": 8
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-08",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-08",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 14
+      },
+      {
+        "weight": 7.5,
+        "reps": 5
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-06-09",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 11
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-09",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-06-11",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 40.0,
+        "reps": 6
+      },
+      {
+        "weight": 60.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-06-11",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 32.5,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-06-12",
+    "exercise": "直臂下压",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 10.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-12",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-12",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-06-12",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-13",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-06-13",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-06-13",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-06-13",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-13",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 80.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-06-15",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-06-15",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-16",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-06-16",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-16",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 11
+      },
+      {
+        "weight": 55.0,
+        "reps": 6
+      },
+      {
+        "weight": 50.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-06-16",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 8
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-06-16",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-17",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-06-17",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 20.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-06-17",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-06-17",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-17",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 80.0,
+        "reps": 12
+      },
+      {
+        "weight": 80.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-19",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-06-19",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-06-19",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-06-20",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 11
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-20",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-20",
+    "exercise": "直臂下压",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-20",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-20",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 10
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      },
+      {
+        "weight": 10.0,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2025-06-21",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 10
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-21",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-21",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 100.0,
+        "reps": 8
+      },
+      {
+        "weight": 100.0,
+        "reps": 8
+      },
+      {
+        "weight": 100.0,
+        "reps": 10
+      },
+      {
+        "weight": 100.0,
+        "reps": 10
+      },
+      {
+        "weight": 100.0,
+        "reps": 13
+      },
+      {
+        "weight": 100.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-06-21",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-21",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-23",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-06-23",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2025-06-23",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-23",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-23",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-23",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 7.5,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2025-06-24",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-06-24",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-06-24",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 32.5,
+        "reps": 5
+      },
+      {
+        "weight": 35.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-06-25",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-06-25",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-06-25",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-25",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 90.0,
+        "reps": 10
+      },
+      {
+        "weight": 90.0,
+        "reps": 10
+      },
+      {
+        "weight": 90.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-25",
+    "exercise": "正握弯举",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 5
+      },
+      {
+        "weight": 10.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-06-27",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 3
+      },
+      {
+        "weight": 35.0,
+        "reps": 11
+      },
+      {
+        "weight": 35.0,
+        "reps": 7
+      },
+      {
+        "weight": 35.0,
+        "reps": 1
+      }
+    ]
+  },
+  {
+    "date": "2025-06-27",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-06-28",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-28",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-06-28",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-06-28",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 6
+      },
+      {
+        "weight": 35.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-06-29",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-29",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-29",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 8
+      },
+      {
+        "weight": 17.5,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-06-29",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 90.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-06-29",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 4
+      },
+      {
+        "weight": 40.0,
+        "reps": 2
+      }
+    ]
+  },
+  {
+    "date": "2025-07-09",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 8
+      },
+      {
+        "weight": 10.0,
+        "reps": 8
+      },
+      {
+        "weight": 20.0,
+        "reps": 3
+      },
+      {
+        "weight": 15.0,
+        "reps": 3
+      },
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-07-24",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2025-07-25",
+    "exercise": "反向飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 18
+      },
+      {
+        "weight": 5.0,
+        "reps": 20
+      },
+      {
+        "weight": 5.0,
+        "reps": 18
+      }
+    ]
+  },
+  {
+    "date": "2025-07-26",
+    "exercise": "肩胛俯卧撑",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 22
+      },
+      {
+        "weight": 0,
+        "reps": 21
+      }
+    ]
+  },
+  {
+    "date": "2025-07-29",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-07-29",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 13
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 7
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-07-31",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      },
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2025-07-31",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-08-03",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 17
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-08-04",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-08-06",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      },
+      {
+        "weight": 0,
+        "reps": 4
+      },
+      {
+        "weight": 0,
+        "reps": 6
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      },
+      {
+        "weight": 0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-08-06",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      },
+      {
+        "weight": 0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-08-08",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 11
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-08-08",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-08-10",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-08-16",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-08-21",
+    "exercise": "悬垂举腿",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-08-21",
+    "exercise": "宽距引体",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-08-24",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 6
+      },
+      {
+        "weight": 10.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-09-13",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 40.0,
+        "reps": 6
+      },
+      {
+        "weight": 60.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-09-13",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-09-13",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-09-14",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      },
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-09-14",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 9
+      },
+      {
+        "weight": 45.0,
+        "reps": 8
+      },
+      {
+        "weight": 45.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-09-14",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-09-18",
+    "exercise": "哈克机深蹲",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 5
+      },
+      {
+        "weight": 80.0,
+        "reps": 11
+      },
+      {
+        "weight": 80.0,
+        "reps": 10
+      },
+      {
+        "weight": 80.0,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-09-18",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 12
+      },
+      {
+        "weight": 12.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-09-21",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 35.0,
+        "reps": 6
+      },
+      {
+        "weight": 45.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-09-21",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 10.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 20.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-09-21",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-09-22",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-09-22",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 15
+      },
+      {
+        "weight": 40.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-09-22",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 15
+      },
+      {
+        "weight": 20.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-09-26",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 6
+      },
+      {
+        "weight": 40.0,
+        "reps": 6
+      },
+      {
+        "weight": 60.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-09-26",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 11
+      },
+      {
+        "weight": 25.0,
+        "reps": 11
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-09-26",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2025-09-26",
+    "exercise": "上斜哑铃推胸",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-09-26",
+    "exercise": "正握弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-09-27",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      }
+    ]
+  },
+  {
+    "date": "2025-09-27",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-09-27",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-09-27",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 15
+      },
+      {
+        "weight": 5.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-09-28",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      }
+    ]
+  },
+  {
+    "date": "2025-09-28",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 12
+      },
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-09-28",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-09-28",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-09-28",
+    "exercise": "龙门架卷腹",
+    "sets": [
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-10-18",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 18
+      }
+    ]
+  },
+  {
+    "date": "2025-10-18",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 12
+      },
+      {
+        "weight": 25.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-10-18",
+    "exercise": "绳索下压",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-10-18",
+    "exercise": "龙门架卷腹",
+    "sets": [
+      {
+        "weight": 22.5,
+        "reps": 14
+      },
+      {
+        "weight": 22.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-10-18",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 20
+      }
+    ]
+  },
+  {
+    "date": "2025-10-26",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-10-26",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 9
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-10-26",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-10-26",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-11-08",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      },
+      {
+        "weight": 0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-11-08",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 11
+      },
+      {
+        "weight": 35.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-11-08",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 20.0,
+        "reps": 10
+      },
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-11-08",
+    "exercise": "龙门架卷腹",
+    "sets": [
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-11-23",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 35.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-11-23",
+    "exercise": "自由卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 9
+      },
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-11-28",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 40.0,
+        "reps": 12
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-11-28",
+    "exercise": "哑铃弯举",
+    "sets": [
+      {
+        "weight": 7.5,
+        "reps": 10
+      }
+    ]
+  },
+  {
+    "date": "2025-12-22",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 8
+      },
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 8
+      },
+      {
+        "weight": 60.0,
+        "reps": 6
+      },
+      {
+        "weight": 60.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-22",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-12-22",
+    "exercise": "高位下拉",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-12-22",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-12-22",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 11
+      },
+      {
+        "weight": 60.0,
+        "reps": 13
+      }
+    ]
+  },
+  {
+    "date": "2025-12-23",
+    "exercise": "器械推肩",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 7
+      }
+    ]
+  },
+  {
+    "date": "2025-12-23",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 40.0,
+        "reps": 8
+      },
+      {
+        "weight": 45.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-23",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-12-23",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 7
+      },
+      {
+        "weight": 25.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-12-23",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 9
+      },
+      {
+        "weight": 45.0,
+        "reps": 9
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-12-24",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-12-24",
+    "exercise": "牧师凳弯举",
+    "sets": [
+      {
+        "weight": 2.5,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      },
+      {
+        "weight": 7.5,
+        "reps": 7
+      },
+      {
+        "weight": 7.5,
+        "reps": 4
+      }
+    ]
+  },
+  {
+    "date": "2025-12-24",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 8
+      }
+    ]
+  },
+  {
+    "date": "2025-12-27",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 9
+      },
+      {
+        "weight": 30.0,
+        "reps": 7
+      },
+      {
+        "weight": 30.0,
+        "reps": 10
+      },
+      {
+        "weight": 30.0,
+        "reps": 5
+      },
+      {
+        "weight": 30.0,
+        "reps": 3
+      }
+    ]
+  },
+  {
+    "date": "2025-12-27",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 10
+      },
+      {
+        "weight": 45.0,
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "date": "2025-12-27",
+    "exercise": "龙门架卷腹",
+    "sets": [
+      {
+        "weight": 22.5,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-12-28",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-12-28",
+    "exercise": "大剪刀",
+    "sets": [
+      {
+        "weight": 45.0,
+        "reps": 12
+      },
+      {
+        "weight": 55.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 11
+      },
+      {
+        "weight": 65.0,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-12-28",
+    "exercise": "坐姿划船",
+    "sets": [
+      {
+        "weight": 25.0,
+        "reps": 12
+      },
+      {
+        "weight": 30.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-28",
+    "exercise": "山羊挺身",
+    "sets": [
+      {
+        "weight": 0.0,
+        "reps": 12
+      },
+      {
+        "weight": 5.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-28",
+    "exercise": "大腿内侧内收",
+    "sets": [
+      {
+        "weight": 50.0,
+        "reps": 12
+      },
+      {
+        "weight": 60.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-30",
+    "exercise": "坐姿哑铃推肩",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 15.0,
+        "reps": 11
+      },
+      {
+        "weight": 17.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-12-30",
+    "exercise": "龙门架卷腹",
+    "sets": [
+      {
+        "weight": 22.5,
+        "reps": 12
+      },
+      {
+        "weight": 22.5,
+        "reps": 11
+      }
+    ]
+  },
+  {
+    "date": "2025-12-30",
+    "exercise": "面拉",
+    "sets": [
+      {
+        "weight": 12.5,
+        "reps": 10
+      },
+      {
+        "weight": 10.0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-30",
+    "exercise": "哑铃飞鸟",
+    "sets": [
+      {
+        "weight": 5.0,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 12
+      },
+      {
+        "weight": 7.5,
+        "reps": 6
+      }
+    ]
+  },
+  {
+    "date": "2025-12-30",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 16
+      },
+      {
+        "weight": 0,
+        "reps": 14
+      },
+      {
+        "weight": 0,
+        "reps": 9
+      }
+    ]
+  },
+  {
+    "date": "2025-12-31",
+    "exercise": "引体向上",
+    "sets": [
+      {
+        "weight": 0,
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "date": "2025-12-31",
+    "exercise": "器械平板卧推",
+    "sets": [
+      {
+        "weight": 35.0,
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "date": "2025-12-31",
+    "exercise": "史密斯平板卧推",
+    "sets": [
+      {
+        "weight": 20.0,
+        "reps": 8
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      },
+      {
+        "weight": 30.0,
+        "reps": 4
+      },
+      {
+        "weight": 25.0,
+        "reps": 8
+      }
+    ]
+  }
+]
