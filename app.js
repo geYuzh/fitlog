@@ -301,6 +301,23 @@ function renderSettingsPage() {
   expandedCategories = {};
 }
 
+function importHistoryData() {
+  if (typeof IMPORT_DATA === 'undefined') {
+    alert('历史数据文件未加载，请刷新页面后重试');
+    return;
+  }
+  if (!confirm('将导入 " + IMPORT_DATA.length + " 条历史记录。\\n已有记录不会被删除，重复日期+项目会追加。\\n确定继续？')) return;
+  var existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  var merged = existing.concat(IMPORT_DATA);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+  workouts = merged;
+  renderStats();
+  renderPresets();
+  updateCharts();
+  alert('已导入 ' + IMPORT_DATA.length + ' 条记录！');
+  renderSettingsPage();
+}
+
 function openSetting(name) {
   currentSetting = name;
   document.getElementById('settingsMenu').style.display = 'none';
@@ -382,6 +399,14 @@ function openSetting(name) {
       html += '<button class="btn btn-outline btn-block" type="button" onclick="exitDebugMode()">\u9000\u51fa\u8c03\u8bd5</button>';
     }
     html += '<button class="btn btn-primary btn-block" type="button" onclick="generateDebugData()" style="margin-top:8px">\u8bbe\u7f6e\u8bad\u7ec3\u6570\u636e\u8fdb\u884c\u8c03\u8bd5</button>';
+    html += '</div>';
+    panel.innerHTML = html;
+  }
+  else if (name === 'importHistory') {
+    var html = '<div class="settings-back" onclick="renderSettingsPage()">‹ 返回设置</div>';
+    html += '<div class="card"><div class="card-title">导入历史数据</div>';
+    html += '<p style="font-size:13px;color:var(--text2);margin-bottom:16px">将 2024~2026 年笔记记录（706条）导入到软件。已有记录不会被删除。</p>';
+    html += '<button class="btn btn-primary btn-block" type="button" onclick="importHistoryData()">导入 706 条历史记录</button>';
     html += '</div>';
     panel.innerHTML = html;
   }
