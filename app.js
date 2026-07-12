@@ -702,6 +702,7 @@ function updateChart1() {
     return {
       label: ds.label,
       data: ds.data.slice(wStart, wEnd),
+      exNames: ds.exNames ? ds.exNames.slice(wStart, wEnd) : null,
       borderColor: ds.borderColor,
       backgroundColor: ds.backgroundColor,
       tension: ds.tension,
@@ -772,6 +773,13 @@ function buildSetData(filter) {
 
   var datasets = [];
   for (var si = 0; si < maxSetIdx; si++) {
+    var exNames = dates.map(function(d) {
+      var dayWorkouts = filtered.filter(function(w) { return w.date === d; });
+      for (var j = 0; j < dayWorkouts.length; j++) {
+        if (dayWorkouts[j].sets.length > si) return dayWorkouts[j].exercise;
+      }
+      return null;
+    });
     var data = dates.map(function(d) {
       var dayWorkouts = filtered.filter(function(w) { return w.date === d; });
       // For a given day, take the first workout's si-th set weight
@@ -784,6 +792,7 @@ function buildSetData(filter) {
       setIndex: si,
       label: '\u7b2c' + (si+1) + '\u7ec4',
       data: data,
+      exNames: exNames,
       borderColor: RAINBOW[si % RAINBOW.length],
       backgroundColor: 'transparent',
       tension: 0.2,
@@ -826,7 +835,20 @@ function chartOpts(showLegend, labels) {
     return {
       responsive: true, maintainAspectRatio: false, indexAxis: 'y',
       plugins: {
-        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } }
+        legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              var exName = '';
+              if (ctx.dataset.exNames && ctx.dataIndex < ctx.dataset.exNames.length) {
+                exName = ctx.dataset.exNames[ctx.dataIndex] || '';
+              }
+              var label = exName ? exName + ' · ' : '';
+              label += ctx.dataset.label + ': ' + ctx.parsed.x + ' kg';
+              return label;
+            }
+          }
+        }
       },
       scales: {
 x: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: false, text: '', color: '#999' } },
@@ -942,6 +964,7 @@ function renderCharts() {
       setIndex: ds.setIndex,
       label: ds.label,
       data: ds.data.slice(wStart, wEnd),
+      exNames: ds.exNames ? ds.exNames.slice(wStart, wEnd) : null,
       borderColor: ds.borderColor,
       backgroundColor: ds.backgroundColor,
       tension: ds.tension,
