@@ -67,10 +67,10 @@ function getAllExercises() {
 
 // ========== STATE ==========
 var currentTab = 'record';
-var chartWeightInst = null, chartVolumeInst = null, chartFreqInst = null;
+var chartWeightInst = null, chartVolumeInst = null;
 var chartFilterEx = 'all';
 var chartExpandedCat = null;
-var _cacheSetData = null, _cacheHeaviestData = null, _cacheFreqData = null;
+var _cacheSetData = null, _cacheHeaviestData = null;
 
 
 function init() {
@@ -286,6 +286,7 @@ function switchTab(tab) {
   if (tab === 'charts') renderCharts();
   if (tab === 'history') renderHistory();
   if (tab === 'record') renderStats();
+  if (tab === 'calendar') renderCalendar();
   if (tab === 'settings') renderSettingsPage();
 }
 
@@ -594,10 +595,10 @@ function setTheme(t, silent) {
   }
   if (!silent && currentSetting === 'theme') openSetting('theme');
 }// ========== CHARTS ==========
-var chartWeightInst = null, chartVolumeInst = null, chartFreqInst = null;
+var chartWeightInst = null, chartVolumeInst = null;
 var chartFilterEx = 'all';
 var chartExpandedCat = null;
-var _cacheSetData = null, _cacheHeaviestData = null, _cacheFreqData = null;
+var _cacheSetData = null, _cacheHeaviestData = null;
 var setFilterMode = 'all'; // 'all' or set index 0,1,2...
 
 var RAINBOW = [
@@ -607,8 +608,7 @@ var RAINBOW = [
 
 var pan1 = 0, zoom1 = 30;
 var pan2 = 0, zoom2 = 30;
-var pan3 = 0, zoom3 = 30;
-var totalLabels1 = 0, totalLabels2 = 0, totalLabels3 = 0;
+var totalLabels1 = 0, totalLabels2 = 0;
 
 function syncSliders() {
   if (chartWeightInst) {
@@ -623,39 +623,17 @@ function syncSliders() {
     if (pan2 + zoom2 > totalLabels2) pan2 = Math.max(0, totalLabels2 - zoom2);
     s2.min = 0; s2.max = Math.max(0, totalLabels2 - zoom2); s2.value = pan2;
   }
-  if (chartFreqInst) {
-    var s3 = document.getElementById('chartSlider3');
-    zoom3 = Math.min(zoom3, totalLabels3);
-    if (pan3 + zoom3 > totalLabels3) pan3 = Math.max(0, totalLabels3 - zoom3);
-    s3.min = 0; s3.max = Math.max(0, totalLabels3 - zoom3); s3.value = pan3;
-  }
 }
 
 function onSliderChange() { pan1 = parseInt(document.getElementById('chartSlider').value); updateChart1(); }
 function onSliderChange2() { pan2 = parseInt(document.getElementById('chartSlider2').value); updateChart2(); }
-function onSliderChange3() { pan3 = parseInt(document.getElementById('chartSlider3').value); updateChart3(); }
 
-// Wheel zoom for charts
-function onChartWheel(e, chartNum) {
-  e.preventDefault();
-  var delta = e.deltaY > 0 ? 3 : -3;
-  if (chartNum === 1) {
-    zoom1 = Math.max(1, Math.min(30, zoom1 + delta));
-    updateChart1();
-  } else if (chartNum === 2) {
-    zoom2 = Math.max(1, Math.min(30, zoom2 + delta));
-    updateChart2();
-  } else if (chartNum === 3) {
-    zoom3 = Math.max(1, Math.min(30, zoom3 + delta));
-    updateChart3();
-  }
-}
 
 // Attach wheel listeners to chart canvases
 // Pinch zoom for touch devices
 var pinchStates = { 1: { lastScale: 1, startZoom: 1 }, 2: { lastScale: 1, startZoom: 1 }, 3: { lastScale: 1, startZoom: 1 } };
 function attachPinchListeners() {
-  var ids = ['chartWeight', 'chartVolume', 'chartFreq'];
+  var ids = ['chartWeight', 'chartVolume'];
   ids.forEach(function(id, idx) {
     var cn = idx + 1;
     var canvas = document.getElementById(id);
@@ -665,7 +643,7 @@ function attachPinchListeners() {
       
       mc.on('pinchstart', function(e) {
         e.preventDefault();
-        pinchStates[cn].startZoom = cn === 1 ? zoom1 : cn === 2 ? zoom2 : zoom3;
+        pinchStates[cn].startZoom = cn === 1 ? zoom1 : zoom2;
         pinchStates[cn].lastScale = e.scale;
       });
       mc.on('pinchmove', function(e) {
@@ -677,7 +655,7 @@ function attachPinchListeners() {
           pinchStates[cn].lastScale = scale;
           if (cn === 1 && newZoom !== zoom1) { zoom1 = newZoom; updateChart1(); }
           else if (cn === 2 && newZoom !== zoom2) { zoom2 = newZoom; updateChart2(); }
-          else if (cn === 3 && newZoom !== zoom3) { zoom3 = newZoom; updateChart3(); }
+
         }
       });
     }
@@ -743,20 +721,7 @@ function updateChart2() {
   s2.min = 0; s2.max = Math.max(0, totalLabels2 - zoom2); s2.value = pan2;
 }
 
-function updateChart3() {
-  if (!chartFreqInst || !_cacheFreqData) return;
-  var freqData = _cacheFreqData;
-  totalLabels3 = freqData.labels.length;
-  zoom3 = Math.min(zoom3, totalLabels3);
-  if (pan3 + zoom3 > totalLabels3) pan3 = Math.max(0, totalLabels3 - zoom3);
-  var fStart = pan3;
-  var fEnd = Math.min(pan3 + zoom3, totalLabels3);
-  chartFreqInst.data.labels = freqData.labels.slice(fStart, fEnd);
-  chartFreqInst.data.datasets[0].data = freqData.data.slice(fStart, fEnd);
-  chartFreqInst.update('none');
-  var s3 = document.getElementById('chartSlider3');
-  s3.min = 0; s3.max = Math.max(0, totalLabels3 - zoom3); s3.value = pan3;
-}
+
 
 
 // Update chart filter only (no chart re-render)
@@ -778,7 +743,6 @@ function renderChartFilter() {
 function destroyCharts() {
   if (chartWeightInst) { chartWeightInst.destroy(); chartWeightInst = null; }
   if (chartVolumeInst) { chartVolumeInst.destroy(); chartVolumeInst = null; }
-  if (chartFreqInst) { chartFreqInst.destroy(); chartFreqInst = null; }
 }
 
 // Build per-set data: { labels: [dates], datasets: [{set index, color, data}] }
@@ -844,15 +808,7 @@ function buildHeaviestData(filter) {
   return { labels: dates, data: data };
 }
 
-// Frequency
-function buildFreqData(filter) {
-  var filtered = filter === 'all' ? workouts.slice() : workouts.filter(function(w) { return w.exercise === filter; });
-  var freqMap = {};
-  filtered.forEach(function(w) { freqMap[w.date] = (freqMap[w.date]||0)+1; });
-  var labels = Object.keys(freqMap).sort();
-  var data = labels.map(function(d) { return freqMap[d]; });
-  return { labels: labels, data: data };
-}
+
 
 // ========== CHART OPTIONS ==========
   // Global plugin: draws border labels and colored grid lines for all charts
@@ -940,10 +896,8 @@ function renderCharts() {
 
   var setData = buildSetData(chartFilterEx);
   var heaviestData = buildHeaviestData(chartFilterEx);
-  var freqData = buildFreqData(chartFilterEx);
   _cacheSetData = setData;
   _cacheHeaviestData = heaviestData;
-  _cacheFreqData = freqData;
 
   var hasData = setData.labels.length > 0;
 
@@ -1005,24 +959,7 @@ function renderCharts() {
     options: chartOpts(false, hLabels)
   });
 
-  // === FREQUENCY CHART ===
-  var freqOpts = chartOpts(false, fLabels);
-  freqOpts.scales.y.beginAtZero = true;
-  freqOpts.scales.y.ticks = { stepSize: 1, color: '#999' };
-  freqOpts.scales.y.title = { display: true, text: '\u6b21', color: '#999' };
-  totalLabels3 = freqData.labels.length;
-  var fStart = pan3;
-  var fEnd = Math.min(pan3 + zoom3, freqData.labels.length);
-  var fLabels = freqData.labels.slice(fStart, fEnd);
-  var fData = freqData.data.slice(fStart, fEnd);
 
-  chartFreqInst = new Chart(document.getElementById('chartFreq').getContext('2d'), {
-    type: 'bar',
-    data: { labels: fLabels, datasets: [{ data: fData, backgroundColor: 'rgba(241,196,15,0.6)', borderColor: '#f1c40f', borderWidth: 1, borderRadius: 4 }] },
-    options: freqOpts
-  });
-
-  // === SYNC SLIDER ===
   syncSliders();
   attachWheelListeners();
   attachPinchListeners();
@@ -1235,6 +1172,74 @@ function refreshAll() {
   if (currentTab === 'history') renderHistory();
   if (currentTab === 'record') renderStats();
   if (currentTab === 'charts') renderCharts();
+}
+
+
+// ========== CALENDAR ==========
+var calYear, calMonth;
+function renderCalendar() {
+  var now = new Date();
+  if (!calYear) { calYear = now.getFullYear(); calMonth = now.getMonth(); }
+  
+  var trainDates = {};
+  workouts.forEach(function(w) { trainDates[w.date] = true; });
+  
+  var monthLabel = calYear + '年 ' + (calMonth + 1) + '月';
+  document.getElementById('calMonthLabel').textContent = monthLabel;
+  
+  // Count training days this month
+  var trainCount = 0;
+  Object.keys(trainDates).forEach(function(d) {
+    var parts = d.split('-');
+    if (parseInt(parts[0]) === calYear && parseInt(parts[1]) === calMonth + 1) trainCount++;
+  });
+  document.getElementById('calTrainDays').textContent = '本月训练 ' + trainCount + ' 天';
+  
+  // Build grid
+  var firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  
+  var dayHeaders = ['日','一','二','三','四','五','六'];
+  var html = '';
+  dayHeaders.forEach(function(d) {
+    html += '<div class="cal-day-header">' + d + '</div>';
+  });
+  
+  // Empty cells before first day
+  for (var i = 0; i < firstDay; i++) {
+    html += '<div class="cal-day empty"></div>';
+  }
+  
+  var today = dateKey(now);
+  for (var d = 1; d <= daysInMonth; d++) {
+    var dateStr = calYear + '-' + String(calMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    var isTrain = trainDates[dateStr];
+    var isToday = dateStr === today;
+    var cls = 'cal-day' + (isToday ? ' today' : '');
+    html += '<div class="' + cls + '" onclick="goToDay('' + dateStr + '')">' + d;
+    if (isTrain) html += '<span class="cal-dot"></span>';
+    html += '</div>';
+  }
+  
+  document.getElementById('calendarGrid').innerHTML = html;
+}
+function calendarPrevMonth() {
+  if (calMonth === 0) { calYear--; calMonth = 11; }
+  else calMonth--;
+  renderCalendar();
+}
+function calendarNextMonth() {
+  if (calMonth === 11) { calYear++; calMonth = 0; }
+  else calMonth++;
+  renderCalendar();
+}
+function goToDay(dateStr) {
+  // Switch to history and filter by that date
+  switchTab('history');
+  setTimeout(function() {
+    document.getElementById('histSearch').value = dateStr;
+    renderHistory();
+  }, 100);
 }
 
 // ========== DEBUG DATA GENERATOR ==========
