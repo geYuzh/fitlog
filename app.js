@@ -1,4 +1,4 @@
-
+﻿
 // ========== DATA STORE ==========
 var STORAGE_KEY = 'fitlog_workouts';
 var CATEGORY_KEY = 'fitlog_categories';
@@ -599,7 +599,8 @@ var chartWeightInst = null, chartVolumeInst = null;
 var chartFilterEx = 'all';
 var chartExpandedCat = null;
 var _cacheSetData = null, _cacheHeaviestData = null;
-var setFilterMode = 'all'; // 'all' or set index 0,1,2...
+var setFilterMode = 'all';
+var _activeFilterMode = 'all'; // cached at chart creation, used by updateChart1
 
 var RAINBOW = [
   '#ff4444','#ff8c00','#ffd700','#2ecc71','#3498db','#8b5cf6','#e056a0',
@@ -629,9 +630,21 @@ function onSliderChange() { pan1 = parseInt(document.getElementById('chartSlider
 function onSliderChange2() { pan2 = parseInt(document.getElementById('chartSlider2').value); updateChart2(); }
 
 
+function onChartWheel(e, chartNum) {
+  e.preventDefault();
+  var delta = e.deltaY > 0 ? 3 : -3;
+  if (chartNum === 1) {
+    zoom1 = Math.max(1, Math.min(30, zoom1 + delta));
+    updateChart1();
+  } else if (chartNum === 2) {
+    zoom2 = Math.max(1, Math.min(30, zoom2 + delta));
+    updateChart2();
+  }
+}
+
 // Attach wheel listeners to chart canvases
 // Pinch zoom for touch devices
-var pinchStates = { 1: { lastScale: 1, startZoom: 1 }, 2: { lastScale: 1, startZoom: 1 }, 3: { lastScale: 1, startZoom: 1 } };
+var pinchStates = { 1: { lastScale: 1, startZoom: 1 }, 2: { lastScale: 1, startZoom: 1 } };
 function attachPinchListeners() {
   var ids = ['chartWeight', 'chartVolume'];
   ids.forEach(function(id, idx) {
@@ -655,7 +668,6 @@ function attachPinchListeners() {
           pinchStates[cn].lastScale = scale;
           if (cn === 1 && newZoom !== zoom1) { zoom1 = newZoom; updateChart1(); }
           else if (cn === 2 && newZoom !== zoom2) { zoom2 = newZoom; updateChart2(); }
-
         }
       });
     }
@@ -664,10 +676,8 @@ function attachPinchListeners() {
 function attachWheelListeners() {
   var c1 = document.getElementById('chartWeight');
   var c2 = document.getElementById('chartVolume');
-  var c3 = document.getElementById('chartFreq');
   if (c1) c1.onwheel = function(e) { onChartWheel(e, 1); };
   if (c2) c2.onwheel = function(e) { onChartWheel(e, 2); };
-  if (c3) c3.onwheel = function(e) { onChartWheel(e, 3); };
 }
 
 
@@ -681,10 +691,10 @@ function updateChart1() {
   var wEnd = Math.min(pan1 + zoom1, totalLabels1);
   var wLabels = setData.labels.slice(wStart, wEnd);
   var datasetsToShow;
-  if (setFilterMode === 'all') {
+  if (_activeFilterMode === 'all') {
     datasetsToShow = setData.datasets;
   } else {
-    var si = parseInt(setFilterMode);
+    var si = parseInt(_activeFilterMode);
     datasetsToShow = (si >= 0 && si < setData.datasets.length) ? [setData.datasets[si]] : [];
   }
   chartWeightInst.data.labels = wLabels;
@@ -700,7 +710,7 @@ function updateChart1() {
       spanGaps: ds.spanGaps
     };
   });
-  chartWeightInst.options = chartOpts(setFilterMode === 'all' && datasetsToShow.length > 1, chartWeightInst.data.labels);
+  chartWeightInst.options = chartOpts(_activeFilterMode === 'all' && datasetsToShow.length > 1, chartWeightInst.data.labels);
   chartWeightInst.update('none');
   var s1 = document.getElementById('chartSlider');
   s1.min = 0; s1.max = Math.max(0, totalLabels1 - zoom1); s1.value = pan1;
@@ -898,6 +908,7 @@ function renderCharts() {
   var heaviestData = buildHeaviestData(chartFilterEx);
   _cacheSetData = setData;
   _cacheHeaviestData = heaviestData;
+  _activeFilterMode = setFilterMode; // lock filter mode for this chart instance
 
   var hasData = setData.labels.length > 0;
 
@@ -1216,7 +1227,7 @@ function renderCalendar() {
     var isTrain = trainDates[dateStr];
     var isToday = dateStr === today;
     var cls = 'cal-day' + (isToday ? ' today' : '');
-    html += '<div class="' + cls + '" onclick="goToDay('' + dateStr + '')">' + d;
+    html += '<div class=\"' + cls + '\" onclick=\"goToDay(\x27' + dateStr + '\x27)\">' + d;
     if (isTrain) html += '<span class="cal-dot"></span>';
     html += '</div>';
   }
