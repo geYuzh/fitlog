@@ -74,6 +74,21 @@ var _cacheSetData = null, _cacheHeaviestData = null;
 
 
 function init() {
+  // Event delegation for export/import buttons (bypasses innerHTML onclick issues)
+  document.body.addEventListener('click', function(e) {
+    var el = e.target;
+    if (el.id === 'btnExportData' || (el.closest && el.closest('#btnExportData'))) {
+      e.preventDefault(); e.stopPropagation();
+      exportData();
+      return;
+    }
+    if (el.id === 'btnImportData' || (el.closest && el.closest('#btnImportData'))) {
+      e.preventDefault(); e.stopPropagation();
+      importData();
+      return;
+    }
+  }, true);
+
   loadData();
   setTodayDate();
   initRecordForm();
