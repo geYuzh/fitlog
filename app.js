@@ -92,7 +92,7 @@ function init() {
   }, true);
 
   // Event delegation for export/import buttons (bypasses innerHTML onclick issues)
-  document.body.addEventListener('click', function(e) {
+  document.addEventListener('click', function(e) {
     var el = e.target;
     if (el.id === 'btnExportData' || (el.closest && el.closest('#btnExportData'))) {
       e.preventDefault(); e.stopPropagation();
