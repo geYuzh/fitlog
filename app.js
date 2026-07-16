@@ -415,11 +415,14 @@ function openSetting(name) {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card"><div class="card-title">\u5bfc\u51fa / \u5bfc\u5165\u6570\u636e</div>';
     html += '<p style="font-size:13px;color:var(--text2);margin-bottom:20px">\u5c06\u6240\u6709\u8bad\u7ec3\u8bb0\u5f55\u3001\u5206\u7c7b\u8bbe\u7f6e\u5bfc\u51fa\u4e3a JSON \u6587\u4ef6\uff0c\u53ef\u5728\u65b0\u8bbe\u5907\u4e0a\u5bfc\u5165\u6062\u590d\u3002</p>';
-    html += '<button class="btn btn-primary btn-block" type="button" onclick="exportData()" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
-    html += '<button class="btn btn-outline btn-block" type="button" onclick="importData()">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
+    html += '<button class="btn btn-primary btn-block" type="button" id="btnExportData" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
+    html += '<button class="btn btn-outline btn-block" type="button" id="btnImportData">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
     html += '<p style="font-size:11px;color:var(--text2);margin-top:16px">\u5bfc\u5165\u5c06\u66ff\u6362\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff0c\u5efa\u8bae\u5148\u5bfc\u51fa\u4e00\u4efd\u4ee5\u9632\u610f\u5916\u3002</p>';
     html += '</div>';
     panel.innerHTML = html;
+    // Bind events via DOM (more reliable than inline onclick in WebView)
+    document.getElementById('btnExportData').onclick = exportData;
+    document.getElementById('btnImportData').onclick = importData;
   }
   else if (name === 'about') {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
