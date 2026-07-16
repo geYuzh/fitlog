@@ -615,58 +615,61 @@ function setTheme(t, silent) {
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
-  var data = {
-    version: 1,
-    exportedAt: new Date().toISOString(),
-    workouts: workouts,
-    exerciseCategories: exerciseCategories,
-    exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || '{}')
-  };
-  var jsonStr = JSON.stringify(data, null, 2);
-  var filename = 'fitlog_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  try {
+    var data = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      workouts: workouts,
+      exerciseCategories: exerciseCategories,
+      exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || '{}')
+    };
+    var jsonStr = JSON.stringify(data, null, 2);
+    var escapedJson = jsonStr.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-  // Try Web Share API first (Android/iOS)
-  if (navigator.share && navigator.canShare) {
-    var blob = new Blob([jsonStr], { type: 'application/json' });
-    var file = new File([blob], filename, { type: 'application/json' });
-    var shareData = { title: 'FitLog 备份', files: [file] };
-    if (navigator.canShare(shareData)) {
-      navigator.share(shareData).then(function() {
-        showToast('已导出备份文件');
-      }).catch(function(e) {
-        // Fallback: copy to clipboard
-        copyExportFallback(jsonStr);
-      });
-      return;
-    }
-  }
+    // Remove existing modal if any
+    var existing = document.getElementById('exportModal');
+    if (existing) existing.remove();
 
-  // Try download link (desktop browsers)
-  var blob = new Blob([jsonStr], { type: 'application/json' });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.style.display = 'none';
-  document.body.appendChild(a);
-  a.click();
-  // Cleanup after a short delay for Firefox
-  setTimeout(function() {
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, 200);
-  showToast('已导出备份文件');
-}
+    var overlay = document.createElement('div');
+    overlay.id = 'exportModal';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
 
-function copyExportFallback(jsonStr) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(jsonStr).then(function() {
-      showToast('已复制备份内容到剪贴板，请粘贴保存');
-    }).catch(function() {
-      showToast('导出失败，请尝试其他方式');
-    });
-  } else {
-    showToast('导出失败，请尝试其他方式');
+    var sheet = document.createElement('div');
+    sheet.style.cssText = 'background:var(--surface);width:100%;max-height:80vh;border-radius:16px 16px 0 0;padding:16px;display:flex;flex-direction:column;overflow:hidden';
+
+    var html = '';
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">';
+    html += '<span style="font-weight:600;font-size:16px">\u5bfc\u51fa\u5907\u4efd\u6570\u636e</span>';
+    html += '<button type="button" onclick="this.closest(\x27#exportModal\x27).remove()" style="background:none;border:none;color:var(--text2);font-size:20px;cursor:pointer">&times;</button>';
+    html += '</div>';
+    html += '<p style="font-size:12px;color:var(--text2);margin-bottom:8px">\u70b9\u51fb\u4e0b\u65b9\u201c\u590d\u5236\u201d\uff0c\u7136\u540e\u7c98\u8d34\u5230\u5907\u5fd8\u5f55\u6216\u53d1\u9001\u7ed9\u81ea\u5df1</p>';
+    html += '<textarea readonly style="flex:1;min-height:250px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:12px;padding:10px;font-family:monospace;resize:none;overflow:auto" onclick="this.select()">' + escapedJson + '</textarea>';
+    html += '<div style="display:flex;gap:8px;margin-top:12px">';
+    html += '<button type="button" id="exportCopyBtn" style="flex:1;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer">\u590d\u5236\u5168\u90e8\u6570\u636e</button>';
+    html += '<button type="button" onclick="document.getElementById(\x27exportModal\x27).remove()" style="padding:12px 20px;background:var(--surface2);color:var(--text);border:none;border-radius:8px;font-size:15px;cursor:pointer">\u5173\u95ed</button>';
+    html += '</div>';
+
+    sheet.innerHTML = html;
+    overlay.appendChild(sheet);
+    document.body.appendChild(overlay);
+
+    // Attach copy handler
+    document.getElementById('exportCopyBtn').onclick = function() {
+      var ta = document.querySelector('#exportModal textarea');
+      ta.select();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ta.value).then(function() {
+          showToast('\u5df2\u590d\u5236\u5230\u526a\u8d34\u677f');
+        }).catch(function() {
+          showToast('\u8bf7\u624b\u52a8\u590d\u5236\u6587\u672c\u5185\u5bb9');
+        });
+      } else {
+        showToast('\u8bf7\u624b\u52a8\u590d\u5236\u6587\u672c\u5185\u5bb9');
+      }
+    };
+  } catch(e) {
+    alert('\u5bfc\u51fa\u5931\u8d25: ' + e.message);
   }
 }
 
