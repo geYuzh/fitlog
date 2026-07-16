@@ -450,11 +450,17 @@ function openSetting(name) {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card"><div class="card-title">\u5bfc\u51fa / \u5bfc\u5165\u6570\u636e</div>';
     html += '<p style="font-size:13px;color:var(--text2);margin-bottom:20px">\u5c06\u6240\u6709\u8bad\u7ec3\u8bb0\u5f55\u3001\u5206\u7c7b\u8bbe\u7f6e\u5bfc\u51fa\u4e3a JSON \u6587\u4ef6\uff0c\u53ef\u5728\u65b0\u8bbe\u5907\u4e0a\u5bfc\u5165\u6062\u590d\u3002</p>';
-    html += '<button class="btn btn-primary btn-block" type="button" id="btnExportData" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
-    html += '<button class="btn btn-outline btn-block" type="button" id="btnImportData">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
+    html += '<button class="btn btn-primary btn-block" type="button" id="btnExportData" onclick="exportData()" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
+    html += '<button class="btn btn-outline btn-block" type="button" id="btnImportData" onclick="importData()">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
     html += '<p style="font-size:11px;color:var(--text2);margin-top:16px">\u5bfc\u5165\u5c06\u66ff\u6362\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff0c\u5efa\u8bae\u5148\u5bfc\u51fa\u4e00\u4efd\u4ee5\u9632\u610f\u5916\u3002</p>';
     html += '</div>';
     panel.innerHTML = html;
+    setTimeout(function() {
+      var b = document.getElementById('btnExportData');
+      if (b) { b.onclick = exportData; }
+      var c = document.getElementById('btnImportData');
+      if (c) { c.onclick = importData; }
+    }, 50);
     alert('innerHTML set, finding buttons...');
     if (expBtn) { expBtn.onclick = exportData; }
     if (impBtn) { impBtn.onclick = importData; }
@@ -654,37 +660,9 @@ function setTheme(t, silent) {
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
-  try {
-    // Use the click monitor to show debug info
-    var m = document.getElementById('clickMonitor');
-    if (!m) {
-      m = document.createElement('div');
-      m.id = 'clickMonitor';
-      m.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ff0;color:#000;padding:4px 8px;font-size:10px;z-index:99999;max-height:80px;overflow:auto;font-family:monospace;pointer-events:none';
-      document.body.appendChild(m);
-    }
-    m.textContent = 'EXPORT OK! body=' + (document.body?1:0) + ' records=' + workouts.length + ' cats=' + Object.keys(exerciseCategories).length;
-    
-    // Now try creating modal
-    var data = { version: 1, exportedAt: new Date().toISOString(), workouts: workouts, exerciseCategories: exerciseCategories };
-    var jsonStr = JSON.stringify(data, null, 2);
-    
-    var overlay = document.createElement('div');
-    overlay.id = 'exportModal';
-    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
-    
-    var sheet = document.createElement('div');
-    sheet.style.cssText = 'background:#1a1a1a;width:100%;max-height:80vh;border-radius:16px 16px 0 0;padding:16px;display:flex;flex-direction:column;overflow:hidden';
-    sheet.textContent = 'EXPORT DATA: ' + jsonStr.substring(0, 500);
-    
-    overlay.appendChild(sheet);
-    document.body.appendChild(overlay);
-    
-    m.textContent = 'MODAL CREATED';
-  } catch(e) {
-    var m = document.getElementById('clickMonitor');
-    if (m) m.textContent = 'EXPORT ERROR: ' + e.message;
-  }
+  document.body.style.background = document.body.style.background === 'red' ? '' : 'red';
+  var m = document.getElementById('clickMonitor');
+  if (m) m.textContent = 'EXPORT CALLED! records:' + workouts.length;
 }
 
 function importData() {
