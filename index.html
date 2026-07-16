@@ -487,20 +487,29 @@ body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
 <script>
-// Direct export/import binding via polling
+// Direct export/import binding - polls forever, binds once found
 (function() {
-  var tries = 0;
-  var iv = setInterval(function() {
-    var b = document.getElementById('btnExportData');
-    if (b) {
-      b.onclick = function() {
-        document.body.style.background = 'red';
-        alert('EXPORT from index.html script!');
-      };
-      clearInterval(iv);
+  var boundExport = false;
+  var boundImport = false;
+  setInterval(function() {
+    if (!boundExport) {
+      var b = document.getElementById('btnExportData');
+      if (b) {
+        b.onclick = function() {
+          document.body.style.background = 'red';
+          alert('EXPORT WORKS! records:' + (typeof workouts !== 'undefined' ? workouts.length : '?'));
+        };
+        boundExport = true;
+      }
     }
-    if (++tries > 50) clearInterval(iv);
-  }, 200);
+    if (!boundImport) {
+      var c = document.getElementById('btnImportData');
+      if (c) {
+        c.onclick = function() { alert('IMPORT button clicked!'); };
+        boundImport = true;
+      }
+    }
+  }, 500);
 })();
 </script>
 
