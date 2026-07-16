@@ -411,6 +411,16 @@ function openSetting(name) {
     html += '</div>';
     panel.innerHTML = html;
   }
+  else if (name === 'transfer') {
+    var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
+    html += '<div class="card"><div class="card-title">\u5bfc\u51fa / \u5bfc\u5165\u6570\u636e</div>';
+    html += '<p style="font-size:13px;color:var(--text2);margin-bottom:20px">\u5c06\u6240\u6709\u8bad\u7ec3\u8bb0\u5f55\u3001\u5206\u7c7b\u8bbe\u7f6e\u5bfc\u51fa\u4e3a JSON \u6587\u4ef6\uff0c\u53ef\u5728\u65b0\u8bbe\u5907\u4e0a\u5bfc\u5165\u6062\u590d\u3002</p>';
+    html += '<button class="btn btn-primary btn-block" type="button" onclick="exportData()" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
+    html += '<button class="btn btn-outline btn-block" type="button" onclick="importData()">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
+    html += '<p style="font-size:11px;color:var(--text2);margin-top:16px">\u5bfc\u5165\u5c06\u66ff\u6362\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff0c\u5efa\u8bae\u5148\u5bfc\u51fa\u4e00\u4efd\u4ee5\u9632\u610f\u5916\u3002</p>';
+    html += '</div>';
+    panel.innerHTML = html;
+  }
   else if (name === 'about') {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card" style="text-align:center">';
@@ -578,22 +588,90 @@ function loadTheme() {
 var THEME_LIST = [
   { id: 'dark', name: '\u6df1\u8272\u6a21\u5f0f', icon: '\u263e', desc: '\u6df1\u8272\u80cc\u666f\uff0c\u62a4\u773c\u8212\u9002' },
   { id: 'light', name: '\u6d45\u8272\u6a21\u5f0f', icon: '\u2600', desc: '\u660e\u4eae\u6e05\u723d\uff0c\u767d\u5929\u4f7f\u7528' },
+  { id: 'monokai', name: 'Monokai', icon: '\ud83c\udfad', desc: '\u7ecf\u5178\u4ee3\u7801\u914d\u8272\uff0c\u6696\u68d5\u80cc\u666f + \u7eff\u9ec4\u9ad8\u4eae' },
+  { id: 'nord', name: 'Nord \u5317\u6b27', icon: '\u2744', desc: '\u5317\u6b27\u6781\u5149\u98ce\uff0c\u84dd\u7070\u51b7\u8c03' },
+  { id: 'dracula', name: 'Dracula', icon: '\ud83e\udddb', desc: '\u7d2b\u9ed1\u5fb7\u53e4\u62c9\uff0c\u65f6\u5c1a\u6697\u7d2b' },
+  { id: 'github', name: 'GitHub \u6697', icon: '\ud83d\udcbb', desc: '\u6a21\u4eff GitHub \u6697\u8272\u6a21\u5f0f\uff0c\u84dd\u7070\u5185\u655b' },
   { id: 'ocean', name: '\u6d77\u6d0b\u84dd', icon: '\ud83c\udf0a', desc: '\u6e05\u723d\u84dd\u8c03\uff0c\u5b81\u9759\u4e13\u6ce8' },
   { id: 'forest', name: '\u68ee\u6797\u7eff', icon: '\ud83c\udf32', desc: '\u81ea\u7136\u7eff\u610f\uff0c\u6c89\u7a33\u8212\u7f13' },
   { id: 'sunset', name: '\u65e5\u843d\u6a59', icon: '\ud83c\udf07', desc: '\u6e29\u6696\u6a59\u8c03\uff0c\u6d3b\u529b\u5145\u6c9b' },
-  { id: 'purple', name: '\u7d2b\u7f57\u5170', icon: '\ud83d\udc9c', desc: '\u7d2b\u8272\u9b45\u529b\uff0c\u4f18\u96c5\u65f6\u5c1a' }
+  { id: 'purple', name: '\u7d2b\u7f57\u5170', icon: '\ud83d\udc9c', desc: '\u7d2b\u8272\u9b45\u529b\uff0c\u4f18\u96c5\u65f6\u5c1a' },
+  { id: 'midnight', name: '\u5348\u591c\u84dd', icon: '\ud83c\udf19', desc: '\u6df1\u84dd\u9ed1\u8272\uff0cOLED \u53cb\u597d\u7701\u7535' },
+  { id: 'matcha', name: '\u62b9\u8336\u7eff', icon: '\ud83c\udf75', desc: '\u67d4\u548c\u7eff\u8336\u8272\uff0c\u6e29\u6696\u81ea\u7136' },
+  { id: 'sakura', name: '\u6a31\u82b1\u7c89', icon: '\ud83c\udf38', desc: '\u6e29\u67d4\u7c89\u767d\u8c03\uff0c\u6d45\u8272\u5c0f\u6e05\u65b0' },
+  { id: 'coffee', name: '\u5496\u5561\u68d5', icon: '\u2615', desc: '\u6696\u68d5\u8272\u7cfb\uff0c\u590d\u53e4\u4e66\u5377\u6c1b\u56f4' }
 ];
 
 function setTheme(t, silent) {
   localStorage.setItem(THEME_KEY, t);
   // Remove all theme classes
-  var themes = ['dark', 'light', 'ocean', 'forest', 'sunset', 'purple'];
+  var themes = ['dark', 'light', 'monokai', 'nord', 'dracula', 'github', 'ocean', 'forest', 'sunset', 'purple', 'midnight', 'matcha', 'sakura', 'coffee'];
   themes.forEach(function(th) { document.body.classList.remove('theme-' + th); });
   // Add the selected theme class (dark is default, no class needed)
   if (t !== 'dark') {
     document.body.classList.add('theme-' + t);
   }
   if (!silent && currentSetting === 'theme') openSetting('theme');
+
+// ========== EXPORT / IMPORT ==========
+function exportData() {
+  var data = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    workouts: workouts,
+    exerciseCategories: exerciseCategories,
+    exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || '{}')
+  };
+  var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'fitlog_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('已导出备份文件');
+}
+
+function importData() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        var data = JSON.parse(ev.target.result);
+        if (!data.workouts || !Array.isArray(data.workouts)) {
+          alert('数据格式无效，请选择正确的备份文件');
+          return;
+        }
+        var count = data.workouts.length;
+        if (!confirm('将导入 ' + count + ' 条记录。当前记录将被替换，确定继续？')) return;
+        workouts = data.workouts;
+        saveData();
+        if (data.exerciseCategories) {
+          exerciseCategories = data.exerciseCategories;
+          saveCategories();
+        }
+        if (data.exerciseFreq) {
+          localStorage.setItem(FREQ_KEY, JSON.stringify(data.exerciseFreq));
+        }
+        showToast('已导入 ' + count + ' 条记录');
+        refreshAll();
+        renderPresets();
+      } catch(e) {
+        alert('文件解析失败：' + e.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
 }// ========== CHARTS ==========
 var chartWeightInst = null, chartVolumeInst = null;
 var chartFilterEx = 'all';

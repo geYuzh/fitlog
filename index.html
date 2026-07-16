@@ -125,6 +125,15 @@ body.theme-forest{--bg:#0d1f0d;--surface:#162816;--surface2:#1e361e;--border:#2a
 body.theme-sunset{--bg:#1a0f0a;--surface:#261912;--surface2:#332419;--border:#4a3222;--text:#f0e0d0;--text2:#b8956e;--accent:#fb923c}
 /* Purple Theme */
 body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a224a;--text:#e8d5f5;--text2:#a78bbf;--accent:#c084fc}
+body.theme-monokai{--bg:#272822;--surface:#2e2f2a;--surface2:#3b3c36;--border:#49483e;--text:#f8f8f2;--text2:#a6a696;--accent:#a6e22e}
+body.theme-nord{--bg:#2e3440;--surface:#3b4252;--surface2:#434c5e;--border:#4c566a;--text:#eceff4;--text2:#aeb7c6;--accent:#88c0d0}
+body.theme-dracula{--bg:#282a36;--surface:#313340;--surface2:#3a3d4a;--border:#44475a;--text:#f8f8f2;--text2:#8892a0;--accent:#bd93f9}
+body.theme-github{--bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;--text:#c9d1d9;--text2:#8b949e;--accent:#58a6ff}
+body.theme-midnight{--bg:#000018;--surface:#0a0a2e;--surface2:#141440;--border:#1e1e52;--text:#d0d0ff;--text2:#8888cc;--accent:#4488ff}
+body.theme-matcha{--bg:#1a2318;--surface:#212e1f;--surface2:#2a3827;--border:#3a4a36;--text:#e2e8d8;--text2:#96a88a;--accent:#8bc34a}
+body.theme-sakura{--bg:#1a1218;--surface:#241c22;--surface2:#2e262c;--border:#3d343a;--text:#f0e0e8;--text2:#b8959e;--accent:#f06292}
+body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d3026;--text:#e8dcc8;--text2:#a89878;--accent:#d4a354}
+
 /* Theme Options */
 .theme-option{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface2);border-radius:10px;margin-bottom:8px;cursor:pointer;border:2px solid transparent;transition:all .2s}
 .theme-option.selected{border-color:var(--accent)}
@@ -377,7 +386,18 @@ body.theme-purple{--bg:#120818;--surface:#1c0f26;--surface2:#261633;--border:#3a
         </div>
         <span class="settings-row-arrow">&#8250;</span>
       </div>
-      <div class="settings-row" onclick="openSetting('about')">
+      
+            <div class="settings-row" onclick="openSetting('transfer')">
+        <div class="settings-row-left">
+          <span class="settings-row-icon">&#128190;</span>
+          <div>
+            <div class="settings-row-title">导出 / 导入数据</div>
+            <div class="settings-row-desc">备份训练记录或迁移到新设备</div>
+          </div>
+        </div>
+        <span class="settings-row-arrow">&#8250;</span>
+      </div>
+<div class="settings-row" onclick="openSetting('about')">
         <div class="settings-row-left">
           <span class="settings-row-icon">&#8505;</span>
           <div>
