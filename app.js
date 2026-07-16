@@ -74,6 +74,23 @@ var _cacheSetData = null, _cacheHeaviestData = null;
 
 
 function init() {
+  // === GLOBAL CLICK MONITOR (debug) ===
+  document.addEventListener('click', function(e) {
+    var tag = e.target.tagName;
+    var id = e.target.id || '';
+    var cls = e.target.className || '';
+    var txt = (e.target.textContent || '').substring(0,20);
+    // Show on page
+    var m = document.getElementById('clickMonitor');
+    if (!m) {
+      m = document.createElement('div');
+      m.id = 'clickMonitor';
+      m.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ff0;color:#000;padding:4px 8px;font-size:10px;z-index:99999;max-height:80px;overflow:auto;font-family:monospace;pointer-events:none';
+      document.body.appendChild(m);
+    }
+    m.textContent = new Date().toISOString().slice(11,19) + ' | ' + tag + '#' + id + ' .' + cls.split(' ')[0] + ' "' + txt + '"';
+  }, true);
+
   // Event delegation for export/import buttons (bypasses innerHTML onclick issues)
   document.body.addEventListener('click', function(e) {
     var el = e.target;
@@ -637,20 +654,11 @@ function setTheme(t, silent) {
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
-  // Write to page debug element
-  var dbg = document.getElementById('debugOutput');
-  if (!dbg) {
-    dbg = document.createElement('div');
-    dbg.id = 'debugOutput';
-    dbg.style.cssText = 'position:fixed;bottom:70px;left:8px;right:8px;background:#333;color:#0f0;padding:8px;border-radius:8px;font-size:11px;z-index:9999;max-height:120px;overflow:auto;font-family:monospace';
-    document.body.appendChild(dbg);
-  }
-  dbg.textContent = 'EXPORT FIRED! records:' + workouts.length;
-  console.log('EXPORT DATA CALLED');
-  showToast('????????: ' + workouts.length);
-
-  console.log('EXPORT DATA CALLED');
-  showToast('???????????: ' + workouts.length);
+  // Turn the page red to prove the function was called
+  document.body.style.background = 'red';
+  setTimeout(function(){ document.body.style.background = ''; }, 1000);
+  showToast('EXPORT WORKS! records:' + workouts.length);
+  alert('EXPORT WORKS!');
 }
 
 function importData() {
