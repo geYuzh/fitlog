@@ -446,7 +446,6 @@ function openSetting(name) {
   else if (name === 'transfer') {
     console.log('OPEN SETTING: transfer');
 
-    alert('transfer case reached');
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card"><div class="card-title">\u5bfc\u51fa / \u5bfc\u5165\u6570\u636e</div>';
     html += '<p style="font-size:13px;color:var(--text2);margin-bottom:20px">\u5c06\u6240\u6709\u8bad\u7ec3\u8bb0\u5f55\u3001\u5206\u7c7b\u8bbe\u7f6e\u5bfc\u51fa\u4e3a JSON \u6587\u4ef6\uff0c\u53ef\u5728\u65b0\u8bbe\u5907\u4e0a\u5bfc\u5165\u6062\u590d\u3002</p>';
@@ -461,10 +460,6 @@ function openSetting(name) {
       var c = document.getElementById('btnImportData');
       if (c) { c.onclick = importData; }
     }, 50);
-    alert('innerHTML set, finding buttons...');
-    if (expBtn) { expBtn.onclick = exportData; }
-    if (impBtn) { impBtn.onclick = importData; }
-    alert('button bindings done. expBtn=' + (expBtn?1:0) + ' impBtn=' + (impBtn?1:0));
   }
   else if (name === 'about') {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
@@ -660,9 +655,31 @@ function setTheme(t, silent) {
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
-  document.body.style.background = document.body.style.background === 'red' ? '' : 'red';
-  var m = document.getElementById('clickMonitor');
-  if (m) m.textContent = 'EXPORT CALLED! records:' + workouts.length;
+  try {
+    var exportObj = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      workouts: workouts,
+      exerciseCategories: exerciseCategories,
+      defaultCategories: defaultCategories,
+      exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || "{}"),
+      increment: getIncrement()
+    };
+    var blob = new Blob([JSON.stringify(exportObj, null, 2)], {type: 'application/json'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    var now = new Date();
+    var ts = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    a.download = 'FitLog_backup_' + ts + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('备份文件已导出 (' + workouts.length + ' 条记录)');
+  } catch(e) {
+    alert('导出失败：' + e.message);
+  }
 }
 
 function importData() {
