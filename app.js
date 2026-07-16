@@ -622,16 +622,52 @@ function exportData() {
     exerciseCategories: exerciseCategories,
     exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || '{}')
   };
-  var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  var jsonStr = JSON.stringify(data, null, 2);
+  var filename = 'fitlog_backup_' + new Date().toISOString().slice(0,10) + '.json';
+
+  // Try Web Share API first (Android/iOS)
+  if (navigator.share && navigator.canShare) {
+    var blob = new Blob([jsonStr], { type: 'application/json' });
+    var file = new File([blob], filename, { type: 'application/json' });
+    var shareData = { title: 'FitLog 备份', files: [file] };
+    if (navigator.canShare(shareData)) {
+      navigator.share(shareData).then(function() {
+        showToast('已导出备份文件');
+      }).catch(function(e) {
+        // Fallback: copy to clipboard
+        copyExportFallback(jsonStr);
+      });
+      return;
+    }
+  }
+
+  // Try download link (desktop browsers)
+  var blob = new Blob([jsonStr], { type: 'application/json' });
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
   a.href = url;
-  a.download = 'fitlog_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  a.download = filename;
+  a.style.display = 'none';
   document.body.appendChild(a);
   a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  // Cleanup after a short delay for Firefox
+  setTimeout(function() {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 200);
   showToast('已导出备份文件');
+}
+
+function copyExportFallback(jsonStr) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(jsonStr).then(function() {
+      showToast('已复制备份内容到剪贴板，请粘贴保存');
+    }).catch(function() {
+      showToast('导出失败，请尝试其他方式');
+    });
+  } else {
+    showToast('导出失败，请尝试其他方式');
+  }
 }
 
 function importData() {
