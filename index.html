@@ -489,25 +489,19 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 <script>
 // Direct export/import binding - polls forever, binds once found
 (function() {
-  var boundExport = false;
-  var boundImport = false;
   setInterval(function() {
-    if (!boundExport) {
-      var b = document.getElementById('btnExportData');
-      if (b) {
-        b.onclick = function() {
-          document.body.style.background = 'red';
-          alert('EXPORT WORKS! records:' + (typeof workouts !== 'undefined' ? workouts.length : '?'));
-        };
-        boundExport = true;
-      }
+    var b = document.getElementById('btnExportData');
+    if (b && !b._fitlogBound) {
+      b.onclick = function() {
+        document.body.style.background = 'red';
+        alert('EXPORT WORKS! records:' + (typeof workouts !== 'undefined' ? workouts.length : '?'));
+      };
+      b._fitlogBound = true;
     }
-    if (!boundImport) {
-      var c = document.getElementById('btnImportData');
-      if (c) {
-        c.onclick = function() { alert('IMPORT button clicked!'); };
-        boundImport = true;
-      }
+    var c = document.getElementById('btnImportData');
+    if (c && !c._fitlogBound) {
+      c.onclick = function() { alert('IMPORT button clicked!'); };
+      c._fitlogBound = true;
     }
   }, 500);
 })();
