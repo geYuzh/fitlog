@@ -486,5 +486,23 @@ body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d
 <script>
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
+<script>
+// Direct export/import binding via polling
+(function() {
+  var tries = 0;
+  var iv = setInterval(function() {
+    var b = document.getElementById('btnExportData');
+    if (b) {
+      b.onclick = function() {
+        document.body.style.background = 'red';
+        alert('EXPORT from index.html script!');
+      };
+      clearInterval(iv);
+    }
+    if (++tries > 50) clearInterval(iv);
+  }, 200);
+})();
+</script>
+
 </body>
 </html>
