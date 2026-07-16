@@ -450,8 +450,8 @@ function openSetting(name) {
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
     html += '<div class="card"><div class="card-title">\u5bfc\u51fa / \u5bfc\u5165\u6570\u636e</div>';
     html += '<p style="font-size:13px;color:var(--text2);margin-bottom:20px">\u5c06\u6240\u6709\u8bad\u7ec3\u8bb0\u5f55\u3001\u5206\u7c7b\u8bbe\u7f6e\u5bfc\u51fa\u4e3a JSON \u6587\u4ef6\uff0c\u53ef\u5728\u65b0\u8bbe\u5907\u4e0a\u5bfc\u5165\u6062\u590d\u3002</p>';
-    html += '<button class="btn btn-primary btn-block" type="button" onclick="exportData()" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
-    html += '<button class="btn btn-outline btn-block" type="button" onclick="importData()">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
+    html += '<button class="btn btn-primary btn-block" type="button" id="btnExportData" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
+    html += '<button class="btn btn-outline btn-block" type="button" id="btnImportData">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
     html += '<p style="font-size:11px;color:var(--text2);margin-top:16px">\u5bfc\u5165\u5c06\u66ff\u6362\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff0c\u5efa\u8bae\u5148\u5bfc\u51fa\u4e00\u4efd\u4ee5\u9632\u610f\u5916\u3002</p>';
     html += '</div>';
     panel.innerHTML = html;
@@ -654,11 +654,61 @@ function setTheme(t, silent) {
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
-  // Turn the page red to prove the function was called
-  document.body.style.background = 'red';
-  setTimeout(function(){ document.body.style.background = ''; }, 1000);
-  showToast('EXPORT WORKS! records:' + workouts.length);
-  alert('EXPORT WORKS!');
+  try {
+    var data = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      workouts: workouts,
+      exerciseCategories: exerciseCategories,
+      exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || '{}')
+    };
+    var jsonStr = JSON.stringify(data, null, 2);
+    var escapedJson = jsonStr.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+    var existing = document.getElementById('exportModal');
+    if (existing) existing.remove();
+
+    var overlay = document.createElement('div');
+    overlay.id = 'exportModal';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+
+    var sheet = document.createElement('div');
+    sheet.style.cssText = 'background:var(--surface);width:100%;max-height:80vh;border-radius:16px 16px 0 0;padding:16px;display:flex;flex-direction:column;overflow:hidden';
+
+    var html = '';
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">';
+    html += '<span style="font-weight:600;font-size:16px">\u5bfc\u51fa\u5907\u4efd\u6570\u636e</span>';
+    html += '<button type="button" onclick="document.getElementById(\x27exportModal\x27).remove()" style="background:none;border:none;color:var(--text2);font-size:20px;cursor:pointer">&times;</button>';
+    html += '</div>';
+    html += '<p style="font-size:12px;color:var(--text2);margin-bottom:8px">\u70b9\u51fb\u201c\u590d\u5236\u201d\uff0c\u7136\u540e\u7c98\u8d34\u5230\u5907\u5fd8\u5f55\u6216\u53d1\u9001\u7ed9\u81ea\u5df1</p>';
+    html += '<textarea readonly id="exportTextarea" style="flex:1;min-height:250px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:12px;padding:10px;font-family:monospace;resize:none;overflow:auto" onclick="this.select()">' + escapedJson + '</textarea>';
+    html += '<div style="display:flex;gap:8px;margin-top:12px">';
+    html += '<button type="button" id="exportCopyBtn" style="flex:1;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer">\u590d\u5236\u5168\u90e8\u6570\u636e</button>';
+    html += '<button type="button" onclick="document.getElementById(\x27exportModal\x27).remove()" style="padding:12px 20px;background:var(--surface2);color:var(--text);border:none;border-radius:8px;font-size:15px;cursor:pointer">\u5173\u95ed</button>';
+    html += '</div>';
+
+    sheet.innerHTML = html;
+    overlay.appendChild(sheet);
+    document.body.appendChild(overlay);
+
+    // Bind copy button (same event delegation issue)
+    document.getElementById('exportCopyBtn').onclick = function() {
+      var ta = document.getElementById('exportTextarea');
+      ta.select();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ta.value).then(function() {
+          showToast('\u5df2\u590d\u5236\u5230\u526a\u8d34\u677f');
+        }).catch(function() {
+          showToast('\u8bf7\u624b\u52a8\u590d\u5236');
+        });
+      } else {
+        showToast('\u8bf7\u624b\u52a8\u590d\u5236');
+      }
+    };
+  } catch(e) {
+    alert('\u5bfc\u51fa\u5931\u8d25: ' + e.message);
+  }
 }
 
 function importData() {
