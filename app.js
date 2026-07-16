@@ -420,7 +420,6 @@ function openSetting(name) {
     html += '<p style="font-size:11px;color:var(--text2);margin-top:16px">\u5bfc\u5165\u5c06\u66ff\u6362\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff0c\u5efa\u8bae\u5148\u5bfc\u51fa\u4e00\u4efd\u4ee5\u9632\u610f\u5916\u3002</p>';
     html += '</div>';
     panel.innerHTML = html;
-    // Bind events via DOM (more reliable than inline onclick in WebView)
     document.getElementById('btnExportData').onclick = exportData;
     document.getElementById('btnImportData').onclick = importData;
   }
@@ -680,6 +679,7 @@ function importData() {
   var input = document.createElement('input');
   input.type = 'file';
   input.accept = '.json';
+  input.style.display = 'none';
   input.onchange = function(e) {
     var file = e.target.files[0];
     if (!file) return;
@@ -711,7 +711,9 @@ function importData() {
     };
     reader.readAsText(file);
   };
+  document.body.appendChild(input);
   input.click();
+  // input removed by onchange handler
 }
 
 }// ========== CHARTS ==========
