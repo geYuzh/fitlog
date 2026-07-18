@@ -655,6 +655,7 @@ function setTheme(t, silent) {
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
+  console.log("exportData called, workouts:", workouts.length);
   try {
     var exportObj = {
       version: 1,
@@ -665,24 +666,69 @@ function exportData() {
       exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || "{}"),
       increment: getIncrement()
     };
-    var blob = new Blob([JSON.stringify(exportObj, null, 2)], {type: 'application/json'});
+    var jsonStr = JSON.stringify(exportObj, null, 2);
+    console.log("JSON size:", jsonStr.length);
+    var blob = new Blob([jsonStr], {type: "application/json"});
     var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
+    var a = document.createElement("a");
     a.href = url;
     var now = new Date();
-    var ts = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
-    a.download = 'FitLog_backup_' + ts + '.json';
+    var ts = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + "-" + String(now.getDate()).padStart(2,"0");
+    a.download = "FitLog_backup_" + ts + ".json";
+    a.style.display = "none";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToast('备份文件已导出 (' + workouts.length + ' 条记录)');
+    console.log("Download triggered");
+    showToast("备份文件已导出 (" + workouts.length + " 条记录)");
+    // Show modal with text content as fallback for mobile
+    setTimeout(function() { showExportModal(jsonStr, ts); }, 500);
   } catch(e) {
-    alert('导出失败：' + e.message);
+    console.error("exportData error:", e);
+    alert("导出失败：" + e.message);
   }
 }
 
-function importData() {
+function showExportModal(jsonStr, ts) {
+  var overlay = document.createElement("div");
+  overlay.style.cssText = "position:fixed;z-index:99999;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center";
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  var box = document.createElement("div");
+  box.style.cssText = "background:var(--bg,#1a1a2e);color:var(--text,#eee);border-radius:12px;padding:20px;max-width:90vw;max-height:85vh;overflow:auto;margin:20px";
+  var safeJson = jsonStr.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  box.innerHTML = '<h3 style="margin:0 0 8px">导出成功</h3><p style="font-size:13px;color:var(--text2,#aaa);margin:0 0 12px">文件: FitLog_backup_' + ts + '.json (' + jsonStr.length + ' 字节)</p><textarea readonly id="exportTextArea" style="width:100%;height:250px;font-size:11px;background:var(--bg2,#16213e);color:var(--text,#eee);border:1px solid var(--border,#333);border-radius:8px;padding:10px;resize:none;box-sizing:border-box;font-family:monospace">' + safeJson + '</textarea><div style="display:flex;gap:10px;margin-top:12px"><button id="exportCopyBtn" class="btn btn-primary" style="flex:1">复制内容</button><button class="btn btn-outline" style="flex:1" onclick="this.closest('div').parentElement.parentElement.remove()">关闭</button></div>';
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  setTimeout(function() {
+    var cb = document.getElementById("exportCopyBtn");
+    if (cb) {
+      cb.onclick = function() {
+        var ta = document.getElementById("exportTextArea");
+        var text = ta ? ta.value : jsonStr;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            cb.textContent = "已复制!";
+            setTimeout(function() { cb.textContent = "复制内容"; }, 1500);
+          }).catch(function() { fallbackCopy(text, cb); });
+        } else {
+          fallbackCopy(text, cb);
+        }
+      };
+    }
+  }, 100);
+}
+
+function fallbackCopy(text, btn) {
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.cssText = "position:fixed;left:-9999px;top:-9999px";
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand("copy"); btn.textContent = "已复制!"; } catch(e) { btn.textContent = "复制失败"; }
+  document.body.removeChild(ta);
+  setTimeout(function() { btn.textContent = "复制内容"; }, 1500);
+}function importData() {
   var input = document.createElement('input');
   input.type = 'file';
   input.accept = '.json';
