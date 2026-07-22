@@ -74,6 +74,23 @@ var _cacheSetData = null, _cacheHeaviestData = null;
 
 
 function init() {
+  // === GLOBAL CLICK MONITOR (debug) ===
+  document.addEventListener('click', function(e) {
+    var tag = e.target.tagName;
+    var id = e.target.id || '';
+    var cls = e.target.className || '';
+    var txt = (e.target.textContent || '').substring(0,20);
+    // Show on page
+    var m = document.getElementById('clickMonitor');
+    if (!m) {
+      m = document.createElement('div');
+      m.id = 'clickMonitor';
+      m.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ff0;color:#000;padding:4px 8px;font-size:10px;z-index:99999;max-height:80px;overflow:auto;font-family:monospace;pointer-events:none';
+      document.body.appendChild(m);
+    }
+    m.textContent = new Date().toISOString().slice(11,19) + ' | ' + tag + '#' + id + ' .' + cls.split(' ')[0] + ' "' + txt + '"';
+  }, true);
+
   // Event delegation for export/import buttons (bypasses innerHTML onclick issues)
   document.addEventListener('click', function(e) {
     var el = e.target;
@@ -317,6 +334,22 @@ function renderSettingsPage() {
   expandedCategories = {};
 }
 
+function importHistoryData() {
+  if (typeof IMPORT_DATA === 'undefined') {
+    alert('历史数据文件未加载，请刷新页面后重试');
+    return;
+  }
+  if (!confirm('将导入 " + IMPORT_DATA.length + " 条历史记录。\\n已有记录不会被删除，重复日期+项目会追加。\\n确定继续？')) return;
+  var existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  var merged = existing.concat(IMPORT_DATA);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+  workouts = merged;
+  renderStats();
+  renderPresets();
+  updateCharts();
+  alert('已导入 ' + IMPORT_DATA.length + ' 条记录！');
+  renderSettingsPage();
+}
 
 function openSetting(name) {
   currentSetting = name;
@@ -402,7 +435,14 @@ function openSetting(name) {
     html += '</div>';
     panel.innerHTML = html;
   }
-
+  else if (name === 'importHistory') {
+    var html = '<div class="settings-back" onclick="renderSettingsPage()">‹ 返回设置</div>';
+    html += '<div class="card"><div class="card-title">导入历史数据</div>';
+    html += '<p style="font-size:13px;color:var(--text2);margin-bottom:16px">将 2024~2026 年笔记记录（706条）导入到软件。已有记录不会被删除。</p>';
+    html += '<button class="btn btn-primary btn-block" type="button" onclick="importHistoryData()">导入 706 条历史记录</button>';
+    html += '</div>';
+    panel.innerHTML = html;
+  }
   else if (name === 'transfer') {
     console.log('OPEN SETTING: transfer');
 
@@ -710,7 +750,7 @@ function fallbackCopy(text, btn) {
         if (!confirm('将导入 ' + count + ' 条记录。当前记录将被替换，确定继续？')) return;
         workouts = data.workouts;
         saveData();
-        if (data.exerciseCategories && Object.keys(data.exerciseCategories).length > 0) {
+        if (data.exerciseCategories) {
           exerciseCategories = data.exerciseCategories;
           saveCategories();
         }
@@ -840,7 +880,6 @@ function updateChart1() {
       label: ds.label,
       data: ds.data.slice(wStart, wEnd),
       exNames: ds.exNames ? ds.exNames.slice(wStart, wEnd) : null,
-      reps: ds.reps ? ds.reps.slice(wStart, wEnd) : null,
       borderColor: ds.borderColor,
       backgroundColor: ds.backgroundColor,
       tension: ds.tension,
@@ -926,19 +965,11 @@ function buildSetData(filter) {
       }
       return null;
     });
-    var reps = dates.map(function(d) {
-      var dayWorkouts = filtered.filter(function(w) { return w.date === d; });
-      for (var j = 0; j < dayWorkouts.length; j++) {
-        if (dayWorkouts[j].sets.length > si) return dayWorkouts[j].sets[si].reps;
-      }
-      return null;
-    });
     datasets.push({
       setIndex: si,
       label: '\u7b2c' + (si+1) + '\u7ec4',
       data: data,
       exNames: exNames,
-      reps: reps,
       borderColor: RAINBOW[si % RAINBOW.length],
       backgroundColor: 'transparent',
       tension: 0.2,
@@ -970,23 +1001,7 @@ function buildHeaviestData(filter) {
     return maxW || null;
   });
 
-  var exNames = dates.map(function(d) {
-    var dayWorkouts = filtered.filter(function(w) { return w.date === d; });
-    var maxW = 0, maxEx = '';
-    dayWorkouts.forEach(function(w) {
-      w.sets.forEach(function(s) { if (s.weight > maxW) { maxW = s.weight; maxEx = w.exercise; } });
-    });
-    return maxEx;
-  });
-  var reps = dates.map(function(d) {
-    var dayWorkouts = filtered.filter(function(w) { return w.date === d; });
-    var maxW = 0, maxReps = 0;
-    dayWorkouts.forEach(function(w) {
-      w.sets.forEach(function(s) { if (s.weight > maxW) { maxW = s.weight; maxReps = s.reps; } });
-    });
-    return maxReps || null;
-  });
-  return { labels: dates, data: data, exNames: exNames, reps: reps };
+  return { labels: dates, data: data };
 }
 
 
@@ -1000,27 +1015,14 @@ function chartOpts(showLegend, labels) {
         legend: { display: !!showLegend, position: 'top', labels: { color: '#999', font: { size: 10 }, boxWidth: 12, padding: 8 } },
         tooltip: {
           callbacks: {
-            title: function(ctx) {
-              if (!ctx.length) return '';
-              return ctx[0].label || '';
-            },
             label: function(ctx) {
               var exName = '';
               if (ctx.dataset.exNames && ctx.dataIndex < ctx.dataset.exNames.length) {
                 exName = ctx.dataset.exNames[ctx.dataIndex] || '';
               }
-              var setLabel = ctx.dataset.label || '';
-              var weight = ctx.parsed.x;
-              var reps = '';
-              if (ctx.dataset.reps && ctx.dataIndex < ctx.dataset.reps.length) {
-                reps = ctx.dataset.reps[ctx.dataIndex];
-              }
-              var parts = [];
-              if (exName) parts.push(exName);
-              if (setLabel) parts.push(setLabel);
-              parts.push(weight + ' kg');
-              if (reps !== null && reps !== undefined && reps !== '') parts.push(reps + ' reps');
-              return parts.join(' · ');
+              var label = exName ? exName + ' · ' : '';
+              label += ctx.dataset.label + ': ' + ctx.parsed.x + ' kg';
+              return label;
             }
           }
         }
@@ -1114,7 +1116,6 @@ function renderCharts() {
 
   if (!hasData) {
     document.getElementById('setTabs').innerHTML = '';
-    renderChartFilter();
     return;
   }
 
@@ -1141,7 +1142,6 @@ function renderCharts() {
       label: ds.label,
       data: ds.data.slice(wStart, wEnd),
       exNames: ds.exNames ? ds.exNames.slice(wStart, wEnd) : null,
-      reps: ds.reps ? ds.reps.slice(wStart, wEnd) : null,
       borderColor: ds.borderColor,
       backgroundColor: ds.backgroundColor,
       tension: ds.tension,
@@ -1164,11 +1164,9 @@ function renderCharts() {
   var hLabels = heaviestData.labels.slice(hStart, hEnd);
   var hData = heaviestData.data.slice(hStart, hEnd);
 
-  var hExNames = heaviestData.exNames ? heaviestData.exNames.slice(hStart, hEnd) : null;
-  var hReps = heaviestData.reps ? heaviestData.reps.slice(hStart, hEnd) : null;
   chartVolumeInst = new Chart(document.getElementById('chartVolume').getContext('2d'), {
     type: 'line',
-    data: { labels: hLabels, datasets: [{ data: hData, exNames: hExNames, reps: hReps, label: '当日最重组', borderColor: '#ff6b35', backgroundColor: 'rgba(255,107,53,0.08)', fill: true, tension: 0.3, pointRadius: 3, pointBackgroundColor: '#ff6b35', borderWidth: 2 }] },
+    data: { labels: hLabels, datasets: [{ data: hData, borderColor: '#ff6b35', backgroundColor: 'rgba(255,107,53,0.08)', fill: true, tension: 0.3, pointRadius: 3, pointBackgroundColor: '#ff6b35', borderWidth: 2 }] },
     options: chartOpts(false, hLabels)
   });
 

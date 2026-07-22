@@ -12,7 +12,7 @@
 <script src="hammer.min.js"></script>
 
 <script src="import_data.js?v=1"></script>
-<script src="app.js?v=20260722" defer></script>
+<script src="app.js?v=20260722g" defer></script>
 <style>
 :root{--bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#333;--text:#e8e8e8;--text2:#999;--accent:#ff6b35;--accent2:#4ecdc4;--green:#2ecc71;--red:#e74c3c;--radius:12px;--nav-h:64px;--header-h:56px;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -407,16 +407,6 @@ body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d
         </div>
         <span class="settings-row-arrow">&#8250;</span>
       </div>
-      <div class="settings-row" onclick="openSetting('importHistory')">
-        <div class="settings-row-left">
-          <span class="settings-row-icon">&#128229;</span>
-          <div>
-            <div class="settings-row-title">导入历史数据</div>
-            <div class="settings-row-desc">导入2024~2026年训练记录（706条）</div>
-          </div>
-        </div>
-        <span class="settings-row-arrow">&#8250;</span>
-      </div>
           <div class="settings-row" onclick="openSetting('debugData')">
         <div class="settings-row-left">
           <span class="settings-row-icon">&#128295;</span>
@@ -488,24 +478,7 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
 <script>
 // Direct export/import binding - polls forever, binds once found
-(function() {
-  setInterval(function() {
-    var b = document.getElementById('btnExportData');
-    if (b && !b._fitlogBound) {
-      b.onclick = function() {
-        var m = document.getElementById('clickMonitor');
-        if (m) m.textContent = '=== EXPORT FIRED! records:' + (typeof workouts !== 'undefined' ? workouts.length : '?') + ' ===';
-        document.body.style.background = 'red';
-      };
-      b._fitlogBound = true;
-    }
-    var c = document.getElementById('btnImportData');
-    if (c && !c._fitlogBound) {
-      c.onclick = function() { alert('IMPORT button clicked!'); };
-      c._fitlogBound = true;
-    }
-  }, 500);
-})();
+
 </script>
 
 </body>
