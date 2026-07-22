@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +12,7 @@
 <script src="hammer.min.js"></script>
 
 <script src="import_data.js?v=1"></script>
-<script src="app.js?v=20260716b" defer></script>
+<script src="app.js?v=20260722" defer></script>
 <style>
 :root{--bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#333;--text:#e8e8e8;--text2:#999;--accent:#ff6b35;--accent2:#4ecdc4;--green:#2ecc71;--red:#e74c3c;--radius:12px;--nav-h:64px;--header-h:56px;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -493,8 +493,9 @@ if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
     var b = document.getElementById('btnExportData');
     if (b && !b._fitlogBound) {
       b.onclick = function() {
+        var m = document.getElementById('clickMonitor');
+        if (m) m.textContent = '=== EXPORT FIRED! records:' + (typeof workouts !== 'undefined' ? workouts.length : '?') + ' ===';
         document.body.style.background = 'red';
-        alert('EXPORT WORKS! records:' + (typeof workouts !== 'undefined' ? workouts.length : '?'));
       };
       b._fitlogBound = true;
     }

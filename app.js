@@ -697,9 +697,11 @@ function showExportModal(jsonStr, ts) {
   var box = document.createElement("div");
   box.style.cssText = "background:var(--bg,#1a1a2e);color:var(--text,#eee);border-radius:12px;padding:20px;max-width:90vw;max-height:85vh;overflow:auto;margin:20px";
   var safeJson = jsonStr.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  box.innerHTML = '<h3 style="margin:0 0 8px">导出成功</h3><p style="font-size:13px;color:var(--text2,#aaa);margin:0 0 12px">文件: FitLog_backup_' + ts + '.json (' + jsonStr.length + ' 字节)</p><textarea readonly id="exportTextArea" style="width:100%;height:250px;font-size:11px;background:var(--bg2,#16213e);color:var(--text,#eee);border:1px solid var(--border,#333);border-radius:8px;padding:10px;resize:none;box-sizing:border-box;font-family:monospace">' + safeJson + '</textarea><div style="display:flex;gap:10px;margin-top:12px"><button id="exportCopyBtn" class="btn btn-primary" style="flex:1">复制内容</button><button class="btn btn-outline" style="flex:1" onclick="this.closest('div').parentElement.parentElement.remove()">关闭</button></div>';
+  box.innerHTML = "<h3 style='margin:0 0 8px'>导出成功</h3><p style='font-size:13px;color:var(--text2,#aaa);margin:0 0 12px'>文件: FitLog_backup_" + ts + ".json (" + jsonStr.length + " 字节)</p><textarea readonly id='exportTextArea' style='width:100%;height:250px;font-size:11px;background:var(--bg2,#16213e);color:var(--text,#eee);border:1px solid var(--border,#333);border-radius:8px;padding:10px;resize:none;box-sizing:border-box;font-family:monospace'>" + safeJson + "</textarea><div style='display:flex;gap:10px;margin-top:12px'><button id='exportCopyBtn' class='btn btn-primary' style='flex:1'>复制内容</button><button class='btn btn-outline' style='flex:1' id='exportCloseBtn'>关闭</button></div>";
   overlay.appendChild(box);
   document.body.appendChild(overlay);
+  var closeBtn = document.getElementById("exportCloseBtn");
+  if (closeBtn) closeBtn.onclick = function() { overlay.remove(); };
   setTimeout(function() {
     var cb = document.getElementById("exportCopyBtn");
     if (cb) {
@@ -718,7 +720,6 @@ function showExportModal(jsonStr, ts) {
     }
   }, 100);
 }
-
 function fallbackCopy(text, btn) {
   var ta = document.createElement("textarea");
   ta.value = text;
