@@ -652,6 +652,7 @@ function setTheme(t, silent) {
     document.body.classList.add('theme-' + t);
   }
   if (!silent && currentSetting === 'theme') openSetting('theme');
+}
 
 // ========== EXPORT / IMPORT ==========
 function exportData() {
@@ -770,7 +771,7 @@ function fallbackCopy(text, btn) {
   // input removed by onchange handler
 }
 
-}// ========== CHARTS ==========
+// ========== CHARTS ==========
 var chartWeightInst = null, chartVolumeInst = null;
 var chartFilterEx = 'all';
 var chartExpandedCat = null;
