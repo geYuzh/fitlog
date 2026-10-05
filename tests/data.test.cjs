@@ -44,3 +44,58 @@ test('invalid dates, negative weights and duplicate IDs are rejected', () => {
 test('invalid optional settings are rejected before import', () => {
   for (const settings of [{increment:0},{exerciseCategories:{chest:'bench'}},{exerciseFreq:{bench:-1}}]) assert.throws(() => ctx.validateBackup({...valid(),...settings}));
 });
+
+function exportContext(plugin) {
+  const values = new Map();
+  const calls = [], toasts = [], modals = [];
+  const mock = vm.createContext({Date, String, Set, Number, window: {Capacitor: {
+    isNativePlatform: () => true, getPlatform: () => 'android',
+    isPluginAvailable: () => true, registerPlugin: () => plugin
+  }}, localStorage: {getItem: k => values.get(k) || null, setItem: (k, v) => values.set(k, String(v))}});
+  vm.runInContext(source, mock);
+  mock.workouts = valid().workouts;
+  mock.showToast = text => toasts.push(text);
+  mock.showExportModal = (...args) => modals.push(args);
+  return {mock, calls, toasts, modals};
+}
+test('native export writes JSON and reports success only after completion', async () => {
+  let complete, captured;
+  const state = exportContext({save: options => { captured = options; return new Promise(resolve => {complete = resolve;}); }});
+  const pending = state.mock.exportData();
+  assert.equal(state.toasts.length, 0);
+  assert.equal(state.modals.length, 0);
+  assert.match(captured.filename, /^FitLog_backup_.*\.json$/);
+  const data = JSON.parse(captured.data);
+  assert.equal(data.workouts[0].exercise, valid().workouts[0].exercise);
+  state.mock.validateBackup(data);
+  complete({cancelled: false, filename: 'backup.json'});
+  await pending;
+  assert.equal(state.modals[0][2].title, '备份文件已保存');
+});
+test('cancelled native save does not report successful export', async () => {
+  const state = exportContext({save: async () => ({cancelled:true})});
+  await state.mock.exportData();
+  assert.equal(state.modals.length, 0);
+  assert.equal(state.toasts[0], '已取消保存，未导出备份');
+});
+test('native save failure displays failure instead of success', async () => {
+  const state = exportContext({save: async () => {throw new Error('disk full');}});
+  await state.mock.exportData();
+  assert.equal(state.modals[0][2].title, '备份保存失败');
+  assert.equal(state.modals[0][2].message, 'disk full');
+});
+test('share exports a JSON file and only reports opening the share sheet', async () => {
+  let captured;
+  const state = exportContext({share: async options => {captured = options;}});
+  await state.mock.exportData('share');
+  assert.equal(JSON.parse(captured.data).workouts.length, 1);
+  assert.equal(state.toasts[0], '已打开系统分享窗口，请选择接收应用');
+});
+test('native export ignores repeated taps while a save is pending', async () => {
+  let complete, count = 0;
+  const state = exportContext({save: () => {count++; return new Promise(resolve => {complete = resolve;});}});
+  const pending = state.mock.exportData();
+  await state.mock.exportData();
+  assert.equal(count, 1);
+  complete({cancelled:true}); await pending;
+});

@@ -7,4 +7,5 @@ for (const asset of assets) if (!fs.existsSync(path.join(root, asset))) throw ne
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output);
 for (const asset of assets) fs.cpSync(path.join(root, asset), path.join(output, asset), { recursive: true });
+fs.copyFileSync(path.join(root, 'node_modules/@capacitor/core/dist/capacitor.js'), path.join(output, 'capacitor.js'));
 console.log('Built web assets into www');

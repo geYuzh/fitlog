@@ -42,6 +42,9 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Prepare native backup support
+        run: node scripts/prepare-android.cjs
+
       - name: Sync Capacitor
         run: npx cap sync android
 

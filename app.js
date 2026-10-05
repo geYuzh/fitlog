@@ -474,6 +474,7 @@ function openSetting(name) {
     html += '<p style="font-size:13px;color:var(--text2);margin-bottom:20px">\u5c06\u6240\u6709\u8bad\u7ec3\u8bb0\u5f55\u3001\u5206\u7c7b\u8bbe\u7f6e\u5bfc\u51fa\u4e3a JSON \u6587\u4ef6\uff0c\u53ef\u5728\u65b0\u8bbe\u5907\u4e0a\u5bfc\u5165\u6062\u590d\u3002</p>';
     html += '<button class="btn btn-primary btn-block" type="button" id="btnExportData" onclick="exportData()" style="margin-bottom:12px">\u2b07 \u5bfc\u51fa\u5907\u4efd\u6587\u4ef6</button>';
     html += '<button class="btn btn-outline btn-block" type="button" id="btnImportData" onclick="importData()">\u2b06 \u4ece\u5907\u4efd\u6587\u4ef6\u5bfc\u5165</button>';
+    if (window.Capacitor && window.Capacitor.getPlatform() === 'android') html += '<button class="btn btn-outline btn-block" type="button" onclick="exportData(\'share\')" style="margin-top:12px">分享备份 JSON 文件</button>';
     html += '<p style="font-size:11px;color:var(--text2);margin-top:16px">\u5bfc\u5165\u5c06\u66ff\u6362\u5f53\u524d\u6240\u6709\u8bb0\u5f55\uff0c\u5efa\u8bae\u5148\u5bfc\u51fa\u4e00\u4efd\u4ee5\u9632\u610f\u5916\u3002</p>';
     html += '</div>';
     panel.innerHTML = html;
@@ -732,71 +733,79 @@ function setTheme(t, silent) {
 }
 
 // ========== EXPORT / IMPORT ==========
-function exportData() {
-  console.log("exportData called, workouts:", workouts.length);
-  try {
-    var exportObj = {
-      version: 1,
-      exportedAt: new Date().toISOString(),
-      workouts: workouts,
-      exerciseCategories: exerciseCategories,
-      defaultCategories: defaultCategories,
-      exerciseFreq: JSON.parse(localStorage.getItem(FREQ_KEY) || "{}"),
-      increment: getIncrement()
-    };
-    var jsonStr = JSON.stringify(exportObj, null, 2);
-    console.log("JSON size:", jsonStr.length);
-    var blob = new Blob([jsonStr], {type: "application/json"});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    var now = new Date();
-    var ts = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + "-" + String(now.getDate()).padStart(2,"0");
-    a.download = "FitLog_backup_" + ts + ".json";
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    console.log("Download triggered");
-    showToast("备份文件已导出 (" + workouts.length + " 条记录)");
-    // Show modal with text content as fallback for mobile
-    setTimeout(function() { showExportModal(jsonStr, ts); }, 500);
-  } catch(e) {
-    console.error("exportData error:", e);
-    alert("导出失败：" + e.message);
-  }
+var exportBusy = false;
+function nativeBackupPlugin() {
+  var cap = window.Capacitor;
+  if (!cap || !cap.isNativePlatform() || cap.getPlatform() !== 'android') return null;
+  if (!cap.isPluginAvailable('BackupFiles')) throw new Error('此安装包不支持原生保存，请更新安装包');
+  return cap.registerPlugin('BackupFiles');
 }
-
-function showExportModal(jsonStr, ts) {
-  var overlay = document.createElement("div");
-  overlay.style.cssText = "position:fixed;z-index:99999;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center";
-  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
-  var box = document.createElement("div");
-  box.style.cssText = "background:var(--bg,#1a1a2e);color:var(--text,#eee);border-radius:12px;padding:20px;max-width:90vw;max-height:85vh;overflow:auto;margin:20px";
-  var safeJson = jsonStr.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  box.innerHTML = "<h3 style='margin:0 0 8px'>导出成功</h3><p style='font-size:13px;color:var(--text2,#aaa);margin:0 0 12px'>文件: FitLog_backup_" + ts + ".json (" + jsonStr.length + " 字节)</p><textarea readonly id='exportTextArea' style='width:100%;height:250px;font-size:11px;background:var(--bg2,#16213e);color:var(--text,#eee);border:1px solid var(--border,#333);border-radius:8px;padding:10px;resize:none;box-sizing:border-box;font-family:monospace'>" + safeJson + "</textarea><div style='display:flex;gap:10px;margin-top:12px'><button id='exportCopyBtn' class='btn btn-primary' style='flex:1'>复制内容</button><button class='btn btn-outline' style='flex:1' id='exportCloseBtn'>关闭</button></div>";
-  overlay.appendChild(box);
-  document.body.appendChild(overlay);
-  var closeBtn = document.getElementById("exportCloseBtn");
-  if (closeBtn) closeBtn.onclick = function() { overlay.remove(); };
-  setTimeout(function() {
-    var cb = document.getElementById("exportCopyBtn");
-    if (cb) {
-      cb.onclick = function() {
-        var ta = document.getElementById("exportTextArea");
-        var text = ta ? ta.value : jsonStr;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function() {
-            cb.textContent = "已复制!";
-            setTimeout(function() { cb.textContent = "复制内容"; }, 1500);
-          }).catch(function() { fallbackCopy(text, cb); });
-        } else {
-          fallbackCopy(text, cb);
-        }
-      };
+function buildBackup() {
+  return {
+    version: 1, exportedAt: new Date().toISOString(), workouts: workouts,
+    exerciseCategories: exerciseCategories, defaultCategories: defaultCategories,
+    exerciseFreq: exerciseFreq, increment: getIncrement(),
+    weightPresets: {kg: getWeightPresets('kg'), lb: getWeightPresets('lb')},
+    recordUnit: recordUnit, incrementUnit: localStorage.getItem('fitlog_increment_unit') === 'lb' ? 'lb' : 'kg'
+  };
+}
+function backupFilename(now) {
+  return 'FitLog_backup_' + dateKey(now) + '_' + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0') + String(now.getSeconds()).padStart(2, '0') + '_' + String(now.getMilliseconds()).padStart(3, '0') + '.json';
+}
+async function exportData(mode) {
+  if (exportBusy) return;
+  exportBusy = true;
+  var jsonStr, filename;
+  try {
+    jsonStr = JSON.stringify(buildBackup(), null, 2);
+    filename = backupFilename(new Date());
+    var native = nativeBackupPlugin();
+    if (native) {
+      if (mode === 'share') {
+        await native.share({filename: filename, data: jsonStr});
+        showToast('已打开系统分享窗口，请选择接收应用');
+      } else {
+        var saved = await native.save({filename: filename, data: jsonStr});
+        if (saved.cancelled) { showToast('已取消保存，未导出备份'); return; }
+        showToast('备份文件已保存');
+        showExportModal(jsonStr, saved.filename || filename, {title: '备份文件已保存', message: '文件已写入你在系统保存窗口选择的位置。可在该文件夹找到以下 JSON 文件。', native: true, shareFilename: filename});
+      }
+    } else {
+      var blob = new Blob([jsonStr], {type: 'application/json;charset=utf-8'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a'); a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function() { URL.revokeObjectURL(url); }, 60000);
+      showExportModal(jsonStr, filename, {title: '已请求下载备份', message: '请查看浏览器下载列表，确认文件已保存。也可复制下方备份内容。'});
     }
-  }, 100);
+  } catch (e) {
+    showToast('导出未完成');
+    showExportModal(jsonStr || '', filename || '', {title: '备份保存失败', message: e.message || String(e)});
+  } finally { exportBusy = false; }
+}
+function showExportModal(jsonStr, filename, options) {
+  options = options || {};
+  var overlay = document.createElement('div'); overlay.className = 'modal-overlay'; overlay.style.zIndex = '300';
+  var box = document.createElement('div'); box.className = 'modal-sheet'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', options.title || '备份文件');
+  var title = document.createElement('h2'); title.className = 'card-title'; title.textContent = options.title || '备份文件';
+  var message = document.createElement('p'); message.className = 'unit-hint'; message.textContent = options.message || '';
+  var name = document.createElement('p'); name.style.cssText = 'font-size:13px;overflow-wrap:anywhere;margin-bottom:12px'; name.textContent = filename;
+  box.append(title, message, name);
+  if (jsonStr && !options.native) {
+    var text = document.createElement('textarea'); text.id = 'exportTextArea'; text.readOnly = true; text.value = jsonStr;
+    text.setAttribute('aria-label', '备份 JSON 内容'); text.style.cssText = 'width:100%;height:180px;background:var(--surface2);color:var(--text);font:12px monospace'; box.appendChild(text);
+  }
+  var actions = document.createElement('div'); actions.className = 'label-dialog-actions';
+  if (options.native) {
+    var share = document.createElement('button'); share.type = 'button'; share.className = 'btn btn-primary'; share.textContent = '分享该备份';
+    share.onclick = async function() { if (share.disabled) return; share.disabled = true; try { await nativeBackupPlugin().share({filename: options.shareFilename || filename, data: jsonStr}); showToast('已打开系统分享窗口'); } catch(e) { showToast('分享未完成：' + e.message); } finally { share.disabled = false; } }; actions.appendChild(share);
+  } else if (jsonStr) {
+    var copy = document.createElement('button'); copy.type = 'button'; copy.className = 'btn btn-outline'; copy.textContent = '复制内容';
+    copy.onclick = async function() { try { if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(jsonStr); copy.textContent = '已复制'; } else { fallbackCopy(jsonStr, copy); } } catch(e) { fallbackCopy(jsonStr, copy); } }; actions.appendChild(copy);
+  }
+  var close = document.createElement('button'); close.type = 'button'; close.className = 'btn btn-outline'; close.textContent = '关闭'; close.onclick = function() { overlay.remove(); };
+  actions.appendChild(close); box.appendChild(actions); overlay.appendChild(box); document.body.appendChild(overlay);
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); }; close.focus();
 }
 function fallbackCopy(text, btn) {
   var ta = document.createElement("textarea");
@@ -828,6 +837,10 @@ function fallbackCopy(text, btn) {
   });
   if (data.exerciseFreq !== undefined && (!data.exerciseFreq || typeof data.exerciseFreq !== 'object' || Array.isArray(data.exerciseFreq) || Object.values(data.exerciseFreq).some(function(n) { return !Number.isInteger(n) || n < 0; }))) throw new Error('动作频次格式无效');
   if (data.increment !== undefined && (!Number.isFinite(data.increment) || data.increment <= 0)) throw new Error('重量增量无效');
+  if (data.weightPresets !== undefined) {
+    if (!data.weightPresets || ['kg', 'lb'].some(function(unit) { var values = data.weightPresets[unit]; return !Array.isArray(values) || !values.length || values.some(function(v) { return !Number.isFinite(v) || v <= 0; }); })) throw new Error('快捷重量列表无效');
+  }
+  ['recordUnit', 'incrementUnit'].forEach(function(key) { if (data[key] !== undefined && !['kg', 'lb'].includes(data[key])) throw new Error('重量单位无效'); });
 }
 
 function importData() {
@@ -851,7 +864,7 @@ function importData() {
         if (!confirm('将导入 ' + count + ' 条记录。当前记录将被替换，确定继续？')) return;
         workouts = data.workouts;
         saveData();
-        if (data.exerciseCategories && Object.keys(data.exerciseCategories).length > 0) {
+        if (data.exerciseCategories !== undefined) {
           exerciseCategories = data.exerciseCategories;
           saveCategories();
         }
@@ -864,6 +877,9 @@ function importData() {
           localStorage.setItem(DEFAULT_CAT_KEY, JSON.stringify(defaultCategories));
         }
         if (data.increment !== undefined) setIncrement(data.increment);
+        if (data.weightPresets) ['kg', 'lb'].forEach(function(unit) { localStorage.setItem('fitlog_weight_presets_' + unit, JSON.stringify(data.weightPresets[unit])); });
+        if (data.incrementUnit) localStorage.setItem('fitlog_increment_unit', data.incrementUnit);
+        if (data.recordUnit) setRecordUnit(data.recordUnit);
         showToast('已导入 ' + count + ' 条记录');
         refreshAll();
         renderPresets();
