@@ -1,39 +1,23 @@
-﻿const CACHE_NAME = 'fitlog-v12';
-const ASSETS = [
-  '/',
-  'index.html',
-  'app.js',
-  'manifest.json',
-  'chart.umd.min.js',
-  'chartjs-plugin-zoom.min.js',
-  'hammer.min.js',
-  'import_data.js'
-];
-
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(ASSETS).catch(function() { return Promise.resolve(); });
-    })
-  );
-});
-
-self.addEventListener('fetch', function(event) {
-  if (event.request.method !== 'GET') return;
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
-    })
-  );
-});
-
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function(keys) {
-      return Promise.all(
-        keys.filter(function(key) { return key !== CACHE_NAME; })
-            .map(function(key) { return caches.delete(key); })
-      );
-    })
-  );
+const CACHE_NAME = 'fitlog-v13';
+const ASSETS = ['index.html', 'app.js?v=20261005', 'manifest.json', 'chart.umd.min.js', 'hammer.min.js', 'icons/icon-192.png', 'icons/icon-512.png'];
+self.addEventListener('install', event => event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))));
+self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('fitlog-') && key !== CACHE_NAME).map(key => caches.delete(key)))).then(() => self.clients.claim())));
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    try {
+      const response = await fetch(event.request);
+      if (response.ok) await cache.put(event.request, response.clone());
+      return response;
+    } catch (error) {
+      const cached = await cache.match(event.request);
+      if (cached) return cached;
+      if (event.request.mode === 'navigate') {
+        const page = await cache.match('index.html');
+        if (page) return page;
+      }
+      throw error;
+    }
+  })());
 });

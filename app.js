@@ -8,6 +8,34 @@ var DEFAULT_CAT_KEY = 'fitlog_default_categories';
 var HISTORY_YEAR_KEY = 'fitlog_history_year_expand';
 var HISTORY_MONTH_KEY = 'fitlog_history_month_expand';
 var workouts = [];
+var recordUnit = 'kg';
+var LB_TO_KG = 0.45359237;
+function cleanWeight(value) { return Number(value.toFixed(8)); }
+function weightToKg(value, unit) { return cleanWeight(unit === 'lb' ? value * LB_TO_KG : value); }
+function weightFromKg(value, unit) { return unit === 'lb' ? value / LB_TO_KG : value; }
+function inputWeightKg(input, unit) {
+  return input.dataset.unitValue === input.value ? Number(input.dataset.kg) : weightToKg(Number(input.value), unit);
+}
+function displayInputWeight(input, kg, unit) {
+  input.value = String(Number(weightFromKg(kg, unit).toFixed(6)));
+  input.dataset.kg = String(cleanWeight(kg));
+  input.dataset.unitValue = input.value;
+}
+function setRecordUnit(unit) {
+  if (unit !== 'kg' && unit !== 'lb') return;
+  if (unit !== recordUnit) {
+    document.querySelectorAll('#setsContainer .set-weight').forEach(function(input) {
+      if (input.value !== '') {
+        displayInputWeight(input, inputWeightKg(input, recordUnit), unit);
+      }
+    });
+  }
+  recordUnit = unit;
+  localStorage.setItem('fitlog_record_unit', unit);
+  document.querySelectorAll('#setsContainer .set-weight + .set-unit').forEach(function(label) { label.textContent = unit; });
+  document.getElementById('unitKg').setAttribute('aria-pressed', String(unit === 'kg'));
+  document.getElementById('unitLb').setAttribute('aria-pressed', String(unit === 'lb'));
+}
 
 var defaultCategories = {
   '胸': ['自由卧推', '史密斯平板卧推', '上斜卧推', '下斜卧推', '绳索夹胸', '双杠臂屈伸', '器械平板卧推', '哑铃平板卧推', '蝴蝶机夹胸', '俯卧撑', '史密斯宽距卧推', '上斜哑铃推胸'],
@@ -28,15 +56,10 @@ function loadData() {
   if (savedDefault) {
     try { defaultCategories = JSON.parse(savedDefault); } catch(e) {}
   }
-  if (!exerciseCategories || Object.keys(exerciseCategories).length === 0) {
+  if (!exerciseCategories || typeof exerciseCategories !== 'object' || Array.isArray(exerciseCategories)) {
     exerciseCategories = JSON.parse(JSON.stringify(defaultCategories));
   } else {
-    // Merge new default categories
-    Object.keys(defaultCategories).forEach(function(cat) {
-      if (!exerciseCategories[cat]) {
-        exerciseCategories[cat] = defaultCategories[cat].slice();
-      }
-    });
+    // Saved categories are authoritative, including deletions and renames.
   }
   try { exerciseFreq = JSON.parse(localStorage.getItem(FREQ_KEY) || '{}'); } catch(e) { exerciseFreq = {}; }
 }
@@ -92,6 +115,7 @@ function init() {
   loadData();
   setTodayDate();
   initRecordForm();
+  setRecordUnit(localStorage.getItem('fitlog_record_unit') === 'lb' ? 'lb' : 'kg');
   renderStats();
   renderPresets();
   renderSettingsPage();
@@ -104,14 +128,16 @@ function init() {
   });
 }
 function setTodayDate() {
-  document.getElementById('recDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('recDate').value = dateKey(new Date());
 }
 function formatDate(d) {
   var m = d.getMonth()+1, day = d.getDate();
   var w = ['\u65e5','\u4e00','\u4e8c','\u4e09','\u56db','\u4e94','\u516d'];
   return m + '\u6708' + day + '\u65e5 \u5468' + w[d.getDay()];
 }
-function dateKey(d) { return d.toISOString().split('T')[0]; }
+function dateKey(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
 
 // ========== STATS ==========
 function renderStats() {
@@ -127,7 +153,8 @@ function getWeekWorkouts() {
   var monday = new Date(now);
   monday.setDate(now.getDate() - (day===0?6:day-1));
   monday.setHours(0,0,0,0);
-  return workouts.filter(function(w) { return new Date(w.date) >= monday; }).length;
+  var start = dateKey(monday), end = dateKey(now);
+  return new Set(workouts.filter(function(w) { return w.date >= start && w.date <= end; }).map(function(w) { return w.date; })).size;
 }
 
 // ========== RECORD FORM ==========
@@ -136,16 +163,13 @@ function initRecordForm() {
   addSet();
 }
 function renderPresets() {
-  var el = document.getElementById('exercisePresets');
+  var el = document.getElementById('exercisePresets'); el.replaceChildren();
   var freq = getFrequent(8);
-  var html = '';
-  freq.forEach(function(e) {
-    html += '<span class="preset-chip" data-ex="' + e + '" onclick="selectPreset(this)">' + e + '</span>';
+  freq.forEach(function(name) {
+    var button = document.createElement('button'); button.type = 'button'; button.className = 'preset-chip';
+    button.textContent = name; button.setAttribute('data-ex', name); button.onclick = function() { selectPreset(button); }; el.appendChild(button);
   });
-  if (freq.length === 0) {
-    html = '<span style="font-size:12px;color:var(--text2)">\u8bb0\u5f55\u8bad\u7ec3\u540e\u8fd9\u91cc\u4f1a\u51fa\u73b0\u5e38\u7528\u9879\u76ee</span>';
-  }
-  el.innerHTML = html;
+  if (!freq.length) { var hint = document.createElement('span'); hint.className = 'unit-hint'; hint.textContent = '记录训练后这里会出现常用项目'; el.appendChild(hint); }
 }
 function selectPreset(el) {
   document.getElementById('recExercise').value = el.getAttribute('data-ex');
@@ -215,6 +239,8 @@ function addSet() {
     '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
     '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27setsContainer\x27)">x</button>';
   container.appendChild(div);
+  div.querySelector('.set-weight + .set-unit').textContent = recordUnit;
+  if (lastW && lastWeight !== '') displayInputWeight(div.querySelector('.set-weight'), inputWeightKg(lastW, recordUnit), recordUnit);
 }
 function setRep(chip, val) {
   var row = chip.closest('.set-row');
@@ -226,10 +252,9 @@ function setRep(chip, val) {
 function adjWeight(btn, sign) {
   var row = btn.closest('.set-row');
   var input = row.querySelector('.set-weight');
-  var inc = getIncrement();
-  var v = parseFloat(input.value) || 0;
-  v = Math.max(0, Math.round((v + inc * sign) * 10) / 10);
-  input.value = v;
+  var unit = row.closest('#setsContainer') ? recordUnit : 'kg';
+  var kg = inputWeightKg(input, unit);
+  displayInputWeight(input, Math.max(0, cleanWeight(kg + getIncrement() * sign)), unit);
 }
 function adjRep(btn, sign) {
   var row = btn.closest('.set-row');
@@ -257,7 +282,11 @@ function getSetsFromContainer(containerId) {
   rows.forEach(function(row) {
     var w = parseFloat(row.querySelector('.set-weight').value) || 0;
     var r = parseInt(row.querySelector('.set-reps').value) || 0;
-    if (w > 0 || r > 0) sets.push({ weight: w, reps: r });
+    if (containerId === 'setsContainer') {
+      var input = row.querySelector('.set-weight');
+      w = cleanWeight(inputWeightKg(input, recordUnit));
+    }
+    if (Number.isFinite(w) && w >= 0 && Number.isInteger(r) && r > 0) sets.push({ weight: w, reps: r });
   });
   return sets;
 }
@@ -266,6 +295,7 @@ function saveWorkout() {
   var dateInput = document.getElementById('recDate');
   var date = dateInput.value;
   var exercise = document.getElementById('recExercise').value.trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) { showToast('请选择训练日期'); return; }
   if (!exercise) { showToast('\u8bf7\u8f93\u5165\u8bad\u7ec3\u9879\u76ee'); return; }
   var sets = getSetsFromContainer('setsContainer');
   if (sets.length === 0) { showToast('\u8bf7\u81f3\u5c11\u6dfb\u52a0\u4e00\u7ec4\u8bad\u7ec3\u6570\u636e'); return; }
@@ -309,6 +339,85 @@ function switchTab(tab) {
 var currentSetting = null;
 
 var expandedCategories = {};
+var historyLabelScope = 'all';
+function labelDialog(options) {
+  return new Promise(function(resolve) {
+    var previousFocus = document.activeElement;
+    var overlay = document.createElement('div'); overlay.className = 'modal-overlay label-dialog-overlay';
+    var dialog = document.createElement('div'); dialog.className = 'modal-sheet';
+    dialog.setAttribute('role', 'dialog'); dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-labelledby', 'labelDialogTitle'); dialog.setAttribute('aria-describedby', 'labelDialogMessage');
+    var title = document.createElement('h2'); title.id = 'labelDialogTitle'; title.className = 'card-title'; title.textContent = options.title;
+    var message = document.createElement('p'); message.id = 'labelDialogMessage'; message.className = 'label-dialog-message'; message.textContent = options.message;
+    dialog.append(title, message);
+    var input;
+    if (options.value !== undefined) {
+      var group = document.createElement('div'); group.className = 'form-group';
+      var label = document.createElement('label'); label.htmlFor = 'labelDialogInput'; label.textContent = '新名称';
+      input = document.createElement('input'); input.id = 'labelDialogInput'; input.type = 'text'; input.value = options.value;
+      group.append(label, input); dialog.appendChild(group);
+    }
+    var actions = document.createElement('div'); actions.className = 'label-dialog-actions';
+    var cancel = document.createElement('button'); cancel.type = 'button'; cancel.className = 'btn btn-outline'; cancel.textContent = '取消';
+    var accept = document.createElement('button'); accept.type = 'button'; accept.className = 'btn ' + (options.danger ? 'btn-danger' : 'btn-primary'); accept.textContent = options.accept || '保存名称';
+    actions.append(cancel, accept); dialog.appendChild(actions); overlay.appendChild(dialog);
+    var background = Array.from(document.body.children).filter(function(el) { return !el.inert; });
+    background.forEach(function(el) { el.inert = true; });
+    document.body.appendChild(overlay);
+    function finish(value) {
+      overlay.remove(); background.forEach(function(el) { el.inert = false; });
+      if (previousFocus && previousFocus.isConnected) previousFocus.focus(); resolve(value);
+    }
+    cancel.onclick = function() { finish(null); };
+    accept.onclick = function() { if (input && !input.value.trim()) { input.focus(); return; } finish(input ? input.value.trim() : true); };
+    overlay.onclick = function(e) { if (e.target === overlay) finish(null); };
+    dialog.onkeydown = function(e) {
+      if (e.key === 'Escape') { e.preventDefault(); finish(null); }
+      if (e.key === 'Enter' && e.target === input) { e.preventDefault(); accept.click(); }
+      if (e.key === 'Tab') {
+        var first = input || cancel, last = accept;
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    (input || cancel).focus(); if (input) input.select();
+  });
+}
+function isUnlabelled(workout) { return !getAllExercises().includes(workout.exercise); }
+function escapeText(value) { return String(value).replace(/[&<>"']/g, function(c) { return {'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]; }); }
+function showUnlabelledRecords() { historyLabelScope = 'unlabelled'; switchTab('history'); }
+function renderCategorySettings(panel) {
+  panel.replaceChildren();
+  function node(tag, className, text) { var el = document.createElement(tag); el.className = className || ''; if (text !== undefined) el.textContent = text; return el; }
+  function button(text, action, danger) { var el = node('button', 'btn btn-sm ' + (danger ? 'btn-danger' : 'btn-outline'), text); el.type = 'button'; el.onclick = action; return el; }
+  var back = button('‹ 返回设置', renderSettingsPage); panel.appendChild(back);
+  var card = node('div', 'card'); card.appendChild(node('div', 'card-title', '管理训练项目标识')); panel.appendChild(card);
+  Object.keys(exerciseCategories).forEach(function(cat) {
+    var section = node('div', 'settings-cat');
+    var header = node('div', 'settings-cat-header');
+    var toggle = button((expandedCategories[cat] ? '▼ ' : '▶ ') + cat + ' (' + exerciseCategories[cat].length + ')', function() { expandedCategories[cat] = !expandedCategories[cat]; openSetting('categories'); });
+    header.append(toggle, button('改名', function() { renameCategory(cat); }), button('删除分类', function() { deleteCategory(cat); }, true)); section.appendChild(header);
+    if (expandedCategories[cat]) {
+      exerciseCategories[cat].forEach(function(ex) {
+        var row = node('div', 'settings-ex-row');
+        var name = node('span', '', ex); var actions = node('div', 'label-actions');
+        actions.append(button('改名', function() { renameExercise(cat, ex); }), button('删除', function() { deleteExercise(cat, ex); }, true));
+        row.append(name, actions); section.appendChild(row);
+      });
+      var row = node('div', 'label-add-row'); var input = node('input'); input.id = 'newEx-' + cat; input.placeholder = '添加项目名称'; input.setAttribute('aria-label', cat + '新项目名称');
+      row.append(input, button('+ 添加', function() { addExercise(cat); })); section.appendChild(row);
+    }
+    card.appendChild(section);
+  });
+  var newRow = node('div', 'label-add-row'); var newInput = node('input'); newInput.id = 'newCatName'; newInput.placeholder = '新分类名称'; newInput.setAttribute('aria-label', '新分类名称'); newRow.append(newInput, button('+ 新建分类', addCategory)); card.appendChild(newRow);
+  var detached = workouts.filter(isUnlabelled); var area = node('div', 'card');
+  area.appendChild(node('div', 'card-title', '无标识区 · ' + detached.length + ' 条记录'));
+  area.appendChild(node('p', 'unit-hint', '记录保留原项目名称、日期和组数。重新添加同名项目标识后，会自动重新归类。'));
+  var names = Array.from(new Set(detached.map(function(w) { return w.exercise; })));
+  names.forEach(function(name) { area.appendChild(node('div', 'settings-ex-row', name + ' · ' + detached.filter(function(w) { return w.exercise === name; }).length + ' 条')); });
+  area.appendChild(button('查看无标识记录', showUnlabelledRecords)); panel.appendChild(area);
+  var actions = node('div', 'label-actions'); actions.append(button('恢复默认分类', resetCategories), button('设为默认分类', setAsDefault)); panel.appendChild(actions);
+}
 
 function renderSettingsPage() {
   document.getElementById('settingsMenu').style.display = '';
@@ -325,37 +434,7 @@ function openSetting(name) {
   panel.style.display = '';
 
   if (name === 'categories') {
-    var cats = Object.keys(exerciseCategories);
-    var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
-    html += '<div class="card"><div class="card-title">\u7ba1\u7406\u8bad\u7ec3\u5206\u7c7b</div>';
-    cats.forEach(function(cat) {
-      html += '<div class="settings-cat">' +
-        '<div class="settings-cat-header" onclick="toggleCategory(\'' + cat + '\')" style="cursor:pointer">' +
-          '<span class="settings-cat-toggle" id="catToggle-' + cat + '">' + (expandedCategories[cat] ? '\u25bc' : '\u25b6') + '</span>' +
-          '<span class="settings-cat-name">' + cat + ' (' + exerciseCategories[cat].length + ')</span>' +
-          '<button class="btn btn-danger btn-sm" type="button" onclick="event.stopPropagation();deleteCategory(\'' + cat + '\')">\u5220\u9664\u5206\u7c7b</button>' +
-        '</div>' +
-        '<div class="settings-ex-list" id="catBody-' + cat + '" style="display:' + (expandedCategories[cat] ? '' : 'none') + '">';
-      exerciseCategories[cat].forEach(function(ex) {
-        html += '<div class="settings-ex-row">' +
-          '<span ondblclick="renameExercise(\x27' + cat + '\x27,\x27' + ex + '\x27)">' + ex + '</span>' +
-          '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="deleteExercise(\'' + cat + '\',\'' + ex + '\')">x</button>' +
-          '</div>';
-      });
-      html += '<div style="margin-top:6px;display:flex;gap:4px">' +
-          '<input type="text" id="newEx-' + cat + '" placeholder="\u6dfb\u52a0\u9879\u76ee..." style="flex:1;padding:6px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px">' +
-          '<button class="btn btn-outline btn-sm" type="button" onclick="addExercise(\'' + cat + '\')">+</button>' +
-        '</div></div></div>';
-    });
-    html += '<div style="margin-top:12px;display:flex;gap:4px">' +
-      '<input type="text" id="newCatName" placeholder="\u65b0\u5efa\u5206\u7c7b\u540d\u79f0..." style="flex:1;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px">' +
-      '<button class="btn btn-primary btn-sm" type="button" onclick="addCategory()">+ \u65b0\u5efa</button>' +
-      '</div></div>';
-    html += '<div style="margin-top:12px;display:flex;gap:8px">';
-    html += '<button class="btn btn-outline btn-sm" type="button" onclick="resetCategories()" style="flex:1">\u6062\u590d\u9ed8\u8ba4\u5206\u7c7b</button>';
-    html += '<button class="btn btn-outline btn-sm" type="button" onclick="setAsDefault()" style="flex:1">\u8bbe\u4e3a\u9ed8\u8ba4\u5206\u7c7b</button>';
-    html += '</div>';
-    panel.innerHTML = html;
+    renderCategorySettings(panel);
   }
   else if (name === 'theme') {
     var current = localStorage.getItem(THEME_KEY) || 'dark';
@@ -372,23 +451,7 @@ function openSetting(name) {
     html += '</div></div>';
     panel.innerHTML = html;
   }
-  else if (name === 'increment') {
-    var inc = getIncrement();
-    var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
-    html += '<div class="card"><div class="card-title">\u91cd\u91cf\u6bcf\u6b21\u589e\u52a0\u8bbe\u7f6e</div>';
-    html += '<p style="font-size:12px;color:var(--text2);margin-bottom:12px">\u70b9\u51fb +/-\u6309\u94ae\u65f6\uff0c\u91cd\u91cf\u6bcf\u6b21\u589e\u51cf\u7684\u6570\u503c</p>';
-    html += '<div style="display:flex;gap:8px;align-items:center">';
-    html += '<input type="number" id="incValue" value="' + inc + '" step="0.5" min="0.5" max="100" style="flex:1;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:16px">';
-    html += '<span style="color:var(--text2);font-size:14px">kg</span>';
-    html += '<button class="btn btn-primary" type="button" onclick="saveIncrement()">\u4fdd\u5b58</button>';
-    html += '</div>';
-    html += '<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">';
-    [0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 50].forEach(function(v) {
-      html += '<button class="btn btn-outline btn-sm" type="button" onclick="document.getElementById(\'incValue\').value=' + v + '">' + v + ' kg</button>';
-    });
-    html += '</div></div>';
-    panel.innerHTML = html;
-  }
+  else if (name === 'increment') { renderIncrementSetting(panel); }
     else if (name === 'debugData') {
     var inDebug = localStorage.getItem('fitlog_debug_mode') === '1';
     var html = '<div class="settings-back" onclick="renderSettingsPage()">\u2039 \u8fd4\u56de\u8bbe\u7f6e</div>';
@@ -486,12 +549,14 @@ function addCategory() {
   openSetting('categories');
   showToast('\u5206\u7c7b\u5df2\u6dfb\u52a0');
 }
-function deleteCategory(cat) {
-  if (!confirm('\u786e\u5b9a\u5220\u9664"' + cat + '"\u5206\u7c7b\uff1f')) return;
+async function deleteCategory(cat) {
+  var names = exerciseCategories[cat] || [];
+  var detached = names.filter(function(name) { return !Object.keys(exerciseCategories).some(function(other) { return other !== cat && exerciseCategories[other].includes(name); }); });
+  var count = workouts.filter(function(w) { return detached.includes(w.exercise); }).length;
+  if (!await labelDialog({title: '删除分类标识', message: '删除分类“' + cat + '”？\n关联 ' + count + ' 条训练记录将进入无标识区，记录不会删除。仍属于其他分类的项目保持原归属。', accept: '确认删除标识', danger: true})) return;
   delete exerciseCategories[cat];
   saveCategories();
-  openSetting('categories');
-  showToast('\u5df2\u5220\u9664');
+  afterLabelChange();
 }
 function addExercise(cat) {
   var input = document.getElementById('newEx-' + cat);
@@ -504,56 +569,44 @@ function addExercise(cat) {
   openSetting('categories');
   showToast('\u9879\u76ee\u5df2\u6dfb\u52a0');
 }
-function deleteExercise(cat, ex) {
-  exerciseCategories[cat] = exerciseCategories[cat].filter(function(e) { return e !== ex; });
-  saveCategories();
+async function deleteExercise(cat, ex) {
+  var count = workouts.filter(function(w) { return w.exercise === ex; }).length;
+  if (!await labelDialog({title: '删除项目标识', message: '删除项目标识“' + ex + '”？\n关联 ' + count + ' 条训练记录将进入无标识区，日期、重量和次数都会保留。该标识将从所有分类中移除。', accept: '确认删除标识', danger: true})) return;
+  Object.keys(exerciseCategories).forEach(function(key) { exerciseCategories[key] = exerciseCategories[key].filter(function(name) { return name !== ex; }); });
+  delete exerciseFreq[ex]; saveFreq();
+  saveCategories(); afterLabelChange();
+}
+async function renameExercise(cat, oldName) {
+  var count = workouts.filter(function(w) { return w.exercise === oldName; }).length;
+  var answer = await labelDialog({title: '更改项目标识名称', message: '关联 ' + count + ' 条训练记录将同步改名。', value: oldName});
+  if (answer === null) return;
+  var name = answer.trim();
+  if (!name || name === oldName) return;
+  if (getAllExercises().includes(name) || workouts.some(function(w) { return w.exercise === name; })) { showToast('该项目名称已存在，请使用其他名称'); return; }
+  Object.keys(exerciseCategories).forEach(function(key) { exerciseCategories[key] = exerciseCategories[key].map(function(ex) { return ex === oldName ? name : ex; }); });
+  workouts.forEach(function(w) { if (w.exercise === oldName) w.exercise = name; });
+  if (exerciseFreq[oldName] !== undefined) { exerciseFreq[name] = exerciseFreq[oldName]; delete exerciseFreq[oldName]; }
+  var input = document.getElementById('recExercise');
+  if (input.value === oldName) input.value = name;
+  if (chartFilterEx === oldName) chartFilterEx = name;
+  saveData(); saveCategories(); saveFreq(); afterLabelChange(); showToast('项目标识及关联记录已改名');
+}
+async function renameCategory(cat) {
+  var answer = await labelDialog({title: '更改分类标识名称', message: '分类内的项目与训练记录将同步归入新名称。', value: cat});
+  if (answer === null) return;
+  var name = answer.trim();
+  if (!name || name === cat) return;
+  if (Object.prototype.hasOwnProperty.call(exerciseCategories, name) || ['__proto__', 'constructor', 'prototype'].includes(name)) { showToast('该分类名称已存在或不可用'); return; }
+  exerciseCategories[name] = exerciseCategories[cat]; delete exerciseCategories[cat];
+  expandedCategories[name] = expandedCategories[cat]; delete expandedCategories[cat];
+  if (chartExpandedCat === cat) chartExpandedCat = name;
+  saveCategories(); afterLabelChange(); showToast('分类标识已改名');
+}
+function afterLabelChange() {
+  renderPresets();
+  _cacheSetData = null; _cacheHeaviestData = null;
   openSetting('categories');
-  showToast('\u5df2\u5220\u9664');
 }
-function renameExercise(cat, oldName) {
-  var span = event.target;
-  var input = document.createElement('input');
-  input.type = 'text';
-  input.value = oldName;
-  input.style.cssText = 'flex:1;padding:4px 8px;background:var(--surface);border:1px solid var(--accent);border-radius:6px;color:var(--text);font-size:14px;outline:none;font-family:inherit';
-  span.replaceWith(input);
-  input.focus();
-  input.select();
-  input.onblur = function() { finishRename(cat, oldName, input); };
-  input.onkeydown = function(e) {
-    if (e.key === 'Enter') finishRename(cat, oldName, input);
-    if (e.key === 'Escape') finishRename(cat, oldName, input);
-  };
-}
-
-function finishRename(cat, oldName, input) {
-  var newName = input.value.trim();
-  if (!newName || newName === oldName) {
-    var span2 = document.createElement('span');
-    span2.textContent = oldName;
-    span2.setAttribute('ondblclick', "renameExercise('" + cat + "','" + oldName + "')");
-    input.replaceWith(span2);
-    return;
-  }
-  var idx = exerciseCategories[cat].indexOf(oldName);
-  if (idx < 0) return;
-  if (exerciseCategories[cat].indexOf(newName) >= 0) {
-    showToast('\u9879\u76ee\u5df2\u5b58\u5728');
-    var span2 = document.createElement('span');
-    span2.textContent = oldName;
-    span2.setAttribute('ondblclick', "renameExercise('" + cat + "','" + oldName + "')");
-    input.replaceWith(span2);
-    return;
-  }
-  exerciseCategories[cat][idx] = newName;
-  saveCategories();
-  var span2 = document.createElement('span');
-  span2.textContent = newName;
-  span2.setAttribute('ondblclick', "renameExercise('" + cat + "','" + newName + "')");
-  input.replaceWith(span2);
-  showToast('\u5df2\u4fee\u6539');
-}
-
 function setAsDefault() {
   if (!confirm('\u5c06\u5f53\u524d\u8bad\u7ec3\u5206\u7c7b\u8bbe\u4e3a\u9ed8\u8ba4\uff1f\u4ee5\u540e\u201c\u6062\u590d\u9ed8\u8ba4\u201d\u5c06\u8fd8\u539f\u5230\u6b64\u72b6\u6001\u3002')) return;
   defaultCategories = JSON.parse(JSON.stringify(exerciseCategories));
@@ -571,11 +624,75 @@ function resetCategories() {
 }
 
 // Increment
+var incrementUnit = 'kg';
+var DEFAULT_WEIGHT_PRESETS = {kg: [0.5, 1, 2.5, 5, 7.5, 10, 15, 20, 25, 50], lb: [5, 7, 9, 25]};
+function getWeightPresets(unit) {
+  try {
+    var values = JSON.parse(localStorage.getItem('fitlog_weight_presets_' + unit));
+    if (Array.isArray(values) && values.length && values.every(function(v) { return Number.isFinite(v) && v > 0; })) return values;
+  } catch (e) {}
+  return DEFAULT_WEIGHT_PRESETS[unit].slice();
+}
+function renderIncrementSetting(panel) {
+  incrementUnit = localStorage.getItem('fitlog_increment_unit') === 'lb' ? 'lb' : 'kg';
+  panel.innerHTML = '<div class="settings-back" onclick="renderSettingsPage()">‹ 返回设置</div>' +
+    '<div class="card"><div class="card-title">重量每次增加设置</div>' +
+    '<p class="unit-hint">设置重量箭头每次增减的数值；切换单位会换算当前数值。</p>' +
+    '<div class="unit-options" role="group" aria-label="重量增量单位"><button id="incKg" type="button" onclick="setIncrementUnit(\'kg\')">kg</button><button id="incLb" type="button" onclick="setIncrementUnit(\'lb\')">磅 lb</button></div>' +
+    '<div class="form-group" style="margin-top:12px"><label for="incValue">每次增减重量</label><div style="display:flex;gap:8px;align-items:center"><input type="number" id="incValue" min="0.000001" step="any" style="min-width:0;flex:1"><span id="incUnitLabel"></span><button class="btn btn-primary" type="button" onclick="saveIncrement()">保存</button></div></div>' +
+    '<div id="incrementPresets" class="presets"></div></div>' +
+    '<div class="card"><div class="card-title">编辑快捷重量按钮</div><p class="unit-hint" id="presetEditorHint"></p>' +
+    '<div class="form-group"><label for="weightPresetValues">快捷重量列表（用逗号或空格分隔）</label><input id="weightPresetValues" type="text" placeholder="例如：5, 7, 9, 25"></div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" type="button" onclick="saveWeightPresets()">保存快捷按钮</button><button class="btn btn-outline" type="button" onclick="resetWeightPresets()">恢复默认</button></div></div>';
+  displayInputWeight(document.getElementById('incValue'), getIncrement(), incrementUnit);
+  updateIncrementUnitUI();
+}
+function setIncrementUnit(unit) {
+  if (unit !== 'kg' && unit !== 'lb') return;
+  var input = document.getElementById('incValue');
+  if (unit !== incrementUnit && input.value !== '') displayInputWeight(input, inputWeightKg(input, incrementUnit), unit);
+  incrementUnit = unit;
+  localStorage.setItem('fitlog_increment_unit', unit);
+  updateIncrementUnitUI();
+}
+function updateIncrementUnitUI() {
+  document.getElementById('incKg').setAttribute('aria-pressed', String(incrementUnit === 'kg'));
+  document.getElementById('incLb').setAttribute('aria-pressed', String(incrementUnit === 'lb'));
+  document.getElementById('incUnitLabel').textContent = incrementUnit;
+  var values = getWeightPresets(incrementUnit);
+  document.getElementById('weightPresetValues').value = values.join(', ');
+  document.getElementById('presetEditorHint').textContent = '当前编辑 ' + incrementUnit + ' 快捷按钮。kg 和 lb 分别保存，修改后请点击“保存快捷按钮”。';
+  var container = document.getElementById('incrementPresets');
+  container.replaceChildren();
+  values.forEach(function(value) {
+    var button = document.createElement('button');
+    button.type = 'button'; button.className = 'btn btn-outline btn-sm';
+    button.textContent = value + ' ' + incrementUnit;
+    button.onclick = function() { displayInputWeight(document.getElementById('incValue'), weightToKg(value, incrementUnit), incrementUnit); };
+    container.appendChild(button);
+  });
+}
+function parseWeightPresets(text) {
+  var parts = text.trim().split(/[\s,，;；]+/);
+  if (!text.trim() || parts.some(function(v) { return !/^\d+(\.\d+)?$/.test(v) || !Number.isFinite(Number(v)) || Number(v) <= 0; })) throw new Error('请输入大于 0 的重量，用逗号或空格分隔');
+  return Array.from(new Set(parts.map(Number)));
+}
+function saveWeightPresets() {
+  try {
+    var values = parseWeightPresets(document.getElementById('weightPresetValues').value);
+    localStorage.setItem('fitlog_weight_presets_' + incrementUnit, JSON.stringify(values));
+    updateIncrementUnitUI(); showToast('快捷按钮已保存');
+  } catch (e) { showToast(e.message); }
+}
+function resetWeightPresets() {
+  localStorage.removeItem('fitlog_weight_presets_' + incrementUnit);
+  updateIncrementUnitUI(); showToast('已恢复 ' + incrementUnit + ' 默认快捷按钮');
+}
 function saveIncrement() {
   var v = parseFloat(document.getElementById('incValue').value);
-  if (!v || v <= 0) { showToast('\u8bf7\u8f93\u5165\u6709\u6548\u6570\u503c'); return; }
-  setIncrement(v);
-  showToast('\u5df2\u4fdd\u5b58: ' + v + ' kg');
+  if (!Number.isFinite(v) || v <= 0) { showToast('\u8bf7\u8f93\u5165\u6709\u6548\u6570\u503c'); return; }
+  setIncrement(inputWeightKg(document.getElementById('incValue'), incrementUnit));
+  showToast('已保存: ' + v + ' ' + incrementUnit);
 }
 
 // Theme
@@ -690,7 +807,30 @@ function fallbackCopy(text, btn) {
   try { document.execCommand("copy"); btn.textContent = "已复制!"; } catch(e) { btn.textContent = "复制失败"; }
   document.body.removeChild(ta);
   setTimeout(function() { btn.textContent = "复制内容"; }, 1500);
-}function importData() {
+}function validateBackup(data) {
+  var ids = new Set();
+  data.workouts.forEach(function(w) {
+    if (!w || typeof w.id !== 'string' || !w.id || ids.has(w.id) ||
+        typeof w.exercise !== 'string' || !w.exercise.trim() ||
+        typeof w.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(w.date) ||
+        dateKey(new Date(w.date + 'T12:00:00')) !== w.date ||
+        !Array.isArray(w.sets) || !w.sets.length || w.sets.some(function(set) {
+          return !set || !Number.isFinite(set.weight) || set.weight < 0 || !Number.isInteger(set.reps) || set.reps <= 0;
+        })) throw new Error('训练记录格式无效，原有数据未修改');
+    ids.add(w.id);
+  });
+  ['exerciseCategories', 'defaultCategories'].forEach(function(key) {
+    var map = data[key];
+    if (map === undefined) return;
+    if (!map || typeof map !== 'object' || Array.isArray(map) || Object.keys(map).some(function(k) {
+      return !Array.isArray(map[k]) || map[k].some(function(name) { return typeof name !== 'string' || !name.trim(); });
+    })) throw new Error('分类格式无效');
+  });
+  if (data.exerciseFreq !== undefined && (!data.exerciseFreq || typeof data.exerciseFreq !== 'object' || Array.isArray(data.exerciseFreq) || Object.values(data.exerciseFreq).some(function(n) { return !Number.isInteger(n) || n < 0; }))) throw new Error('动作频次格式无效');
+  if (data.increment !== undefined && (!Number.isFinite(data.increment) || data.increment <= 0)) throw new Error('重量增量无效');
+}
+
+function importData() {
   var input = document.createElement('input');
   input.type = 'file';
   input.accept = '.json';
@@ -702,10 +842,11 @@ function fallbackCopy(text, btn) {
     reader.onload = function(ev) {
       try {
         var data = JSON.parse(ev.target.result);
-        if (!data.workouts || !Array.isArray(data.workouts)) {
+        if (!data || !Array.isArray(data.workouts)) {
           alert('数据格式无效，请选择正确的备份文件');
           return;
         }
+        validateBackup(data);
         var count = data.workouts.length;
         if (!confirm('将导入 ' + count + ' 条记录。当前记录将被替换，确定继续？')) return;
         workouts = data.workouts;
@@ -715,8 +856,14 @@ function fallbackCopy(text, btn) {
           saveCategories();
         }
         if (data.exerciseFreq) {
-          localStorage.setItem(FREQ_KEY, JSON.stringify(data.exerciseFreq));
+          exerciseFreq = data.exerciseFreq;
+          saveFreq();
         }
+        if (data.defaultCategories) {
+          defaultCategories = data.defaultCategories;
+          localStorage.setItem(DEFAULT_CAT_KEY, JSON.stringify(defaultCategories));
+        }
+        if (data.increment !== undefined) setIncrement(data.increment);
         showToast('已导入 ' + count + ' 条记录');
         refreshAll();
         renderPresets();
@@ -875,19 +1022,24 @@ function updateChart2() {
 
 // Update chart filter only (no chart re-render)
 function renderChartFilter() {
-  var exHtml = '<span class="preset-chip ' + (chartFilterEx==='all'?'selected':'') + '" data-filter="all" onclick="chartFilterEx=this.getAttribute(\x27data-filter\x27);chartExpandedCat=null;renderCharts();">\u5168\u90e8</span>';
-  var cats = Object.keys(exerciseCategories);
-  cats.forEach(function(cat) {
-    var isExpanded = chartExpandedCat === cat;
-    exHtml += '<span class="preset-chip' + (isExpanded ? ' selected' : '') + '" onclick="chartExpandedCat=chartExpandedCat===\x27' + cat + '\x27?null:\x27' + cat + '\x27;renderChartFilter();">' + cat + (isExpanded ? ' \u25bc' : ' \u25b6') + '</span>';
-    if (isExpanded) {
-      var exs = exerciseCategories[cat];
-      exs.forEach(function(ex) {
-        exHtml += '<span class="preset-chip sub-chip ' + (chartFilterEx===ex?'selected':'') + '" data-filter="' + ex + '" onclick="chartFilterEx=this.getAttribute(\x27data-filter\x27);renderCharts();">' + ex + '</span>';
-      });
-    }
+  var container = document.getElementById('chartFilter'); container.replaceChildren();
+  function chip(name, action, selected, sub) {
+    var button = document.createElement('button'); button.type = 'button';
+    button.className = 'preset-chip' + (selected ? ' selected' : '') + (sub ? ' sub-chip' : '');
+    button.textContent = name; button.onclick = action; container.appendChild(button);
+  }
+  chip('全部', function() { chartFilterEx = 'all'; chartExpandedCat = null; renderCharts(); }, chartFilterEx === 'all');
+  chip('无标识区', function() { chartFilterEx = '__unlabelled__'; chartExpandedCat = null; renderCharts(); }, chartFilterEx === '__unlabelled__');
+  var groups = Object.assign({}, exerciseCategories);
+  var orphanNames = Array.from(new Set(workouts.filter(isUnlabelled).map(function(w) { return w.exercise; })));
+  Object.keys(groups).forEach(function(cat) {
+    chip(cat + (chartExpandedCat === cat ? ' ▼' : ' ▶'), function() { chartExpandedCat = chartExpandedCat === cat ? null : cat; renderChartFilter(); }, chartExpandedCat === cat);
+    if (chartExpandedCat === cat) groups[cat].forEach(function(ex) { chip(ex, function() { chartFilterEx = ex; renderCharts(); }, chartFilterEx === ex, true); });
   });
-  document.getElementById('chartFilter').innerHTML = exHtml;
+  if (chartFilterEx === '__unlabelled__' || orphanNames.includes(chartFilterEx)) orphanNames.forEach(function(ex) { chip(ex, function() { chartFilterEx = ex; renderCharts(); }, chartFilterEx === ex, true); });
+}
+function chartWorkouts(filter) {
+  return workouts.filter(function(w) { return filter === 'all' || (filter === '__unlabelled__' ? isUnlabelled(w) : w.exercise === filter); });
 }
 function destroyCharts() {
   if (chartWeightInst) { chartWeightInst.destroy(); chartWeightInst = null; }
@@ -896,7 +1048,7 @@ function destroyCharts() {
 
 // Build per-set data: { labels: [dates], datasets: [{set index, color, data}] }
 function buildSetData(filter) {
-  var filtered = filter === 'all' ? workouts.slice() : workouts.filter(function(w) { return w.exercise === filter; });
+  var filtered = chartWorkouts(filter);
   filtered.sort(function(a,b) { return a.date.localeCompare(b.date); });
 
   var dates = [];
@@ -952,7 +1104,7 @@ function buildSetData(filter) {
 
 // Heaviest set per day
 function buildHeaviestData(filter) {
-  var filtered = filter === 'all' ? workouts.slice() : workouts.filter(function(w) { return w.exercise === filter; });
+  var filtered = chartWorkouts(filter);
   filtered.sort(function(a,b) { return a.date.localeCompare(b.date); });
 
   var dates = [];
@@ -1018,7 +1170,7 @@ function chartOpts(showLegend, labels) {
               var parts = [];
               if (exName) parts.push(exName);
               if (setLabel) parts.push(setLabel);
-              parts.push(weight + ' kg');
+              parts.push(Number(weight.toFixed(3)) + ' kg');
               if (reps !== null && reps !== undefined && reps !== '') parts.push(reps + ' reps');
               return parts.join(' · ');
             }
@@ -1026,7 +1178,7 @@ function chartOpts(showLegend, labels) {
         }
       },
       scales: {
-x: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: false, text: '', color: '#999' } },
+x: { ticks: { color: '#999', font: { size: 10 } }, grid: { color: '#2a2a2a' }, beginAtZero: false, title: { display: true, text: '重量（kg）', color: '#999' } },
         y: {
           ticks: {
             color: function(ctx) {
@@ -1189,7 +1341,9 @@ function renderCharts() {
 // ========== HISTORY ==========
 function renderHistory() {
   var search = (document.getElementById('historySearch').value || '').toLowerCase();
-  var filtered = workouts.filter(function(w) { return !search || w.exercise.toLowerCase().indexOf(search) >= 0 || w.date.indexOf(search) >= 0; });
+  document.getElementById('historyAll').setAttribute('aria-pressed', String(historyLabelScope === 'all'));
+  document.getElementById('historyUnlabelled').setAttribute('aria-pressed', String(historyLabelScope === 'unlabelled'));
+  var filtered = workouts.filter(function(w) { return (historyLabelScope !== 'unlabelled' || isUnlabelled(w)) && (!search || w.exercise.toLowerCase().indexOf(search) >= 0 || w.date.indexOf(search) >= 0); });
   filtered.sort(function(a,b) { return b.date.localeCompare(a.date); });
 
   var el = document.getElementById('historyList');
@@ -1249,9 +1403,9 @@ function renderHistory() {
         w.sets.forEach(function(s) { if (s.weight > maxW) maxW = s.weight; totalV += s.weight * s.reps; });
         html += '<div class="workout-item">' +
           '<div class="wo-date">' + w.date + '</div>' +
-          '<div class="wo-exercise">' + w.exercise + '</div>' +
+          '<div class="wo-exercise">' + escapeText(w.exercise) + (isUnlabelled(w) ? ' · 无标识' : '') + '</div>' +
           '<div class="wo-sets">' + w.sets.length + '\u7ec4 | \u6700\u5927 ' + maxW + 'kg | \u603b\u91cf ' + totalV + 'kg</div>' +
-          '<div class="wo-sets">' + w.sets.map(function(s,i) { return '#' + (i+1) + ': ' + s.weight + 'kg \u00d7 ' + s.reps + '\u6b21'; }).join(' | ') + '</div>' +
+          '<div class="wo-sets">' + w.sets.map(function(s,i) { return '#' + (i+1) + ': ' + Number(s.weight.toFixed(3)) + 'kg \u00d7 ' + s.reps + '\u6b21'; }).join(' | ') + '</div>' +
           '<div class="wo-actions">' +
             '<button class="btn btn-outline btn-sm" type="button" data-edit="' + w.id + '" onclick="openEditModal(this.getAttribute(\x27data-edit\x27))">\u7f16\u8f91</button>' +
             '<button class="btn btn-danger btn-sm" type="button" data-del="' + w.id + '" onclick="deleteWorkout(this.getAttribute(\x27data-del\x27))">\u5220\u9664</button>' +
@@ -1471,7 +1625,7 @@ function generateDebugData() {
   var wi = 0;
   var d = new Date(startDate);
   while (d < endDate) {
-    var dateStr = d.toISOString().split('T')[0];
+    var dateStr = dateKey(d);
     var kg = weights[wi % weights.length];
     workouts.push({
       id: 'dbg' + dateStr,

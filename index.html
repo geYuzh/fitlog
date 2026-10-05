@@ -2,17 +2,18 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f0f0f">
 <title>FitLog 健身记录</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
 <script src="chart.umd.min.js"></script>
 <script src="hammer.min.js"></script>
 
-<script src="import_data.js?v=1"></script>
-<script src="app.js?v=20260722g" defer></script>
+
+<script src="app.js?v=20261005" defer></script>
 <style>
 :root{--bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#333;--text:#e8e8e8;--text2:#999;--accent:#ff6b35;--accent2:#4ecdc4;--green:#2ecc71;--red:#e74c3c;--radius:12px;--nav-h:64px;--header-h:56px;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -272,6 +273,29 @@ body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d
 .calendar-grid .cal-day.today{border:2px solid var(--accent)}
 .calendar-grid .cal-day .cal-dot{display:block;width:5px;height:5px;border-radius:50%;background:#4caf50;margin:2px auto 0 auto}
 
+/* Keep recording actions clear of the fixed navigation, regardless of set count. */
+#panel-record{padding-bottom:100px}
+.record-actions{position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-bottom));z-index:110;padding:12px 16px;background:var(--surface);border-top:1px solid var(--border)}
+.record-actions .btn{min-height:48px;max-width:720px;display:block;margin:auto}
+@media (min-width:600px){.record-actions{max-width:430px;left:50%;right:auto;width:100%;transform:translateX(-50%)}}
+.weight-unit-picker{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.weight-unit-picker label{margin:0}
+.unit-options{display:flex;gap:4px}
+.unit-options button{min-height:40px;min-width:64px;padding:8px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--text);font:inherit;cursor:pointer}
+.unit-options button[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:700}
+.unit-hint{color:var(--text2);font-size:12px;margin-bottom:12px}
+.label-actions{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
+.settings-cat-header{gap:6px;flex-wrap:wrap}
+.settings-cat-header>:first-child{flex:1;text-align:left;overflow-wrap:anywhere}
+.settings-ex-row{gap:8px;flex-wrap:wrap;overflow-wrap:anywhere}
+.settings-ex-row>span{flex:1;min-width:80px}
+.label-add-row{display:flex;gap:6px;margin-top:10px}
+.label-add-row input{flex:1;min-width:0;padding:8px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font:inherit}
+.label-dialog-overlay{z-index:300;padding:16px}
+.label-dialog-overlay .modal-sheet{width:100%;max-height:calc(100dvh - 32px)}
+.label-dialog-message{white-space:pre-line;overflow-wrap:anywhere;font-size:14px;line-height:1.6;margin-bottom:16px}
+.label-dialog-actions{display:flex;justify-content:flex-end;gap:12px}
+.label-dialog-actions .btn{min-height:44px}
 </style>
 </head>
 <body>
@@ -298,12 +322,19 @@ body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d
         <div class="presets" id="exercisePresets"></div>
       </div>
       <div class="form-group">
-        <label>组数明细</label>
+        <div class="weight-unit-picker">
+          <label>组数明细</label>
+          <div class="unit-options" role="group" aria-label="记录重量单位">
+            <button id="unitKg" type="button" aria-pressed="true" onclick="setRecordUnit('kg')">kg</button>
+            <button id="unitLb" type="button" aria-pressed="false" onclick="setRecordUnit('lb')">磅 lb</button>
+          </div>
+        </div>
+        <p class="unit-hint">切换时换算已输入的重量；历史和图表统一显示 kg。</p>
         <div id="setsContainer"></div>
         <button class="btn btn-outline btn-sm" type="button" onclick="addSet()" style="margin-top:4px">+ 添加一组</button>
       </div>
-      <button class="btn btn-primary btn-block" type="button" onclick="saveWorkout()" style="margin-top:12px">保存记录</button>
     </div>
+    <div class="record-actions"><button id="saveRecord" class="btn btn-primary btn-block" type="button" onclick="saveWorkout()">保存记录</button></div>
   </div>
 
   <!-- CHARTS -->
@@ -336,6 +367,10 @@ body.theme-coffee{--bg:#1a1410;--surface:#241c16;--surface2:#2e241c;--border:#3d
 
   <!-- HISTORY -->
   <div class="tab-panel" id="panel-history">
+    <div class="unit-options" role="group" aria-label="历史记录标识筛选" style="margin-bottom:12px">
+      <button id="historyAll" type="button" onclick="historyLabelScope='all';renderHistory()">全部记录</button>
+      <button id="historyUnlabelled" type="button" onclick="historyLabelScope='unlabelled';renderHistory()">无标识区</button>
+    </div>
     <div class="history-filters">
       <input type="text" id="historySearch" placeholder="搜索项目或日期，如卧推、2005..." oninput="renderHistory()">
     </div>

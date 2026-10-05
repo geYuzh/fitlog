@@ -1,0 +1,10 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const output = path.join(root, 'www');
+const assets = ['index.html', 'app.js', 'manifest.json', 'sw.js', 'chart.umd.min.js', 'chartjs-plugin-zoom.min.js', 'hammer.min.js', 'icons'];
+for (const asset of assets) if (!fs.existsSync(path.join(root, asset))) throw new Error('Missing asset: ' + asset);
+fs.rmSync(output, { recursive: true, force: true });
+fs.mkdirSync(output);
+for (const asset of assets) fs.cpSync(path.join(root, asset), path.join(output, asset), { recursive: true });
+console.log('Built web assets into www');

@@ -3,3 +3,5 @@ www/
 android/
 .idea/
 *.apk
+
+.npm-cache/
