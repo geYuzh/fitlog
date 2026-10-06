@@ -14,11 +14,11 @@ test('weekly count deduplicates days and excludes future dates', () => {
   assert.equal(ctx.getWeekWorkouts(),1);
 });
 test('bodyweight sets and legacy backup are accepted', () => ctx.validateBackup(valid()));
-test('legacy zero-rep sets are accepted without modifying their weights or counts', () => {
+test('zero-rep backups are rejected without modifying their weights or counts', () => {
   const data = valid();
   data.workouts[0].sets = [{weight:100,reps:0},{weight:0,reps:0},{weight:90,reps:5}];
   const before = JSON.stringify(data);
-  ctx.validateBackup(data);
+  assert.throws(() => ctx.validateBackup(data), /次数为 0/);
   assert.equal(JSON.stringify(data), before);
   data.workouts[0].sets[0].reps = -1;
   assert.throws(() => ctx.validateBackup(data));

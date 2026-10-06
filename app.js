@@ -819,13 +819,13 @@ function fallbackCopy(text, btn) {
 }function validateBackup(data) {
   var ids = new Set();
   data.workouts.forEach(function(w) {
+    if (w && Array.isArray(w.sets) && w.sets.some(function(set) { return set && set.reps === 0; })) throw new Error('备份含次数为 0 的训练组，请先清理后导入');
     if (!w || typeof w.id !== 'string' || !w.id || ids.has(w.id) ||
         typeof w.exercise !== 'string' || !w.exercise.trim() ||
         typeof w.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(w.date) ||
         dateKey(new Date(w.date + 'T12:00:00')) !== w.date ||
         !Array.isArray(w.sets) || !w.sets.length || w.sets.some(function(set) {
-          // Older versions saved failed/incomplete sets with zero reps. Preserve them on import.
-          return !set || !Number.isFinite(set.weight) || set.weight < 0 || !Number.isInteger(set.reps) || set.reps < 0;
+          return !set || !Number.isFinite(set.weight) || set.weight < 0 || !Number.isInteger(set.reps) || set.reps <= 0;
         })) throw new Error('训练记录格式无效，原有数据未修改');
     ids.add(w.id);
   });
@@ -862,9 +862,7 @@ function importData() {
         }
         validateBackup(data);
         var count = data.workouts.length;
-        var zeroSets = data.workouts.reduce(function(total, w) { return total + w.sets.filter(function(set) { return set.reps === 0; }).length; }, 0);
         var message = '将导入 ' + count + ' 条记录。当前记录将被替换。';
-        if (zeroSets) message += '\n含 ' + zeroSets + ' 组旧版的 0 次记录，将原样保留。';
         message += '\n导入前会自动保存当前数据快照。确定继续？';
         if (!await labelDialog({title: '确认导入备份', message: message, accept: '确认导入'})) return;
         var previous = {};
