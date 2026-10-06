@@ -824,7 +824,8 @@ function fallbackCopy(text, btn) {
         typeof w.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(w.date) ||
         dateKey(new Date(w.date + 'T12:00:00')) !== w.date ||
         !Array.isArray(w.sets) || !w.sets.length || w.sets.some(function(set) {
-          return !set || !Number.isFinite(set.weight) || set.weight < 0 || !Number.isInteger(set.reps) || set.reps <= 0;
+          // Older versions saved failed/incomplete sets with zero reps. Preserve them on import.
+          return !set || !Number.isFinite(set.weight) || set.weight < 0 || !Number.isInteger(set.reps) || set.reps < 0;
         })) throw new Error('训练记录格式无效，原有数据未修改');
     ids.add(w.id);
   });
@@ -852,16 +853,26 @@ function importData() {
     var file = e.target.files[0];
     if (!file) return;
     var reader = new FileReader();
-    reader.onload = function(ev) {
+    reader.onload = async function(ev) {
       try {
-        var data = JSON.parse(ev.target.result);
+        var data = JSON.parse(ev.target.result.replace(/^\uFEFF/, ''));
         if (!data || !Array.isArray(data.workouts)) {
           alert('数据格式无效，请选择正确的备份文件');
           return;
         }
         validateBackup(data);
         var count = data.workouts.length;
-        if (!confirm('将导入 ' + count + ' 条记录。当前记录将被替换，确定继续？')) return;
+        var zeroSets = data.workouts.reduce(function(total, w) { return total + w.sets.filter(function(set) { return set.reps === 0; }).length; }, 0);
+        var message = '将导入 ' + count + ' 条记录。当前记录将被替换。';
+        if (zeroSets) message += '\n含 ' + zeroSets + ' 组旧版的 0 次记录，将原样保留。';
+        message += '\n导入前会自动保存当前数据快照。确定继续？';
+        if (!await labelDialog({title: '确认导入备份', message: message, accept: '确认导入'})) return;
+        var previous = {};
+        for (var i = 0; i < localStorage.length; i++) {
+          var key = localStorage.key(i);
+          if (key.indexOf('fitlog_') === 0 && key !== 'fitlog_pre_import_backup') previous[key] = localStorage.getItem(key);
+        }
+        localStorage.setItem('fitlog_pre_import_backup', JSON.stringify(previous));
         workouts = data.workouts;
         saveData();
         if (data.exerciseCategories !== undefined) {
@@ -884,14 +895,16 @@ function importData() {
         refreshAll();
         renderPresets();
       } catch(e) {
-        alert('文件解析失败：' + e.message);
+        showToast('导入未完成：' + e.message);
       }
     };
+    reader.onerror = function() { showToast('无法读取备份文件，请重新选择'); };
     reader.readAsText(file);
+    input.remove();
   };
   document.body.appendChild(input);
   input.click();
-  // input removed by onchange handler
+  input.oncancel = function() { input.remove(); };
 }
 
 // ========== CHARTS ==========
