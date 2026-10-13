@@ -122,10 +122,20 @@ function init() {
   switchTab('record');
   document.getElementById('todayLabel').textContent = formatDate(new Date());
   document.addEventListener('click', function(e) {
-    if (!e.target.closest('.rep-menu-wrap')) {
-      document.querySelectorAll('.rep-menu-drop').forEach(function(d) { d.style.display = 'none'; });
-    }
+    if (!e.target.closest('.rep-menu-wrap')) closeRepMenus();
   });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeRepMenus(true);
+  });
+  // Keep the menu in the visible form area during scrolling and keyboard/viewport changes.
+  document.addEventListener('scroll', function(e) {
+    if (!e.target.closest || !e.target.closest('.rep-menu-drop')) refreshRepMenu();
+  }, true);
+  window.addEventListener('resize', refreshRepMenu);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', refreshRepMenu);
+    window.visualViewport.addEventListener('scroll', refreshRepMenu);
+  }
 }
 function setTodayDate() {
   document.getElementById('recDate').value = dateKey(new Date());
@@ -235,7 +245,7 @@ function addSet() {
     '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
     '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
-    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" aria-expanded="false" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><button class="rep-chip" type="button" onclick="setRep(this,4)">4</button><button class="rep-chip" type="button" onclick="setRep(this,8)">8</button><button class="rep-chip" type="button" onclick="setRep(this,12)">12</button></div></div>' +
     '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
     '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27setsContainer\x27)">x</button>';
   container.appendChild(div);
@@ -248,6 +258,7 @@ function setRep(chip, val) {
   input.value = val;
   row.querySelectorAll('.rep-chip').forEach(function(c) { c.classList.remove('active'); });
   chip.classList.add('active');
+  closeRepMenus(true);
 }
 function adjWeight(btn, sign) {
   var row = btn.closest('.set-row');
@@ -263,12 +274,63 @@ function adjRep(btn, sign) {
   v = Math.max(0, v + sign);
   input.value = v;
 }
+function closeRepMenus(restoreFocus) {
+  document.querySelectorAll('.rep-menu-drop').forEach(function(drop) {
+    var wasOpen = drop.style.display === 'flex';
+    drop.style.display = 'none';
+    drop.previousElementSibling.setAttribute('aria-expanded', 'false');
+    if (wasOpen && restoreFocus) drop.previousElementSibling.focus({preventScroll: true});
+  });
+}
 function toggleRepMenu(btn) {
   var drop = btn.nextElementSibling;
   var isOpen = drop.style.display === 'flex';
-  // close all others first
-  document.querySelectorAll('.rep-menu-drop').forEach(function(d) { d.style.display = 'none'; });
-  drop.style.display = isOpen ? 'none' : 'flex';
+  closeRepMenus();
+  if (isOpen) return;
+  positionRepMenu(btn);
+  drop.scrollTop = 0;
+}
+var repMenuFrame = 0;
+function refreshRepMenu() {
+  if (repMenuFrame) return;
+  repMenuFrame = requestAnimationFrame(function() {
+    repMenuFrame = 0;
+    var btn = document.querySelector('.btn-rep-menu[aria-expanded="true"]');
+    if (btn) positionRepMenu(btn);
+  });
+}
+function positionRepMenu(btn) {
+  var drop = btn.nextElementSibling;
+  // Use the visible form area, excluding fixed bars and the edit sheet's clipping edges.
+  var viewport = window.visualViewport;
+  var top = viewport ? viewport.offsetTop : 0;
+  var bottom = top + (viewport ? viewport.height : window.innerHeight);
+  var sheet = btn.closest('.modal-sheet');
+  if (sheet) {
+    var bounds = sheet.getBoundingClientRect();
+    top = Math.max(top, bounds.top);
+    bottom = Math.min(bottom, bounds.bottom);
+  } else {
+    top = Math.max(top, document.querySelector('.header').getBoundingClientRect().bottom);
+    var bar = document.querySelector(currentTab === 'record' ? '.record-actions' : '.bottom-nav');
+    bottom = Math.min(bottom, bar.getBoundingClientRect().top);
+  }
+  var anchor = btn.getBoundingClientRect();
+  if (anchor.top < top + 4 || anchor.bottom > bottom - 4) {
+    closeRepMenus();
+    return;
+  }
+  var above = Math.max(0, anchor.top - top - 12);
+  var below = Math.max(0, bottom - anchor.bottom - 12);
+  var previousScroll = drop.scrollTop;
+  drop.classList.remove('open-up');
+  drop.style.maxHeight = '';
+  drop.style.display = 'flex';
+  var openUp = drop.getBoundingClientRect().height > below && above > below;
+  drop.classList.toggle('open-up', openUp);
+  drop.style.maxHeight = (openUp ? above : below) + 'px';
+  drop.scrollTop = previousScroll;
+  btn.setAttribute('aria-expanded', 'true');
 }
 function renumberSets(containerId) {
   var rows = document.querySelectorAll('#' + containerId + ' .set-row');
@@ -321,6 +383,7 @@ function showToast(msg) {
 
 // ========== TAB SWITCHING ==========
 function switchTab(tab) {
+  closeRepMenus();
   currentTab = tab;
   document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -1492,14 +1555,14 @@ function openEditModal(id) {
       '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
       '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
       '<div class="set-input-wrap" style="flex:0.8"><input type="number" value="' + s.reps + '" step="1" min="0" class="set-reps"><span class="set-unit">\u6b21</span></div>' +
-      '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+      '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" aria-expanded="false" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><button class="rep-chip" type="button" onclick="setRep(this,4)">4</button><button class="rep-chip" type="button" onclick="setRep(this,8)">8</button><button class="rep-chip" type="button" onclick="setRep(this,12)">12</button></div></div>' +
     '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
       '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
     container.appendChild(div);
   });
   document.getElementById('editModal').style.display = 'flex';
 }
-function closeEditModal() { document.getElementById('editModal').style.display = 'none'; }
+function closeEditModal() { closeRepMenus(); document.getElementById('editModal').style.display = 'none'; }
 function addEditSet() {
   var container = document.getElementById('editSetsContainer');
   var idx = container.children.length + 1;
@@ -1521,7 +1584,7 @@ function addEditSet() {
     '<div class="wadj-stack"><button class="btn-wadj-up" type="button" onclick="adjWeight(this,1)">\u25b2</button><button class="btn-wadj-down" type="button" onclick="adjWeight(this,-1)">\u25bc</button></div>' +
     '<span class="set-label" style="margin:0 2px">\u00d7</span>' +
     '<div class="set-input-wrap" style="flex:0.8"><input type="number" placeholder="0" step="1" min="0" class="set-reps" value="' + lastReps + '"><span class="set-unit">\u6b21</span></div>' +
-    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><span class="rep-chip" onclick="setRep(this,4)">4</span><span class="rep-chip" onclick="setRep(this,8)">8</span><span class="rep-chip" onclick="setRep(this,12)">12</span></div></div>' +
+    '<div class="rep-menu-wrap"><button class="btn-rep-menu" type="button" aria-expanded="false" onclick="toggleRepMenu(this)" title="\u5feb\u6377\u6b21\u6570">\u2261</button><div class="rep-menu-drop"><button class="rep-chip" type="button" onclick="setRep(this,4)">4</button><button class="rep-chip" type="button" onclick="setRep(this,8)">8</button><button class="rep-chip" type="button" onclick="setRep(this,12)">12</button></div></div>' +
     '<div class="radj-stack"><button class="btn-radj-up" type="button" onclick="adjRep(this,1)">\u25b2</button><button class="btn-radj-down" type="button" onclick="adjRep(this,-1)">\u25bc</button></div>' +
     '<button class="btn btn-danger btn-sm btn-icon" type="button" onclick="this.closest(\x27.set-row\x27).remove();renumberSets(\x27editSetsContainer\x27)">x</button>';
   container.appendChild(div);
