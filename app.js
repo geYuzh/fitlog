@@ -830,6 +830,9 @@ async function exportData(mode) {
       } else {
         var saved = await native.save({filename: filename, data: jsonStr});
         if (saved.cancelled) { showToast('已取消保存，未导出备份'); return; }
+        if (saved.verified !== true || !Number.isSafeInteger(saved.bytes) || saved.bytes <= 0) {
+          throw new Error('无法确认备份文件完整，请重新导出');
+        }
         showToast('备份文件已保存');
         showExportModal(jsonStr, saved.filename || filename, {title: '备份文件已保存', message: '文件已写入你在系统保存窗口选择的位置。可在该文件夹找到以下 JSON 文件。', native: true, shareFilename: filename});
       }

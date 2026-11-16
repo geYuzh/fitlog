@@ -48,6 +48,22 @@ jobs:
       - name: Sync Capacitor
         run: npx cap sync android
 
+      - name: Prepare Android backup regression tests
+        run: node scripts/prepare-android-tests.cjs
+
+      - name: Test Android backup files and lifecycle
+        run: cd android && ./gradlew :app:testDebugUnitTest
+
+      - name: Upload Android test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: FitLog-native-test-results
+          path: |
+            android/app/build/reports/tests/testDebugUnitTest/
+            android/app/build/test-results/testDebugUnitTest/
+          if-no-files-found: warn
+
       - name: Enable landscape orientation
         run: |
           # Remove any screenOrientation lock from manifest

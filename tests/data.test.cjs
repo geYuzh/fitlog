@@ -77,7 +77,7 @@ test('native export writes JSON and reports success only after completion', asyn
   const data = JSON.parse(captured.data);
   assert.equal(data.workouts[0].exercise, valid().workouts[0].exercise);
   state.mock.validateBackup(data);
-  complete({cancelled: false, filename: 'backup.json'});
+  complete({cancelled: false, filename: 'backup.json', verified: true, bytes: Buffer.byteLength(captured.data)});
   await pending;
   assert.equal(state.modals[0][2].title, '备份文件已保存');
 });
@@ -86,6 +86,14 @@ test('cancelled native save does not report successful export', async () => {
   await state.mock.exportData();
   assert.equal(state.modals.length, 0);
   assert.equal(state.toasts[0], '已取消保存，未导出备份');
+});
+test('unverified or empty native save never reports success', async () => {
+  for (const saved of [{cancelled:false,verified:false,bytes:100},{cancelled:false,verified:true,bytes:0}]) {
+    const state = exportContext({save: async () => saved});
+    await state.mock.exportData();
+    assert.equal(state.modals[0][2].title, '备份保存失败');
+    assert.ok(!state.toasts.includes('备份文件已保存'));
+  }
 });
 test('native save failure displays failure instead of success', async () => {
   const state = exportContext({save: async () => {throw new Error('disk full');}});
